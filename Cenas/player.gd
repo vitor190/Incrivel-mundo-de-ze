@@ -34,7 +34,7 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	var speed = 50.0 
 	if Input.is_key_pressed(KEY_SHIFT):
-		speed = 90.0
+		speed = 80.0
 	
 	var direction = Vector2.ZERO
 	
