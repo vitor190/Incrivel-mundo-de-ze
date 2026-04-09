@@ -32,9 +32,9 @@ func _process(delta: float) -> void:
 		tool_sprite.flip_h = false
 		
 func _physics_process(delta: float) -> void:
-	var speed = 70.0 
+	var speed = 50.0 
 	if Input.is_key_pressed(KEY_SHIFT):
-		speed = 130.0
+		speed = 90.0
 	
 	var direction = Vector2.ZERO
 	

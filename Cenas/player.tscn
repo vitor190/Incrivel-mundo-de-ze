@@ -591,9 +591,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5p0qj"]
-size = Vector2(2.5, 7.50001)
+size = Vector2(3.75001, 8.75001)
 
 [node name="player" type="CharacterBody2D"]
+z_index = 4
 scale = Vector2(0.8, 0.8)
 collision_mask = 2
 script = ExtResource("1_5p0qj")
@@ -612,10 +613,7 @@ sprite_frames = SubResource("SpriteFrames_rxqvy")
 animation = &"Run"
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
-position = Vector2(3.72529e-08, 1.2666e-07)
-scale = Vector2(0.999999, 0.999999)
+position = Vector2(0.625, -0.625)
+scale = Vector2(0.999998, 0.999998)
 shape = SubResource("RectangleShape2D_5p0qj")
 one_way_collision_margin = 0.0
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(4.2, 4.2)
