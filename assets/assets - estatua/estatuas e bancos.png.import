@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cwj264kdof642"
-path="res://.godot/imported/TX Props with Shadow.png-dc04fb7ce75ce07816c0deb9294377db.ctex"
+path="res://.godot/imported/estatuas e bancos.png-428077196defd83470beec7540fb8310.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/assets - estatua/TX Props with Shadow.png"
-dest_files=["res://.godot/imported/TX Props with Shadow.png-dc04fb7ce75ce07816c0deb9294377db.ctex"]
+source_file="res://assets/assets - estatua/estatuas e bancos.png"
+dest_files=["res://.godot/imported/estatuas e bancos.png-428077196defd83470beec7540fb8310.ctex"]
 
 [params]
 
