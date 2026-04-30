@@ -9,4 +9,5 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	$Camera2D.position = player.position
+	if player:
+		camera2d.position = camera2d.position.lerp(player.position, 5 * delta)
