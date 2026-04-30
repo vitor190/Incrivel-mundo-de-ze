@@ -4,6 +4,9 @@ extends CharacterBody2D
 @onready var hair_sprite: AnimatedSprite2D = $HairSprite
 @onready var tool_sprite: AnimatedSprite2D = $ToolSprite
 
+func _ready():
+	add_to_group("player")
+
 func _process(delta: float) -> void:
 	var moving = Input.is_key_pressed(KEY_W) or Input.is_key_pressed(KEY_A) or Input.is_key_pressed(KEY_S) or Input.is_key_pressed(KEY_D)
 	

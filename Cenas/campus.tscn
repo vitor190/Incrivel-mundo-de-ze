@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=4 uid="uid://d1fp3455quaio"]
+[gd_scene load_steps=54 format=4 uid="uid://d1fp3455quaio"]
 
 [ext_resource type="Texture2D" uid="uid://kntredmexbj3" path="res://assets/assets - chao/Textures-16.png" id="1_48ab0"]
 [ext_resource type="PackedScene" uid="uid://dqpoa0wpgwarr" path="res://Cenas/player.tscn" id="1_sy08p"]
@@ -12,8 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://c1dere5uq183o" path="res://assets/assets - obstaculo/placa unifor.png" id="9_dfoq1"]
 [ext_resource type="Texture2D" uid="uid://bxx22lhgbigv7" path="res://assets/assets - bloco_educacional/Bloco C.png" id="11_7lhfo"]
 [ext_resource type="Texture2D" uid="uid://cwj264kdof642" path="res://assets/assets - estatuas e fontes/estatuas e bancos.png" id="12_dbllo"]
-[ext_resource type="Script" uid="uid://coocddf55pdin" path="res://Cenas/sub_viewport.gd" id="13_agv4h"]
-[ext_resource type="Shader" uid="uid://rdkttq8cfugt" path="res://Cenas/campus.gdshader" id="13_jln3j"]
+[ext_resource type="PackedScene" uid="uid://b8v57uu1gski5" path="res://Cenas/minimapa.tscn" id="13_agv4h"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qbeu0"]
 texture = ExtResource("3_sp1x8")
@@ -9934,26 +9933,6 @@ physics_layer_0/collision_layer = 2
 sources/0 = SubResource("TileSetAtlasSource_eqysr")
 sources/1 = SubResource("TileSetAtlasSource_bh5hy")
 
-[sub_resource type="LabelSettings" id="LabelSettings_jln3j"]
-font_color = Color(1, 0, 0, 1)
-outline_size = 12
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_en2lb"]
-outline_size = 12
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_4cpmo"]
-outline_size = 12
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_obpnf"]
-outline_size = 12
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_en2lb"]
-shader = ExtResource("13_jln3j")
-
 [node name="Campus" type="Node2D"]
 
 [node name="player" parent="." instance=ExtResource("1_sy08p")]
@@ -10097,110 +10076,4 @@ tile_set = SubResource("TileSet_pwnp4")
 
 [node name="minimapa" type="Node" parent="."]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="minimapa"]
-
-[node name="Control" type="Control" parent="minimapa/CanvasLayer"]
-layout_mode = 3
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -232.0
-offset_bottom = 224.0
-grow_horizontal = 0
-
-[node name="N" type="Label" parent="minimapa/CanvasLayer/Control"]
-z_index = 1
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 56.0
-grow_horizontal = 2
-text = "N
-"
-label_settings = SubResource("LabelSettings_jln3j")
-horizontal_alignment = 1
-
-[node name="L" type="Label" parent="minimapa/CanvasLayer/Control"]
-z_index = 1
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = -24.0
-offset_top = -8.0
-offset_right = 48.0
-offset_bottom = 48.0
-grow_vertical = 2
-text = "L
-"
-label_settings = SubResource("LabelSettings_en2lb")
-horizontal_alignment = 1
-
-[node name="O" type="Label" parent="minimapa/CanvasLayer/Control"]
-z_index = 1
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -40.0
-offset_top = -24.0
-offset_right = 24.0
-offset_bottom = 56.0
-grow_horizontal = 0
-grow_vertical = 2
-text = "O
-"
-label_settings = SubResource("LabelSettings_4cpmo")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="S" type="Label" parent="minimapa/CanvasLayer/Control"]
-z_index = 1
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -24.0
-offset_right = 20.0
-offset_bottom = 32.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "S
-"
-label_settings = SubResource("LabelSettings_obpnf")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="minimapa/CanvasLayer"]
-material = SubResource("ShaderMaterial_en2lb")
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -213.0
-offset_top = 6.0
-offset_right = -8.0
-offset_bottom = 211.0
-grow_horizontal = 0
-metadata/_edit_use_anchors_ = true
-
-[node name="SubViewport" type="SubViewport" parent="minimapa/CanvasLayer/SubViewportContainer"]
-handle_input_locally = false
-size = Vector2i(215, 215)
-render_target_update_mode = 4
-script = ExtResource("13_agv4h")
-
-[node name="Camera2D" type="Camera2D" parent="minimapa/CanvasLayer/SubViewportContainer/SubViewport"]
-zoom = Vector2(0.76, 0.76)
-limit_left = -8
-limit_top = -880
-limit_right = 1632
-limit_bottom = 920
-editor_draw_limits = true
+[node name="minimapa" parent="minimapa" instance=ExtResource("13_agv4h")]

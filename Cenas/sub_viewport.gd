@@ -1,7 +1,7 @@
 extends SubViewport
 
 @onready var camera2d = $Camera2D
-@onready var player = $"../../../../player" 
+@onready var player = get_tree().get_first_node_in_group("player")
 
 func _ready() -> void:
 	world_2d = get_tree().root.world_2d
