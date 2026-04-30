@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cwj264kdof642"
-path="res://.godot/imported/estatuas e bancos.png-428077196defd83470beec7540fb8310.ctex"
+path="res://.godot/imported/estatuas e bancos.png-5d99119edfcf379487036465ffc09f64.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/assets - estatua/estatuas e bancos.png"
-dest_files=["res://.godot/imported/estatuas e bancos.png-428077196defd83470beec7540fb8310.ctex"]
+source_file="res://assets/assets - estatuas e fontes/estatuas e bancos.png"
+dest_files=["res://.godot/imported/estatuas e bancos.png-5d99119edfcf379487036465ffc09f64.ctex"]
 
 [params]
 
