@@ -14,7 +14,11 @@
 [ext_resource type="Texture2D" uid="uid://cwj264kdof642" path="res://assets/assets - estatuas e fontes/estatuas e bancos.png" id="12_dbllo"]
 [ext_resource type="PackedScene" uid="uid://b8v57uu1gski5" path="res://Cenas/minimapa.tscn" id="13_agv4h"]
 [ext_resource type="Script" uid="uid://c4ns68ipheuil" path="res://Cenas/transparent_roof.gd" id="13_jln3j"]
+[ext_resource type="Script" uid="uid://yyu4g6kxre1g" path="res://Cenas/porta.gd" id="14_504uy"]
+[ext_resource type="Script" uid="uid://dqsogyr0a0c0g" path="res://Cenas/porta_d.gd" id="15_ee8j5"]
 [ext_resource type="Script" uid="uid://dfyf45t1tlyhr" path="res://Cenas/audio_stream_player.gd" id="15_en2lb"]
+[ext_resource type="Script" uid="uid://d0ex6ytr31vye" path="res://Cenas/hud.gd" id="16_4cpmo"]
+[ext_resource type="Script" uid="uid://bbam7g82pm2p7" path="res://Cenas/transicao.gd" id="17_obpnf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qbeu0"]
 texture = ExtResource("3_sp1x8")
@@ -8020,6 +8024,9 @@ size = Vector2(92, 47.375)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4cpmo"]
 size = Vector2(18.5, 177)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ee8j5"]
+size = Vector2(53, 48)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eqysr"]
 texture = ExtResource("11_7lhfo")
 37:3/0 = 0
@@ -9950,6 +9957,12 @@ size = Vector2(19, 70.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_504uy"]
 size = Vector2(17.5, 102.25)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v50wb"]
+size = Vector2(37, 46)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_504uy"]
+bg_color = Color(0.09803922, 0.3647059, 1, 0.72156864)
+
 [node name="Campus" type="Node2D" unique_id=2106191947]
 
 [node name="player" parent="." unique_id=1041145155 instance=ExtResource("1_sy08p")]
@@ -10105,6 +10118,14 @@ shape = SubResource("RectangleShape2D_en2lb")
 position = Vector2(552.75, 426.5)
 shape = SubResource("RectangleShape2D_4cpmo")
 
+[node name="PortaC" type="Area2D" parent="TileMaps/materiais seprados/BlocoC_Building" unique_id=246997769]
+position = Vector2(-160, -352)
+script = ExtResource("14_504uy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMaps/materiais seprados/BlocoC_Building/PortaC" unique_id=1966936849]
+position = Vector2(561.5, 819)
+shape = SubResource("RectangleShape2D_ee8j5")
+
 [node name="BlocoD_Building" type="Node2D" parent="TileMaps/materiais seprados" unique_id=872808983 node_paths=PackedStringArray("roof_layers", "detection_area")]
 script = ExtResource("13_jln3j")
 roof_layers = [NodePath("TileMap - Bloco D"), NodePath("TileMap - Bloco D")]
@@ -10127,9 +10148,50 @@ shape = SubResource("RectangleShape2D_obpnf")
 position = Vector2(1427.25, 217.875)
 shape = SubResource("RectangleShape2D_504uy")
 
+[node name="PortaD" type="Area2D" parent="TileMaps/materiais seprados/BlocoD_Building" unique_id=1380825016]
+script = ExtResource("15_ee8j5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMaps/materiais seprados/BlocoD_Building/PortaD" unique_id=1620891730]
+position = Vector2(1071.5, 309)
+shape = SubResource("RectangleShape2D_v50wb")
+
 [node name="minimapa" type="Node" parent="." unique_id=2132989874]
 
 [node name="minimapa" parent="minimapa" unique_id=132317973 instance=ExtResource("13_agv4h")]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1720387006]
 script = ExtResource("15_en2lb")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=724423551]
+script = ExtResource("16_4cpmo")
+
+[node name="PanelContainer" type="PanelContainer" parent="HUD" unique_id=756009223]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -69.0
+offset_right = 64.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_504uy")
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/PanelContainer" unique_id=99198154]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HUD/PanelContainer/MarginContainer" unique_id=463002936]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "\""
+
+[node name="Transicao" type="CanvasLayer" parent="." unique_id=90377773 groups=["transicao"]]
+script = ExtResource("17_obpnf")
+
+[node name="ColorRect" type="ColorRect" parent="Transicao" unique_id=902475973]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[connection signal="body_entered" from="TileMaps/materiais seprados/BlocoC_Building/PortaC" to="player" method="_on_porta_body_entered"]
+[connection signal="body_entered" from="TileMaps/materiais seprados/BlocoD_Building/PortaD" to="player" method="_on_porta_d_body_entered"]
