@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwcri1s1c5ek5"
-path="res://.godot/imported/Spritesheet_UI_Flat.png-e5860e8df54898bbea92bbee136d3a88.ctex"
+uid="uid://87y7b2ffm00v"
+path="res://.godot/imported/CC.png-571abac117b761d299d2a6e20d1d4369.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/assets - XpBar/Spritesheet_UI_Flat.png"
-dest_files=["res://.godot/imported/Spritesheet_UI_Flat.png-e5860e8df54898bbea92bbee136d3a88.ctex"]
+source_file="res://assets/assets - bloco_educacional/CC.png"
+dest_files=["res://.godot/imported/CC.png-571abac117b761d299d2a6e20d1d4369.ctex"]
 
 [params]
 
