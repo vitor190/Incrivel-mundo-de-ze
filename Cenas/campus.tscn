@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://dfyf45t1tlyhr" path="res://Cenas/audio_stream_player.gd" id="15_en2lb"]
 [ext_resource type="Script" uid="uid://d0ex6ytr31vye" path="res://Cenas/hud.gd" id="16_4cpmo"]
 [ext_resource type="Script" uid="uid://bbam7g82pm2p7" path="res://Cenas/transicao.gd" id="17_obpnf"]
+[ext_resource type="PackedScene" uid="uid://b5v5r0rxvojwf" path="res://Cenas/NPC's/npc_colega.tscn" id="20_v50wb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qbeu0"]
 texture = ExtResource("3_sp1x8")
@@ -10235,6 +10236,9 @@ theme_override_styles/background = SubResource("StyleBoxFlat_ee8j5")
 theme_override_styles/fill = SubResource("StyleBoxFlat_v50wb")
 value = 35.0
 show_percentage = false
+
+[node name="NPC_Colega" parent="." unique_id=1585468008 instance=ExtResource("20_v50wb")]
+position = Vector2(357, 487)
 
 [connection signal="body_entered" from="Shader de parede/BlocoC_Building/PortaC" to="player" method="_on_porta_body_entered"]
 [connection signal="body_entered" from="Shader de parede/BlocoD_Building/PortaD" to="player" method="_on_porta_d_body_entered"]
