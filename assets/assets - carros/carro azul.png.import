@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwcri1s1c5ek5"
-path="res://.godot/imported/Spritesheet_UI_Flat.png-e5860e8df54898bbea92bbee136d3a88.ctex"
+uid="uid://dnr03s8i4wvfr"
+path="res://.godot/imported/carro azul.png-742caa724b0464fbeadd8b0a3e018674.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/assets - XpBar/Spritesheet_UI_Flat.png"
-dest_files=["res://.godot/imported/Spritesheet_UI_Flat.png-e5860e8df54898bbea92bbee136d3a88.ctex"]
+source_file="res://assets/assets - carros/carro azul.png"
+dest_files=["res://.godot/imported/carro azul.png-742caa724b0464fbeadd8b0a3e018674.ctex"]
 
 [params]
 
