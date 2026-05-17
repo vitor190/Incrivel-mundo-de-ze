@@ -12,7 +12,7 @@ func _ready():
 	overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
  
 func ir_para_cena(caminho_cena: String):
-	# Bloqueia input durante a transição
+	# Bloqueia input durante a transiçãoa
 	overlay.mouse_filter = Control.MOUSE_FILTER_STOP
  
 	# Fade in (escurece)
