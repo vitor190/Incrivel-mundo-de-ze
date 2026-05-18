@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgt5ji2r01785"
-path="res://.godot/imported/Room_Builder_16x16.png-514d7e9a540ef64b7204023ac7281329.ctex"
+uid="uid://ddkpgwdih7imu"
+path="res://.godot/imported/desk-essentials-preview.png-49ddf06366e948859976bb23b1ebb611.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Cenas/Room_Builder_16x16.png"
-dest_files=["res://.godot/imported/Room_Builder_16x16.png-514d7e9a540ef64b7204023ac7281329.ctex"]
+source_file="res://assets/assets - BN/desk-essentials-preview.png"
+dest_files=["res://.godot/imported/desk-essentials-preview.png-49ddf06366e948859976bb23b1ebb611.ctex"]
 
 [params]
 
