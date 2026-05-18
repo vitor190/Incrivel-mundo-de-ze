@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://d1fp3455quaio"]
 
+[ext_resource type="AudioStream" uid="uid://barfydc8ttm1y" path="res://unifor_theme_v4.ogg" id="1_1oap7"]
 [ext_resource type="Texture2D" uid="uid://kntredmexbj3" path="res://assets/assets - chao/Textures-16.png" id="1_48ab0"]
 [ext_resource type="PackedScene" uid="uid://dqpoa0wpgwarr" path="res://Cenas/player.tscn" id="1_sy08p"]
 [ext_resource type="Texture2D" uid="uid://bi1c5iddj0lny" path="res://assets/assets - plantas/free_pixel_16_woods.png" id="3_sp1x8"]
@@ -16,10 +17,10 @@
 [ext_resource type="Script" uid="uid://c4ns68ipheuil" path="res://Cenas/transparent_roof.gd" id="13_jln3j"]
 [ext_resource type="Script" uid="uid://yyu4g6kxre1g" path="res://Cenas/porta.gd" id="14_504uy"]
 [ext_resource type="Script" uid="uid://dqsogyr0a0c0g" path="res://Cenas/porta_d.gd" id="15_ee8j5"]
-[ext_resource type="Script" uid="uid://dfyf45t1tlyhr" path="res://Cenas/audio_stream_player.gd" id="15_en2lb"]
 [ext_resource type="Script" uid="uid://d0ex6ytr31vye" path="res://Cenas/hud.gd" id="16_4cpmo"]
 [ext_resource type="Script" uid="uid://bbam7g82pm2p7" path="res://Cenas/transicao.gd" id="17_obpnf"]
 [ext_resource type="Texture2D" uid="uid://87y7b2ffm00v" path="res://assets/assets - bloco_educacional/CC.png" id="18_v50wb"]
+[ext_resource type="PackedScene" uid="uid://bfbts5w4tdow3" path="res://Cenas/xp_bar.tscn" id="21_p1b3r"]
 [ext_resource type="PackedScene" uid="uid://bufa2sspfj0w7" path="res://Cenas/Carro.tscn" id="22_p1b3r"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qbeu0"]
@@ -12852,38 +12853,14 @@ sources/0 = SubResource("TileSetAtlasSource_xayg1")
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_504uy"]
 bg_color = Color(0.09803922, 0.3647059, 1, 0.72156864)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ee8j5"]
-bg_color = Color(0, 0.24313726, 0, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-expand_margin_left = 1.0
-expand_margin_top = 1.0
-expand_margin_right = 1.0
-expand_margin_bottom = 1.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v50wb"]
-bg_color = Color(0, 0.90588236, 0, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0, 0.9137255, 0, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-
 [node name="Campus" type="Node2D" unique_id=2106191947]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1720387006]
-script = ExtResource("15_en2lb")
+stream = ExtResource("1_1oap7")
+volume_db = -5.0
+pitch_scale = 2.0
+autoplay = true
+parameters/looping = true
 
 [node name="player" parent="." unique_id=1041145155 instance=ExtResource("1_sy08p")]
 z_index = 7
@@ -13134,21 +13111,7 @@ color = Color(0, 0, 0, 0)
 
 [node name="BarXp" type="Node" parent="." unique_id=1570989548]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="BarXp" unique_id=511887442]
-
-[node name="ProgressBar" type="ProgressBar" parent="BarXp/CanvasLayer" unique_id=1601519427]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -208.0
-offset_top = 32.0
-offset_right = 208.0
-offset_bottom = 48.0
-grow_horizontal = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_ee8j5")
-theme_override_styles/fill = SubResource("StyleBoxFlat_v50wb")
-value = 35.0
-show_percentage = false
+[node name="XpBar" parent="BarXp" unique_id=270334340 instance=ExtResource("21_p1b3r")]
 
 [node name="carros" type="Node" parent="." unique_id=224621853]
 
