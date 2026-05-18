@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://cwj264kdof642" path="res://assets/assets - estatuas e fontes/estatuas e bancos.png" id="12_dbllo"]
 [ext_resource type="PackedScene" uid="uid://b8v57uu1gski5" path="res://Cenas/minimapa.tscn" id="13_agv4h"]
 [ext_resource type="Script" uid="uid://c4ns68ipheuil" path="res://Cenas/transparent_roof.gd" id="13_jln3j"]
-[ext_resource type="Script" uid="uid://yyu4g6kxre1g" path="res://Cenas/porta.gd" id="14_504uy"]
+[ext_resource type="Script" uid="uid://yyu4g6kxre1g" path="res://Cenas/porta_c.gd" id="14_504uy"]
 [ext_resource type="Script" uid="uid://dqsogyr0a0c0g" path="res://Cenas/porta_d.gd" id="15_ee8j5"]
 [ext_resource type="Script" uid="uid://d0ex6ytr31vye" path="res://Cenas/hud.gd" id="16_4cpmo"]
 [ext_resource type="Script" uid="uid://bbam7g82pm2p7" path="res://Cenas/transicao.gd" id="17_obpnf"]
