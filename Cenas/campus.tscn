@@ -20,7 +20,7 @@
 [ext_resource type="Script" uid="uid://d0ex6ytr31vye" path="res://Cenas/hud.gd" id="16_4cpmo"]
 [ext_resource type="Script" uid="uid://bbam7g82pm2p7" path="res://Cenas/transicao.gd" id="17_obpnf"]
 [ext_resource type="Texture2D" uid="uid://87y7b2ffm00v" path="res://assets/assets - bloco_educacional/CC.png" id="18_v50wb"]
-[ext_resource type="PackedScene" uid="uid://bufa2sspfj0w7" path="res://Carro.tscn" id="22_p1b3r"]
+[ext_resource type="PackedScene" uid="uid://bufa2sspfj0w7" path="res://Cenas/Carro.tscn" id="22_p1b3r"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qbeu0"]
 texture = ExtResource("3_sp1x8")

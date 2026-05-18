@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b8v57uu1gski5"]
+[gd_scene format=3 uid="uid://b8v57uu1gski5"]
 
 [ext_resource type="Shader" uid="uid://rdkttq8cfugt" path="res://Cenas/campus.gdshader" id="1_vtq55"]
 [ext_resource type="Script" uid="uid://coocddf55pdin" path="res://Cenas/sub_viewport.gd" id="2_2stlh"]
@@ -23,11 +23,11 @@ outline_color = Color(0, 0, 0, 1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7e40s"]
 shader = ExtResource("1_vtq55")
 
-[node name="minimapa" type="Node2D"]
+[node name="minimapa" type="Node2D" unique_id=1095835834]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=814041413]
 
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1132380619]
 layout_mode = 3
 anchors_preset = 1
 anchor_left = 1.0
@@ -36,7 +36,7 @@ offset_left = -232.0
 offset_bottom = 224.0
 grow_horizontal = 0
 
-[node name="N" type="Label" parent="CanvasLayer/Control"]
+[node name="N" type="Label" parent="CanvasLayer/Control" unique_id=88829891]
 z_index = 1
 layout_mode = 1
 anchors_preset = 5
@@ -51,7 +51,7 @@ text = "N
 label_settings = SubResource("LabelSettings_6i2gs")
 horizontal_alignment = 1
 
-[node name="L" type="Label" parent="CanvasLayer/Control"]
+[node name="L" type="Label" parent="CanvasLayer/Control" unique_id=350819224]
 z_index = 1
 layout_mode = 1
 anchors_preset = 4
@@ -67,7 +67,7 @@ text = "L
 label_settings = SubResource("LabelSettings_77tr5")
 horizontal_alignment = 1
 
-[node name="O" type="Label" parent="CanvasLayer/Control"]
+[node name="O" type="Label" parent="CanvasLayer/Control" unique_id=1127266260]
 z_index = 1
 layout_mode = 1
 anchors_preset = 6
@@ -87,7 +87,7 @@ label_settings = SubResource("LabelSettings_cn63s")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="S" type="Label" parent="CanvasLayer/Control"]
+[node name="S" type="Label" parent="CanvasLayer/Control" unique_id=182381832]
 z_index = 1
 layout_mode = 1
 anchors_preset = 7
@@ -107,7 +107,7 @@ label_settings = SubResource("LabelSettings_0518b")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer" unique_id=1651093303]
 material = SubResource("ShaderMaterial_7e40s")
 anchors_preset = 1
 anchor_left = 1.0
@@ -119,14 +119,13 @@ offset_bottom = 211.0
 grow_horizontal = 0
 metadata/_edit_use_anchors_ = true
 
-[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer" unique_id=896857657]
 handle_input_locally = false
 size = Vector2i(215, 215)
 render_target_update_mode = 4
 script = ExtResource("2_2stlh")
 
-[node name="Camera2D" type="Camera2D" parent="CanvasLayer/SubViewportContainer/SubViewport"]
-zoom = Vector2(0.76, 0.76)
+[node name="Camera2D" type="Camera2D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=539001584]
 limit_left = -8
 limit_top = -880
 limit_right = 1632
