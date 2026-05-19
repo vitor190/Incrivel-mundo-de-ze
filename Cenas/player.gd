@@ -91,6 +91,16 @@ func _physics_process(delta: float) -> void:
 	if is_running and velocity != Vector2.ZERO:
 		fome_atual -= taxa_fome_correndo * delta
 		fome_atual = clamp(fome_atual, 0.0, 100.0) # Garante que não fique menor que 0
-		
+
 		# Dispara o sinal para atualizar a interface
 		fome_alterada.emit(fome_atual)
+
+
+# Stubs para os signal connections herdados de campus.tscn — body_entered de
+# PortaC/PortaD chama esses métodos no player. A lógica de transição vive em
+# porta_c.gd / porta_d.gd, então aqui é só no-op.
+func _on_porta_body_entered(_body: Node2D) -> void:
+	pass
+
+func _on_porta_d_body_entered(_body: Node2D) -> void:
+	pass
