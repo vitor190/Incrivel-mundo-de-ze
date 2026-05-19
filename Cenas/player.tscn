@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=3 uid="uid://dqpoa0wpgwarr"]
+[gd_scene format=3 uid="uid://dqpoa0wpgwarr"]
 
 [ext_resource type="Script" uid="uid://b5y8vmwjqxiuv" path="res://Cenas/player.gd" id="1_5p0qj"]
 [ext_resource type="Texture2D" uid="uid://2c25fkky22r4" path="res://assets/assets -  idles/Human/IDLE/base_idle_strip9.png" id="1_pmvhq"]
@@ -593,22 +593,22 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5p0qj"]
 size = Vector2(3.75001, 11.25)
 
-[node name="player" type="CharacterBody2D"]
+[node name="player" type="CharacterBody2D" unique_id=704904546]
 z_index = 4
 scale = Vector2(0.8, 0.8)
-collision_mask = 2
+collision_mask = 3
 script = ExtResource("1_5p0qj")
 metadata/_edit_group_ = true
 
-[node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=935902725]
 sprite_frames = SubResource("SpriteFrames_yk6xx")
 animation = &"Idle"
 
-[node name="HairSprite" type="AnimatedSprite2D" parent="."]
+[node name="HairSprite" type="AnimatedSprite2D" parent="." unique_id=1002637106]
 sprite_frames = SubResource("SpriteFrames_4j5ex")
 animation = &"Run"
 
-[node name="ToolSprite" type="AnimatedSprite2D" parent="."]
+[node name="ToolSprite" type="AnimatedSprite2D" parent="." unique_id=517461249]
 sprite_frames = SubResource("SpriteFrames_rxqvy")
 animation = &"Run"
 
@@ -619,8 +619,8 @@ position = Vector2(0, 1)
 color = Color(1, 1, 1, 1)
 polygon = PackedVector2Array(-3, 0, 3, 0, 3, 3, -3, 3)
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
-position = Vector2(0.625, -1.875)
-scale = Vector2(0.999998, 0.999998)
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=655423351]
+position = Vector2(0.62499994, -1.8749998)
+scale = Vector2(0.9999979, 0.9999979)
 shape = SubResource("RectangleShape2D_5p0qj")
 one_way_collision_margin = 0.0

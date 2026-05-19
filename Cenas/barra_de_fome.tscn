@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://cw8hgbwt7ro1m"]
+
+[ext_resource type="Script" uid="uid://ybffu5frsgtb" path="res://Cenas/barra_de_fome.gd" id="1_lwkc8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n267c"]
+bg_color = Color(0.27361497, 0.16975728, 2.4065375e-08, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lwkc8"]
+bg_color = Color(0.50553596, 0.22522753, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.8789178, 0.39479196, 5.7756904e-07, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="Barra de fome" type="Node2D" unique_id=1489353139]
+script = ExtResource("1_lwkc8")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=81141276]
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer" unique_id=1103019277]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -208.0
+offset_top = 64.0
+offset_right = 208.0
+offset_bottom = 80.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_n267c")
+theme_override_styles/fill = SubResource("StyleBoxFlat_lwkc8")
+value = 100.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true

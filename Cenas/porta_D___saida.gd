@@ -1,7 +1,7 @@
 extends Area2D
 
-@export var cena_destino: String = "res://Cenas/sala_bloco_d.tscn"
-@export var mensagem: String = "Entrando na sala do Bloco D..."
+@export var cena_destino: String = "res://Cenas/campus.tscn"
+@export var mensagem: String = "Saindo da sala do Bloco D..."
 
 var pode_entrar: bool = true
 

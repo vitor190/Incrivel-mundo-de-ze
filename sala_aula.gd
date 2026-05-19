@@ -11,5 +11,5 @@ func _ready():
  
 func _input(event):
 	if event is InputEventKey and event.pressed:
-		get_tree().change_scene_to_file("res://Cenas/campus.tscn")
+		get_tree().change_scene_to_file("res://Cenas/sala_bloco_c.tscn")
  
