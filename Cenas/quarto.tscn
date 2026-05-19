@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dtrhr0lme3eyr"]
+[gd_scene load_steps=22 format=3 uid="uid://dtrhr0lme3eyr"]
 
 [ext_resource type="PackedScene" uid="uid://dqpoa0wpgwarr" path="res://Cenas/player.tscn" id="1_player"]
 [ext_resource type="Script" uid="uid://yyu4g6kxre1g" path="res://Cenas/porta.gd" id="2_porta"]
@@ -6,6 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://dbk7tg816lpbh" path="res://assets/assets - quarto/beds_BR.png" id="4_beds"]
 [ext_resource type="Texture2D" uid="uid://bgv6h0xg27lfh" path="res://assets/assets - quarto/wardrobes_BR.png" id="5_wardrobes"]
 [ext_resource type="Texture2D" uid="uid://dvgx515a6fvoo" path="res://assets/assets - quarto/decorations_BR.png" id="6_decor"]
+[ext_resource type="Script" path="res://Cenas/quarto.gd" id="7_quarto"]
+[ext_resource type="Script" uid="uid://d0ex6ytr31vye" path="res://Cenas/hud.gd" id="8_hud"]
+[ext_resource type="Script" uid="uid://bvhxnob56sksr" path="res://Cenas/porta_onibus.gd" id="9_porta_onibus"]
+[ext_resource type="Script" uid="uid://7r0bvkdjgbdv" path="res://Cenas/viagem_onibus.gd" id="10_viagem_onibus"]
+[ext_resource type="Texture2D" uid="uid://c050b50qyjb0f" path="res://assets/assets - obstaculo/onibus.png" id="11_onibus"]
 
 [sub_resource type="RectangleShape2D" id="shape_wall_top"]
 size = Vector2(300, 8)
@@ -37,7 +42,14 @@ size = Vector2(28, 16)
 [sub_resource type="RectangleShape2D" id="shape_door_trigger"]
 size = Vector2(36, 14)
 
+[sub_resource type="RectangleShape2D" id="shape_wardrobe_zone"]
+size = Vector2(44, 18)
+
+[sub_resource type="StyleBoxFlat" id="hud_panel_style"]
+bg_color = Color(0.098, 0.365, 1.0, 0.72)
+
 [node name="Quarto" type="Node2D"]
+script = ExtResource("7_quarto")
 
 [node name="Floor" type="Node2D" parent="."]
 z_index = 0
@@ -358,13 +370,48 @@ polygon = PackedVector2Array(140, 144, 144, 144, 144, 148, 146, 148, 142, 152, 1
 [node name="PortaVolta" type="Area2D" parent="." groups=["porta"]]
 collision_layer = 0
 collision_mask = 1
-script = ExtResource("2_porta")
-cena_destino = "res://Cenas/campus.tscn"
-mensagem = "Saindo do quarto..."
+script = ExtResource("9_porta_onibus")
+destino = "res://Cenas/campus.tscn"
+requer_vestido = true
+mensagem_bloqueio = "Vista-se antes de pegar o ônibus."
 
 [node name="PortaShape" type="CollisionShape2D" parent="PortaVolta"]
 position = Vector2(140, 162)
 shape = SubResource("shape_door_trigger")
+
+[node name="ViagemOnibus" type="CanvasLayer" parent="."]
+layer = 20
+script = ExtResource("10_viagem_onibus")
+
+[node name="Escurecer" type="ColorRect" parent="ViagemOnibus"]
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0, 0, 0, 1)
+
+[node name="OnibusAnimado" type="Sprite2D" parent="ViagemOnibus"]
+visible = false
+texture = ExtResource("11_onibus")
+
+[node name="WardrobeInteractArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 1
+
+[node name="WardrobeZoneShape" type="CollisionShape2D" parent="WardrobeInteractArea"]
+position = Vector2(248, 90)
+shape = SubResource("shape_wardrobe_zone")
+
+[node name="WardrobeIndicator" type="Label" parent="."]
+offset_left = 240.0
+offset_top = 4.0
+offset_right = 256.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(1, 0.93, 0.45, 1)
+theme_override_colors/font_outline_color = Color(0.1, 0.07, 0.05, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 20
+text = "!"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="player" parent="." instance=ExtResource("1_player")]
 position = Vector2(140, 130)
@@ -376,6 +423,31 @@ limit_top = -10
 limit_right = 290
 limit_bottom = 190
 editor_draw_limits = true
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("8_hud")
+
+[node name="PanelContainer" type="PanelContainer" parent="HUD"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -52.0
+offset_right = 320.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("hud_panel_style")
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="HUD/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = ""
 
 [node name="Transicao_" type="Node" parent="."]
 

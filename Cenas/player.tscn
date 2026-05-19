@@ -612,6 +612,13 @@ animation = &"Run"
 sprite_frames = SubResource("SpriteFrames_rxqvy")
 animation = &"Run"
 
+[node name="Cueca" type="Polygon2D" parent="."]
+visible = false
+z_index = 1
+position = Vector2(0, 1)
+color = Color(1, 1, 1, 1)
+polygon = PackedVector2Array(-3, 0, 3, 0, 3, 3, -3, 3)
+
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0.625, -1.875)
 scale = Vector2(0.999998, 0.999998)

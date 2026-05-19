@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://d0ex6ytr31vye" path="res://Cenas/hud.gd" id="16_4cpmo"]
 [ext_resource type="Script" uid="uid://bbam7g82pm2p7" path="res://Cenas/transicao.gd" id="17_obpnf"]
 [ext_resource type="Texture2D" uid="uid://87y7b2ffm00v" path="res://assets/assets - bloco_educacional/CC.png" id="18_v50wb"]
+[ext_resource type="Script" path="res://Cenas/bar_xp.gd" id="19_barxp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qbeu0"]
 texture = ExtResource("3_sp1x8")
@@ -13148,6 +13149,7 @@ theme_override_styles/background = SubResource("StyleBoxFlat_ee8j5")
 theme_override_styles/fill = SubResource("StyleBoxFlat_v50wb")
 value = 35.0
 show_percentage = false
+script = ExtResource("19_barxp")
 
 [connection signal="body_entered" from="Shader de parede/BlocoC_Building/PortaC" to="player" method="_on_porta_body_entered"]
 [connection signal="body_entered" from="Shader de parede/BlocoD_Building/PortaD" to="player" method="_on_porta_d_body_entered"]

@@ -4,3 +4,9 @@
 
 # Local Claude Code context
 CLAUDE.md
+
+# dotcontext
+.context/
+.claude/
+.claudeignore
+.mcp.json
