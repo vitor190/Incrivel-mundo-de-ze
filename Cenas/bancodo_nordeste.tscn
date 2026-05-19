@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://3qaxainkxskf" path="res://assets/assets - bancos/Pixel 16 v2 village free.png" id="4_uptnx"]
 [ext_resource type="Texture2D" uid="uid://dqdtewomd2o5o" path="res://assets/assets - BN/0-Tileset.png" id="5_hpyel"]
 [ext_resource type="PackedScene" uid="uid://b8v57uu1gski5" path="res://Cenas/minimapa.tscn" id="7_26jki"]
+[ext_resource type="PackedScene" uid="uid://cw8hgbwt7ro1m" path="res://Cenas/barra_de_fome.tscn" id="9_ninrc"]
 [ext_resource type="PackedScene" uid="uid://bfbts5w4tdow3" path="res://Cenas/xp_bar.tscn" id="9_qf43d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uptnx"]
@@ -13799,6 +13800,10 @@ tile_set = SubResource("TileSet_r4mhv")
 [node name="minimapa" type="Node" parent="." unique_id=858759429]
 
 [node name="minimapa" parent="minimapa" unique_id=477506603 instance=ExtResource("7_26jki")]
+
+[node name="barra de fome" type="Node" parent="." unique_id=1479677028]
+
+[node name="Barra de fome" parent="barra de fome" unique_id=1489353139 instance=ExtResource("9_ninrc")]
 
 [node name="XpBar" type="Node" parent="." unique_id=111523451]
 

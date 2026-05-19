@@ -21,6 +21,7 @@
 [ext_resource type="Script" uid="uid://bbam7g82pm2p7" path="res://Cenas/transicao.gd" id="17_obpnf"]
 [ext_resource type="Texture2D" uid="uid://87y7b2ffm00v" path="res://assets/assets - bloco_educacional/CC.png" id="18_v50wb"]
 [ext_resource type="PackedScene" uid="uid://bfbts5w4tdow3" path="res://Cenas/xp_bar.tscn" id="21_p1b3r"]
+[ext_resource type="PackedScene" uid="uid://cw8hgbwt7ro1m" path="res://Cenas/barra_de_fome.tscn" id="22_efie5"]
 [ext_resource type="PackedScene" uid="uid://bufa2sspfj0w7" path="res://Cenas/Carro.tscn" id="22_p1b3r"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qbeu0"]
@@ -13258,6 +13259,10 @@ color = Color(0, 0, 0, 0)
 [node name="BarXp" type="Node" parent="." unique_id=1570989548]
 
 [node name="XpBar" parent="BarXp" unique_id=270334340 instance=ExtResource("21_p1b3r")]
+
+[node name="barra de fome" type="Node" parent="." unique_id=272645257]
+
+[node name="Barra de fome" parent="barra de fome" unique_id=1489353139 instance=ExtResource("22_efie5")]
 
 [node name="carros" type="Node" parent="." unique_id=224621853]
 

@@ -17,7 +17,7 @@ expand_margin_right = 1.0
 expand_margin_bottom = 1.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xaulm"]
-bg_color = Color(0, 0.90588236, 0, 1)
+bg_color = Color(3.1044335e-06, 0.587142, 5.7756904e-07, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
@@ -29,6 +29,7 @@ corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
 [node name="XpBar" type="Node2D" unique_id=270334340]
+z_index = 10
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=55516395]
 
@@ -46,5 +47,3 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_xaulm")
 value = 35.0
 show_percentage = false
 metadata/_edit_use_anchors_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer" unique_id=1537967559]
