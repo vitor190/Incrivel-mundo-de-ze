@@ -1,0 +1,111 @@
+[gd_scene format=3 uid="uid://d1i6g88tolgnx"]
+
+[ext_resource type="Script" uid="uid://cdm75guktllxe" path="res://Cenas/minigames/CorrigirCodigo.gd" id="1_mtkr5"]
+
+[node name="Node2D" type="CanvasLayer" unique_id=53590217]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1274844312]
+script = ExtResource("1_mtkr5")
+
+[node name="Painel" type="ColorRect" parent="CanvasLayer" unique_id=1680349769]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.85)
+
+[node name="Centro" type="CenterContainer" parent="CanvasLayer/Painel" unique_id=1152579304]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="CanvasLayer/Painel/Centro" unique_id=1393100265]
+custom_minimum_size = Vector2(640, 0)
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="LblTitulo" type="Label" parent="CanvasLayer/Painel/Centro/VBox" unique_id=1764092049]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.2, 1)
+theme_override_font_sizes/font_size = 20
+text = "Corrigir Código do Projeto"
+horizontal_alignment = 1
+
+[node name="PainelIntro" type="VBoxContainer" parent="CanvasLayer/Painel/Centro/VBox" unique_id=319628599]
+layout_mode = 2
+
+[node name="LblHistoria" type="Label" parent="CanvasLayer/Painel/Centro/VBox/PainelIntro" unique_id=1964156125]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+text = "O professor pediu para você corrigir o código antes da aula acabar.
+
+Digite as linhas na ordem correta.
+
+ Tempo: 45s  |  ✗ Erro: -2s"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="LblDica" type="Label" parent="CanvasLayer/Painel/Centro/VBox/PainelIntro" unique_id=113909109]
+layout_mode = 2
+theme_override_colors/font_color = Color(1.353256, 1.353256, 0, 1)
+text = "[ ESPAÇO / clique para começar ]"
+horizontal_alignment = 1
+
+[node name="PainelJogo" type="VBoxContainer" parent="CanvasLayer/Painel/Centro/VBox" unique_id=1498583854]
+visible = false
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="CanvasLayer/Painel/Centro/VBox/PainelJogo" unique_id=1229380186]
+layout_mode = 2
+
+[node name="HBoxStatus" type="HBoxContainer" parent="CanvasLayer/Painel/Centro/VBox/PainelJogo/VBox" unique_id=2042764590]
+layout_mode = 2
+
+[node name="LblTempo" type="Label" parent="CanvasLayer/Painel/Centro/VBox/PainelJogo/VBox/HBoxStatus" unique_id=1052201219]
+layout_mode = 2
+
+[node name="LblProgresso" type="Label" parent="CanvasLayer/Painel/Centro/VBox/PainelJogo/VBox/HBoxStatus" unique_id=1883568314]
+layout_mode = 2
+
+[node name="LblCodigoFeito" type="Label" parent="CanvasLayer/Painel/Centro/VBox/PainelJogo/VBox" unique_id=251701401]
+layout_mode = 2
+
+[node name="RtlCodigoFeito" type="RichTextLabel" parent="CanvasLayer/Painel/Centro/VBox/PainelJogo/VBox" unique_id=1645180738]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+bbcode_enabled = true
+
+[node name="LblProximaTitulo" type="Label" parent="CanvasLayer/Painel/Centro/VBox/PainelJogo/VBox" unique_id=1204723126]
+layout_mode = 2
+
+[node name="LblProxima" type="Label" parent="CanvasLayer/Painel/Centro/VBox/PainelJogo/VBox" unique_id=956370519]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 18
+
+[node name="LblInputTitulo" type="Label" parent="CanvasLayer/Painel/Centro/VBox/PainelJogo/VBox" unique_id=1613709299]
+layout_mode = 2
+
+[node name="LeInput" type="LineEdit" parent="CanvasLayer/Painel/Centro/VBox/PainelJogo/VBox" unique_id=50447808]
+layout_mode = 2
+placeholder_text = "Digite aqui e pressione Enter..."
+
+[node name="LblFeedback" type="Label" parent="CanvasLayer/Painel/Centro/VBox/PainelJogo/VBox" unique_id=942187013]
+layout_mode = 2
+
+[node name="PainelResultado" type="VBoxContainer" parent="CanvasLayer/Painel/Centro/VBox" unique_id=1588944168]
+visible = false
+layout_mode = 2
+
+[node name="LblResultado" type="Label" parent="CanvasLayer/Painel/Centro/VBox/PainelResultado" unique_id=796389195]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[connection signal="text_submitted" from="CanvasLayer/Painel/Centro/VBox/PainelJogo/VBox/LeInput" to="CanvasLayer" method="_on_le_input_text_submitted"]
