@@ -10,6 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://b8v57uu1gski5" path="res://Cenas/minimapa.tscn" id="8_y576u"]
 [ext_resource type="PackedScene" uid="uid://bfbts5w4tdow3" path="res://Cenas/xp_bar.tscn" id="9_0vjlw"]
 [ext_resource type="PackedScene" uid="uid://cw8hgbwt7ro1m" path="res://Cenas/barra_de_fome.tscn" id="10_y576u"]
+[ext_resource type="Script" uid="uid://d0ex6ytr31vye" path="res://Cenas/hud.gd" id="11_3sgq7"]
+[ext_resource type="Script" uid="uid://bbam7g82pm2p7" path="res://Cenas/transicao.gd" id="12_7iv35"]
+[ext_resource type="Script" uid="uid://cib2cj3ggi082" path="res://Cenas/porta_c_saida.gd" id="13_pgjad"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hblcv"]
 texture = ExtResource("2_a8mb1")
@@ -17907,6 +17910,12 @@ texture = ExtResource("4_a8mb1")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_1i1wc")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5sbwp"]
+bg_color = Color(0.09803922, 0.3647059, 1, 0.72156864)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1i1wc"]
+size = Vector2(18, 24)
+
 [node name="Sala_blocoC" type="Node2D" unique_id=1258921797]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=751975461]
@@ -17982,3 +17991,48 @@ tile_set = SubResource("TileSet_2lga4")
 [node name="barra de fome" type="Node" parent="." unique_id=487136969]
 
 [node name="Barra de fome" parent="barra de fome" unique_id=1489353139 instance=ExtResource("10_y576u")]
+
+[node name="HUD - transicao" type="Node" parent="." unique_id=2110630160]
+
+[node name="HUD" type="CanvasLayer" parent="HUD - transicao" unique_id=285763991]
+script = ExtResource("11_3sgq7")
+
+[node name="PanelContainer" type="PanelContainer" parent="HUD - transicao/HUD" unique_id=309555276]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -69.0
+offset_right = 64.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5sbwp")
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD - transicao/HUD/PanelContainer" unique_id=2074125807]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HUD - transicao/HUD/PanelContainer/MarginContainer" unique_id=1563739534]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "\""
+
+[node name="Transicao_" type="Node" parent="." unique_id=10407620]
+
+[node name="Transicao" type="CanvasLayer" parent="Transicao_" unique_id=1366048705 groups=["transicao"]]
+script = ExtResource("12_7iv35")
+
+[node name="ColorRect" type="ColorRect" parent="Transicao_/Transicao" unique_id=1795677500]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="PortaC - saida" type="Area2D" parent="." unique_id=183554820]
+position = Vector2(-160, -352)
+script = ExtResource("13_pgjad")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PortaC - saida" unique_id=945571303]
+position = Vector2(429, 362)
+shape = SubResource("RectangleShape2D_1i1wc")
+
+[connection signal="body_entered" from="PortaC - saida" to="player" method="_on_porta_c__saida_body_entered"]
