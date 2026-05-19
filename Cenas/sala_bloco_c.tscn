@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://ddkpgwdih7imu" path="res://assets/assets - BN/desk-essentials-preview.png" id="5_rtmvt"]
 [ext_resource type="PackedScene" uid="uid://b8v57uu1gski5" path="res://Cenas/minimapa.tscn" id="8_y576u"]
 [ext_resource type="PackedScene" uid="uid://bfbts5w4tdow3" path="res://Cenas/xp_bar.tscn" id="9_0vjlw"]
+[ext_resource type="PackedScene" uid="uid://cw8hgbwt7ro1m" path="res://Cenas/barra_de_fome.tscn" id="10_y576u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hblcv"]
 texture = ExtResource("2_a8mb1")
@@ -17977,3 +17978,7 @@ tile_set = SubResource("TileSet_2lga4")
 [node name="XpBar" type="Node" parent="." unique_id=1874712579]
 
 [node name="XpBar" parent="XpBar" unique_id=270334340 instance=ExtResource("9_0vjlw")]
+
+[node name="barra de fome" type="Node" parent="." unique_id=487136969]
+
+[node name="Barra de fome" parent="barra de fome" unique_id=1489353139 instance=ExtResource("10_y576u")]
