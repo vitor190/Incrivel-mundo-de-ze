@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://bfbts5w4tdow3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_txgsd"]
+bg_color = Color(0, 0.24313726, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xaulm"]
+bg_color = Color(3.1044335e-06, 0.587142, 5.7756904e-07, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.9137255, 0, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="XpBar" type="Node2D" unique_id=270334340]
+z_index = 10
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=55516395]
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer" unique_id=760102820]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -208.0
+offset_top = 32.0
+offset_right = 208.0
+offset_bottom = 48.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_txgsd")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xaulm")
+value = 35.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true

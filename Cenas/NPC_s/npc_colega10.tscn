@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://dxc3sjnxigliq"]
+
+[ext_resource type="Texture2D" uid="uid://0000q1jshxlo" path="res://Cenas/NPC's/NPC_RAPOSO.png" id="1_te5jg"]
+
+[sub_resource type="GDScript" id="GDScript_wl04s"]
+script/source = "extends CharacterBody2D
+
+
+@export var pode_interagir: bool = true 
+
+@onready var sprite: AnimatedSprite2D = $PlayerSprite
+@onready var area_interacao: Area2D = $AreaInteracao
+
+var jogador_por_perto: bool = false
+var jogador_node: Node2D = null
+
+func _ready() -> void:
+	sprite.play(\"idle_frente\") 
+	area_interacao.body_entered.connect(_on_area_interacao_body_entered)
+	area_interacao.body_exited.connect(_on_area_interacao_body_exited)
+
+func _process(_delta: float) -> void:
+	if jogador_por_perto and jogador_node != null:
+		var vetor_distancia = jogador_node.global_position - global_position
+		
+		if abs(vetor_distancia.x) > abs(vetor_distancia.y):
+			sprite.play(\"Idle\")
+			if vetor_distancia.x < 0:
+				sprite.flip_h = true  
+			else:
+				sprite.flip_h = false 
+		else:
+			if vetor_distancia.y < 0:
+				sprite.play(\"Idle_costa\") 
+			else:
+				sprite.play(\"Idle_frente\") 
+	
+	
+	if pode_interagir and jogador_por_perto and Input.is_key_pressed(KEY_E):
+		iniciar_dialogo()
+
+func _on_area_interacao_body_entered(body: Node2D) -> void:
+	if body.is_in_group(\"player\"): 
+		jogador_por_perto = true
+		jogador_node = body
+
+func _on_area_interacao_body_exited(body: Node2D) -> void:
+	if body.is_in_group(\"player\"):
+		jogador_por_perto = false
+		jogador_node = null
+		sprite.play(\"idle_frente\")
+		sprite.flip_h = false
+
+func iniciar_dialogo() -> void:
+	print(\"E aí, Zé! A aula no Bloco C já vai começar.\")
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6yavs"]
+atlas = ExtResource("1_te5jg")
+region = Rect2(16, 0, 16, 35)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yk6xx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6yavs")
+}],
+"loop": true,
+"name": &"Idle_costa",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uxvf2"]
+size = Vector2(16.250034, 20.000046)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xrmm1"]
+radius = 3.9528465
+
+[node name="NPC_Colega" type="CharacterBody2D" unique_id=1585468008]
+z_index = 4
+scale = Vector2(0.8, 0.8)
+collision_layer = 255
+collision_mask = 255
+script = SubResource("GDScript_wl04s")
+metadata/_edit_group_ = true
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=1922236503]
+position = Vector2(-1.875, -5.6249995)
+scale = Vector2(1.015625, 0.8928571)
+sprite_frames = SubResource("SpriteFrames_yk6xx")
+animation = &"Idle_costa"
+
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=768171845]
+position = Vector2(-1.8750008, -2.4999993)
+scale = Vector2(0.9999976, 0.9999976)
+shape = SubResource("RectangleShape2D_uxvf2")
+one_way_collision_margin = 0.0
+
+[node name="AreaInteracao" type="Area2D" parent="." unique_id=98027071]
+y_sort_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaInteracao" unique_id=1955950705]
+shape = SubResource("CircleShape2D_xrmm1")
