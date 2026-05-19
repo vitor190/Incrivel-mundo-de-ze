@@ -13,6 +13,7 @@ func _ready():
 	body_entered.connect(_on_body_entered)
 
 func _on_body_entered(body):
+	print("[porta_c] body_entered: name=", body.name, " pode_entrar=", pode_entrar)
 	if not ("player" in body.name.to_lower() and pode_entrar):
 		return
 

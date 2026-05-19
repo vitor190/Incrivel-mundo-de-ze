@@ -96,11 +96,19 @@ func _physics_process(delta: float) -> void:
 		fome_alterada.emit(fome_atual)
 
 
-# Stubs para os signal connections herdados de campus.tscn — body_entered de
-# PortaC/PortaD chama esses métodos no player. A lógica de transição vive em
-# porta_c.gd / porta_d.gd, então aqui é só no-op.
+# Stubs para os signal connections herdados das cenas — body_entered das
+# portas (campus.tscn, sala_bloco_c.tscn, sala_bloco_d.tscn) chama esses
+# métodos no player. A lógica real de transição vive em porta_c.gd /
+# porta_d.gd / porta_c_saida.gd / porta_D___saida.gd; aqui é só no-op para
+# não disparar "Method not found" no Godot.
 func _on_porta_body_entered(_body: Node2D) -> void:
 	pass
 
 func _on_porta_d_body_entered(_body: Node2D) -> void:
+	pass
+
+func _on_porta_c__saida_body_entered(_body: Node2D) -> void:
+	pass
+
+func _on_porta_d__saida_body_entered(_body: Node2D) -> void:
 	pass
