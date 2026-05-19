@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://dabbhtpaokxra"]
+[gd_scene format=4 uid="uid://c64utcwofm4nu"]
 
 [ext_resource type="AudioStream" uid="uid://barfydc8ttm1y" path="res://unifor_theme_v4.ogg" id="1_2atte"]
 [ext_resource type="PackedScene" uid="uid://dqpoa0wpgwarr" path="res://Cenas/player.tscn" id="2_j2brb"]
@@ -8,11 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://ddkpgwdih7imu" path="res://assets/assets - BN/desk-essentials-preview.png" id="6_ehsw0"]
 [ext_resource type="Texture2D" uid="uid://kntredmexbj3" path="res://assets/assets - chao/Textures-16.png" id="7_kac4w"]
 [ext_resource type="PackedScene" uid="uid://b8v57uu1gski5" path="res://Cenas/minimapa.tscn" id="8_7jhp7"]
-[ext_resource type="PackedScene" uid="uid://bfbts5w4tdow3" path="res://Cenas/xp_bar.tscn" id="9_cqfhb"]
-[ext_resource type="PackedScene" uid="uid://cw8hgbwt7ro1m" path="res://Cenas/barra_de_fome.tscn" id="10_j2brb"]
+[ext_resource type="PackedScene" path="res://Cenas/xp_bar.tscn" id="9_cqfhb"]
+[ext_resource type="PackedScene" path="res://Cenas/barra_de_fome.tscn" id="10_j2brb"]
 [ext_resource type="Script" uid="uid://d0ex6ytr31vye" path="res://Cenas/hud.gd" id="11_bf6yp"]
 [ext_resource type="Script" uid="uid://bbam7g82pm2p7" path="res://Cenas/transicao.gd" id="12_ehsw0"]
-[ext_resource type="Script" uid="uid://dyw2ovkeqstek" path="res://Cenas/porta_D___saida.gd" id="13_kac4w"]
+[ext_resource type="Script" path="res://Cenas/porta_D___saida.gd" id="13_kac4w"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_btahu"]
 texture = ExtResource("3_w4ttu")

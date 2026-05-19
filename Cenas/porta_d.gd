@@ -9,6 +9,7 @@ func _ready():
 	body_entered.connect(_on_body_entered)
 
 func _on_body_entered(body):
+	print("[porta_d] body_entered: name=", body.name, " pode_entrar=", pode_entrar)
 	if "player" in body.name.to_lower() and pode_entrar:
 		pode_entrar = false
 		print("player detectado! Iniciando transição...")

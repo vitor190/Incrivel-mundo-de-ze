@@ -6,6 +6,9 @@ signal fome_alterada(novo_valor)
 @onready var player_sprite: AnimatedSprite2D = $PlayerSprite
 @onready var hair_sprite: AnimatedSprite2D = $HairSprite
 @onready var tool_sprite: AnimatedSprite2D = $ToolSprite
+@onready var cueca: Polygon2D = $Cueca
+
+var movement_enabled: bool = true
 
 # Variáveis de status do jogador
 var fome_atual: float = 100.0
@@ -14,10 +17,23 @@ var taxa_fome_correndo: float = 6.0
 
 func _ready():
 	add_to_group("player")
-	# Avisa o valor inicial assim que o jogo começa
+	GameState.dressed_changed.connect(_on_dressed_changed)
+	_on_dressed_changed(GameState.is_dressed)
+	# Avisa o valor inicial da fome assim que o jogo começa
 	fome_alterada.emit(fome_atual)
 
+func _on_dressed_changed(value: bool) -> void:
+	if tool_sprite:
+		tool_sprite.visible = value
+	if cueca:
+		cueca.visible = not value
+
 func _process(delta: float) -> void:
+	if not movement_enabled:
+		player_sprite.play("Idle")
+		hair_sprite.play("Idle")
+		tool_sprite.play("Idle")
+		return
 	var moving = Input.is_key_pressed(KEY_W) or Input.is_key_pressed(KEY_A) or Input.is_key_pressed(KEY_S) or Input.is_key_pressed(KEY_D)
 	
 	if moving:
@@ -46,9 +62,12 @@ func _process(delta: float) -> void:
 		tool_sprite.flip_h = false
 		
 func _physics_process(delta: float) -> void:
-	var speed = 50.0 
+	if not movement_enabled:
+		velocity = Vector2.ZERO
+		return
+	var speed = 50.0
 	var is_running = false
-	
+
 	# Só ganha velocidade de corrida se segurar Shift E tiver fome
 	if Input.is_key_pressed(KEY_SHIFT) and fome_atual > 0.0:
 		speed = 80.0
@@ -72,6 +91,24 @@ func _physics_process(delta: float) -> void:
 	if is_running and velocity != Vector2.ZERO:
 		fome_atual -= taxa_fome_correndo * delta
 		fome_atual = clamp(fome_atual, 0.0, 100.0) # Garante que não fique menor que 0
-		
+
 		# Dispara o sinal para atualizar a interface
 		fome_alterada.emit(fome_atual)
+
+
+# Stubs para os signal connections herdados das cenas — body_entered das
+# portas (campus.tscn, sala_bloco_c.tscn, sala_bloco_d.tscn) chama esses
+# métodos no player. A lógica real de transição vive em porta_c.gd /
+# porta_d.gd / porta_c_saida.gd / porta_D___saida.gd; aqui é só no-op para
+# não disparar "Method not found" no Godot.
+func _on_porta_body_entered(_body: Node2D) -> void:
+	pass
+
+func _on_porta_d_body_entered(_body: Node2D) -> void:
+	pass
+
+func _on_porta_c__saida_body_entered(_body: Node2D) -> void:
+	pass
+
+func _on_porta_d__saida_body_entered(_body: Node2D) -> void:
+	pass

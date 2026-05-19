@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://bfbts5w4tdow3"]
 
+[ext_resource type="Script" uid="uid://c2iacanvs44qk" path="res://Cenas/bar_xp.gd" id="1_barxp"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_txgsd"]
 bg_color = Color(0, 0.24313726, 0, 1)
 border_width_left = 1
@@ -46,4 +48,5 @@ theme_override_styles/background = SubResource("StyleBoxFlat_txgsd")
 theme_override_styles/fill = SubResource("StyleBoxFlat_xaulm")
 value = 35.0
 show_percentage = false
+script = ExtResource("1_barxp")
 metadata/_edit_use_anchors_ = true

@@ -1,0 +1,463 @@
+[gd_scene load_steps=22 format=3 uid="uid://dtrhr0lme3eyr"]
+
+[ext_resource type="PackedScene" uid="uid://dqpoa0wpgwarr" path="res://Cenas/player.tscn" id="1_player"]
+[ext_resource type="Script" uid="uid://yyu4g6kxre1g" path="res://Cenas/porta.gd" id="2_porta"]
+[ext_resource type="Script" uid="uid://bbam7g82pm2p7" path="res://Cenas/transicao.gd" id="3_trans"]
+[ext_resource type="Texture2D" uid="uid://dbk7tg816lpbh" path="res://assets/assets - quarto/beds_BR.png" id="4_beds"]
+[ext_resource type="Texture2D" uid="uid://bgv6h0xg27lfh" path="res://assets/assets - quarto/wardrobes_BR.png" id="5_wardrobes"]
+[ext_resource type="Texture2D" uid="uid://dvgx515a6fvoo" path="res://assets/assets - quarto/decorations_BR.png" id="6_decor"]
+[ext_resource type="Script" path="res://Cenas/quarto.gd" id="7_quarto"]
+[ext_resource type="Script" uid="uid://d0ex6ytr31vye" path="res://Cenas/hud.gd" id="8_hud"]
+[ext_resource type="Script" uid="uid://bvhxnob56sksr" path="res://Cenas/porta_onibus.gd" id="9_porta_onibus"]
+[ext_resource type="Script" uid="uid://7r0bvkdjgbdv" path="res://Cenas/viagem_onibus.gd" id="10_viagem_onibus"]
+[ext_resource type="Texture2D" uid="uid://c050b50qyjb0f" path="res://assets/assets - obstaculo/onibus.png" id="11_onibus"]
+
+[sub_resource type="RectangleShape2D" id="shape_wall_top"]
+size = Vector2(300, 8)
+
+[sub_resource type="RectangleShape2D" id="shape_wall_bottom_left"]
+size = Vector2(120, 8)
+
+[sub_resource type="RectangleShape2D" id="shape_wall_bottom_right"]
+size = Vector2(120, 8)
+
+[sub_resource type="RectangleShape2D" id="shape_wall_side"]
+size = Vector2(8, 192)
+
+[sub_resource type="RectangleShape2D" id="shape_bed"]
+size = Vector2(40, 32)
+
+[sub_resource type="RectangleShape2D" id="shape_ns_small"]
+size = Vector2(14, 14)
+
+[sub_resource type="RectangleShape2D" id="shape_dresser"]
+size = Vector2(40, 20)
+
+[sub_resource type="RectangleShape2D" id="shape_wardrobe"]
+size = Vector2(40, 26)
+
+[sub_resource type="RectangleShape2D" id="shape_stool"]
+size = Vector2(28, 16)
+
+[sub_resource type="RectangleShape2D" id="shape_door_trigger"]
+size = Vector2(36, 14)
+
+[sub_resource type="RectangleShape2D" id="shape_wardrobe_zone"]
+size = Vector2(44, 18)
+
+[sub_resource type="StyleBoxFlat" id="hud_panel_style"]
+bg_color = Color(0.098, 0.365, 1.0, 0.72)
+
+[node name="Quarto" type="Node2D"]
+script = ExtResource("7_quarto")
+
+[node name="Floor" type="Node2D" parent="."]
+z_index = 0
+
+[node name="FloorBase" type="Polygon2D" parent="Floor"]
+color = Color(0.55, 0.32, 0.18, 1)
+polygon = PackedVector2Array(0, 50, 280, 50, 280, 180, 0, 180)
+
+[node name="Plank1" type="Polygon2D" parent="Floor"]
+color = Color(0.38, 0.2, 0.1, 1)
+polygon = PackedVector2Array(0, 72, 280, 72, 280, 73, 0, 73)
+
+[node name="Plank2" type="Polygon2D" parent="Floor"]
+color = Color(0.38, 0.2, 0.1, 1)
+polygon = PackedVector2Array(0, 96, 280, 96, 280, 97, 0, 97)
+
+[node name="Plank3" type="Polygon2D" parent="Floor"]
+color = Color(0.38, 0.2, 0.1, 1)
+polygon = PackedVector2Array(0, 120, 280, 120, 280, 121, 0, 121)
+
+[node name="Plank4" type="Polygon2D" parent="Floor"]
+color = Color(0.38, 0.2, 0.1, 1)
+polygon = PackedVector2Array(0, 144, 280, 144, 280, 145, 0, 145)
+
+[node name="Plank5" type="Polygon2D" parent="Floor"]
+color = Color(0.38, 0.2, 0.1, 1)
+polygon = PackedVector2Array(0, 168, 280, 168, 280, 169, 0, 169)
+
+[node name="BackWall" type="Polygon2D" parent="."]
+z_index = 0
+color = Color(0.36, 0.55, 0.25, 1)
+polygon = PackedVector2Array(0, 0, 280, 0, 280, 50, 0, 50)
+
+[node name="WallSeam" type="Polygon2D" parent="."]
+z_index = 0
+color = Color(0.22, 0.36, 0.16, 1)
+polygon = PackedVector2Array(0, 48, 280, 48, 280, 50, 0, 50)
+
+[node name="Frame" type="Node2D" parent="."]
+z_index = 5
+
+[node name="FrameTop" type="Polygon2D" parent="Frame"]
+color = Color(0.22, 0.13, 0.06, 1)
+polygon = PackedVector2Array(-8, -8, 288, -8, 288, 0, -8, 0)
+
+[node name="FrameBottomL" type="Polygon2D" parent="Frame"]
+color = Color(0.22, 0.13, 0.06, 1)
+polygon = PackedVector2Array(-8, 180, 118, 180, 118, 188, -8, 188)
+
+[node name="FrameBottomR" type="Polygon2D" parent="Frame"]
+color = Color(0.22, 0.13, 0.06, 1)
+polygon = PackedVector2Array(162, 180, 288, 180, 288, 188, 162, 188)
+
+[node name="FrameLeft" type="Polygon2D" parent="Frame"]
+color = Color(0.22, 0.13, 0.06, 1)
+polygon = PackedVector2Array(-8, -8, 0, -8, 0, 188, -8, 188)
+
+[node name="FrameRight" type="Polygon2D" parent="Frame"]
+color = Color(0.22, 0.13, 0.06, 1)
+polygon = PackedVector2Array(280, -8, 288, -8, 288, 188, 280, 188)
+
+[node name="FrameTopInner" type="Polygon2D" parent="Frame"]
+color = Color(0.42, 0.26, 0.13, 1)
+polygon = PackedVector2Array(0, 0, 280, 0, 280, 2, 0, 2)
+
+[node name="FrameLeftInner" type="Polygon2D" parent="Frame"]
+color = Color(0.42, 0.26, 0.13, 1)
+polygon = PackedVector2Array(0, 0, 2, 0, 2, 180, 0, 180)
+
+[node name="FrameRightInner" type="Polygon2D" parent="Frame"]
+color = Color(0.42, 0.26, 0.13, 1)
+polygon = PackedVector2Array(278, 0, 280, 0, 280, 180, 278, 180)
+
+[node name="Window" type="Node2D" parent="."]
+z_index = 1
+
+[node name="WindowOuter" type="Polygon2D" parent="Window"]
+color = Color(0.22, 0.13, 0.06, 1)
+polygon = PackedVector2Array(95, 8, 135, 8, 135, 40, 95, 40)
+
+[node name="WindowSill" type="Polygon2D" parent="Window"]
+color = Color(0.42, 0.26, 0.13, 1)
+polygon = PackedVector2Array(93, 38, 137, 38, 137, 42, 93, 42)
+
+[node name="WindowGlass" type="Polygon2D" parent="Window"]
+color = Color(0.53, 0.74, 0.88, 1)
+polygon = PackedVector2Array(98, 11, 132, 11, 132, 37, 98, 37)
+
+[node name="WindowCrossV" type="Polygon2D" parent="Window"]
+color = Color(0.22, 0.13, 0.06, 1)
+polygon = PackedVector2Array(114, 11, 116, 11, 116, 37, 114, 37)
+
+[node name="WindowCrossH" type="Polygon2D" parent="Window"]
+color = Color(0.22, 0.13, 0.06, 1)
+polygon = PackedVector2Array(98, 23, 132, 23, 132, 25, 98, 25)
+
+[node name="WindowShine1" type="Polygon2D" parent="Window"]
+color = Color(0.85, 0.92, 1, 0.5)
+polygon = PackedVector2Array(100, 13, 104, 13, 104, 21, 100, 21)
+
+[node name="WindowShine2" type="Polygon2D" parent="Window"]
+color = Color(0.85, 0.92, 1, 0.5)
+polygon = PackedVector2Array(118, 27, 122, 27, 122, 35, 118, 35)
+
+[node name="Painting" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(200, 18)
+texture = ExtResource("6_decor")
+region_enabled = true
+region_rect = Rect2(132, 19, 40, 26)
+
+[node name="Walls" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="TopWallCol" type="CollisionShape2D" parent="Walls"]
+position = Vector2(140, 46)
+shape = SubResource("shape_wall_top")
+
+[node name="BottomWallColLeft" type="CollisionShape2D" parent="Walls"]
+position = Vector2(60, 184)
+shape = SubResource("shape_wall_bottom_left")
+
+[node name="BottomWallColRight" type="CollisionShape2D" parent="Walls"]
+position = Vector2(220, 184)
+shape = SubResource("shape_wall_bottom_right")
+
+[node name="LeftWallCol" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-4, 84)
+shape = SubResource("shape_wall_side")
+
+[node name="RightWallCol" type="CollisionShape2D" parent="Walls"]
+position = Vector2(284, 84)
+shape = SubResource("shape_wall_side")
+
+[node name="Rug" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(85, 130)
+texture = ExtResource("6_decor")
+region_enabled = true
+region_rect = Rect2(94, 128, 68, 48)
+
+[node name="Furniture" type="Node2D" parent="."]
+z_index = 2
+
+[node name="Bed" type="StaticBody2D" parent="Furniture"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="BedSprite" type="Sprite2D" parent="Furniture/Bed"]
+position = Vector2(30, 52)
+texture = ExtResource("4_beds")
+region_enabled = true
+region_rect = Rect2(64, 24, 48, 56)
+
+[node name="BedCol" type="CollisionShape2D" parent="Furniture/Bed"]
+position = Vector2(30, 64)
+shape = SubResource("shape_bed")
+
+[node name="NightstandBed" type="StaticBody2D" parent="Furniture"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="NightstandBedSprite" type="Sprite2D" parent="Furniture/NightstandBed"]
+position = Vector2(70, 60)
+texture = ExtResource("5_wardrobes")
+region_enabled = true
+region_rect = Rect2(160, 20, 14, 20)
+
+[node name="NightstandBedCol" type="CollisionShape2D" parent="Furniture/NightstandBed"]
+position = Vector2(70, 63)
+shape = SubResource("shape_ns_small")
+
+[node name="LampBed" type="Sprite2D" parent="Furniture/NightstandBed"]
+position = Vector2(70, 44)
+texture = ExtResource("6_decor")
+region_enabled = true
+region_rect = Rect2(114, 53, 12, 19)
+
+[node name="Desk" type="StaticBody2D" parent="Furniture"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="DeskSprite" type="Sprite2D" parent="Furniture/Desk"]
+position = Vector2(155, 50)
+texture = ExtResource("5_wardrobes")
+region_enabled = true
+region_rect = Rect2(272, 24, 48, 40)
+
+[node name="DeskCol" type="CollisionShape2D" parent="Furniture/Desk"]
+position = Vector2(155, 60)
+shape = SubResource("shape_dresser")
+
+[node name="AlarmClock" type="Sprite2D" parent="Furniture/Desk"]
+position = Vector2(155, 22)
+texture = ExtResource("6_decor")
+region_enabled = true
+region_rect = Rect2(99, 19, 10, 26)
+
+[node name="Drawers" type="StaticBody2D" parent="Furniture"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="DrawersSprite" type="Sprite2D" parent="Furniture/Drawers"]
+position = Vector2(200, 50)
+texture = ExtResource("5_wardrobes")
+region_enabled = true
+region_rect = Rect2(208, 24, 48, 40)
+
+[node name="DrawersCol" type="CollisionShape2D" parent="Furniture/Drawers"]
+position = Vector2(200, 60)
+shape = SubResource("shape_dresser")
+
+[node name="Wardrobe" type="StaticBody2D" parent="Furniture"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="WardrobeSprite" type="Sprite2D" parent="Furniture/Wardrobe"]
+position = Vector2(248, 43)
+texture = ExtResource("5_wardrobes")
+region_enabled = true
+region_rect = Rect2(16, 32, 48, 66)
+
+[node name="WardrobeCol" type="CollisionShape2D" parent="Furniture/Wardrobe"]
+position = Vector2(248, 62)
+shape = SubResource("shape_wardrobe")
+
+[node name="Stool" type="StaticBody2D" parent="Furniture"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="StoolSprite" type="Sprite2D" parent="Furniture/Stool"]
+position = Vector2(155, 95)
+texture = ExtResource("5_wardrobes")
+region_enabled = true
+region_rect = Rect2(24, 264, 32, 40)
+
+[node name="StoolCol" type="CollisionShape2D" parent="Furniture/Stool"]
+position = Vector2(155, 102)
+shape = SubResource("shape_stool")
+
+[node name="NightstandFloor" type="StaticBody2D" parent="Furniture"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="NightstandFloorSprite" type="Sprite2D" parent="Furniture/NightstandFloor"]
+position = Vector2(258, 145)
+texture = ExtResource("5_wardrobes")
+region_enabled = true
+region_rect = Rect2(160, 20, 14, 20)
+
+[node name="NightstandFloorCol" type="CollisionShape2D" parent="Furniture/NightstandFloor"]
+position = Vector2(258, 148)
+shape = SubResource("shape_ns_small")
+
+[node name="DoorVisual" type="Node2D" parent="."]
+z_index = 3
+
+[node name="DoorRecess" type="Polygon2D" parent="DoorVisual"]
+color = Color(0.06, 0.04, 0.02, 1)
+polygon = PackedVector2Array(120, 162, 160, 162, 160, 188, 120, 188)
+
+[node name="DoorFrameTop" type="Polygon2D" parent="DoorVisual"]
+color = Color(0.22, 0.13, 0.06, 1)
+polygon = PackedVector2Array(116, 158, 164, 158, 164, 164, 116, 164)
+
+[node name="DoorFrameLeft" type="Polygon2D" parent="DoorVisual"]
+color = Color(0.22, 0.13, 0.06, 1)
+polygon = PackedVector2Array(116, 158, 120, 158, 120, 188, 116, 188)
+
+[node name="DoorFrameRight" type="Polygon2D" parent="DoorVisual"]
+color = Color(0.22, 0.13, 0.06, 1)
+polygon = PackedVector2Array(160, 158, 164, 158, 164, 188, 160, 188)
+
+[node name="DoorFrameHilite" type="Polygon2D" parent="DoorVisual"]
+color = Color(0.42, 0.26, 0.13, 1)
+polygon = PackedVector2Array(118, 160, 162, 160, 162, 162, 118, 162)
+
+[node name="DoorPanel" type="Polygon2D" parent="DoorVisual"]
+color = Color(0.55, 0.34, 0.18, 1)
+polygon = PackedVector2Array(122, 164, 152, 164, 152, 188, 122, 188)
+
+[node name="DoorPanelEdge" type="Polygon2D" parent="DoorVisual"]
+color = Color(0.36, 0.22, 0.1, 1)
+polygon = PackedVector2Array(150, 164, 152, 164, 152, 188, 150, 188)
+
+[node name="DoorInset" type="Polygon2D" parent="DoorVisual"]
+color = Color(0.42, 0.26, 0.13, 1)
+polygon = PackedVector2Array(126, 168, 148, 168, 148, 184, 126, 184)
+
+[node name="DoorKnob" type="Polygon2D" parent="DoorVisual"]
+color = Color(0.95, 0.78, 0.32, 1)
+polygon = PackedVector2Array(146, 176, 149, 176, 149, 179, 146, 179)
+
+[node name="DoorKnobShine" type="Polygon2D" parent="DoorVisual"]
+color = Color(1, 0.95, 0.7, 1)
+polygon = PackedVector2Array(146, 176, 147, 176, 147, 177, 146, 177)
+
+[node name="Doormat" type="Node2D" parent="."]
+z_index = 1
+
+[node name="MatBase" type="Polygon2D" parent="Doormat"]
+color = Color(0.6, 0.45, 0.3, 1)
+polygon = PackedVector2Array(124, 152, 158, 152, 156, 160, 126, 160)
+
+[node name="MatStripe1" type="Polygon2D" parent="Doormat"]
+color = Color(0.42, 0.3, 0.18, 1)
+polygon = PackedVector2Array(125, 154, 157, 154, 157, 155, 125, 155)
+
+[node name="MatStripe2" type="Polygon2D" parent="Doormat"]
+color = Color(0.42, 0.3, 0.18, 1)
+polygon = PackedVector2Array(125, 157, 157, 157, 157, 158, 125, 158)
+
+[node name="ExitArrow" type="Polygon2D" parent="Doormat"]
+color = Color(0.95, 0.85, 0.3, 0.9)
+polygon = PackedVector2Array(140, 144, 144, 144, 144, 148, 146, 148, 142, 152, 138, 148, 140, 148)
+
+[node name="PortaVolta" type="Area2D" parent="." groups=["porta"]]
+collision_layer = 0
+collision_mask = 1
+script = ExtResource("9_porta_onibus")
+destino = "res://Cenas/campus.tscn"
+requer_vestido = true
+mensagem_bloqueio = "Vista-se antes de pegar o ônibus."
+
+[node name="PortaShape" type="CollisionShape2D" parent="PortaVolta"]
+position = Vector2(140, 162)
+shape = SubResource("shape_door_trigger")
+
+[node name="ViagemOnibus" type="CanvasLayer" parent="."]
+layer = 20
+script = ExtResource("10_viagem_onibus")
+
+[node name="Escurecer" type="ColorRect" parent="ViagemOnibus"]
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0, 0, 0, 1)
+
+[node name="OnibusAnimado" type="Sprite2D" parent="ViagemOnibus"]
+visible = false
+texture = ExtResource("11_onibus")
+
+[node name="WardrobeInteractArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 1
+
+[node name="WardrobeZoneShape" type="CollisionShape2D" parent="WardrobeInteractArea"]
+position = Vector2(248, 90)
+shape = SubResource("shape_wardrobe_zone")
+
+[node name="WardrobeIndicator" type="Label" parent="."]
+offset_left = 240.0
+offset_top = 4.0
+offset_right = 256.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(1, 0.93, 0.45, 1)
+theme_override_colors/font_outline_color = Color(0.1, 0.07, 0.05, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 20
+text = "!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="player" parent="." instance=ExtResource("1_player")]
+position = Vector2(140, 130)
+
+[node name="Camera" type="Camera2D" parent="player"]
+zoom = Vector2(4.2, 4.2)
+limit_left = -10
+limit_top = -10
+limit_right = 290
+limit_bottom = 190
+editor_draw_limits = true
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("8_hud")
+
+[node name="PanelContainer" type="PanelContainer" parent="HUD"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -52.0
+offset_right = 320.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("hud_panel_style")
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="HUD/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = ""
+
+[node name="Transicao_" type="Node" parent="."]
+
+[node name="Transicao" type="CanvasLayer" parent="Transicao_" groups=["transicao"]]
+script = ExtResource("3_trans")
+
+[node name="ColorRect" type="ColorRect" parent="Transicao_/Transicao"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)

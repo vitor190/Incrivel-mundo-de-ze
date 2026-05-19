@@ -1,0 +1,281 @@
+[gd_scene load_steps=6 format=3 uid="uid://bxqu5o2vk4r1g"]
+
+[ext_resource type="Script" uid="uid://dfk5841tpkc26" path="res://Cenas/minigame_acordar.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://d1fy5v3p25gs6" path="res://assets/assets - timed bar/pointer.png" id="2_pointer"]
+
+[sub_resource type="StyleBoxFlat" id="panel_style"]
+bg_color = Color(0.09, 0.07, 0.05, 0.95)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.88, 0.74, 0.32, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="bar_outline"]
+bg_color = Color(0.07, 0.18, 0.07, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.07, 0.07, 0.07, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="result_style"]
+bg_color = Color(0.09, 0.07, 0.05, 0.95)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.88, 0.74, 0.32, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="MinigameAcordar" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_script")
+
+[node name="Dimmer" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.65)
+mouse_filter = 2
+
+[node name="Intro" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.0
+offset_top = -190.0
+offset_right = 280.0
+offset_bottom = 190.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("panel_style")
+
+[node name="MarginContainer" type="MarginContainer" parent="Intro"]
+layout_mode = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 24
+
+[node name="VBox" type="VBoxContainer" parent="Intro/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Title" type="Label" parent="Intro/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.93, 0.55, 1)
+theme_override_font_sizes/font_size = 36
+text = "Bom dia, Zé!"
+horizontal_alignment = 1
+
+[node name="Body" type="Label" parent="Intro/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_font_sizes/font_size = 18
+text = "Hoje é dia de aula na UNIFOR e você precisa acordar cedo. Acerte o tempo certo na barra para acordar pontualmente. Você tem 3 tentativas — cada uma fica mais fácil que a anterior. Cada erro faz o Zé acordar mais tarde e perder XP."
+autowrap_mode = 2
+horizontal_alignment = 1
+
+[node name="Rules" type="Label" parent="Intro/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.85, 0.95, 1)
+theme_override_font_sizes/font_size = 16
+text = "1ª tentativa — Difícil   (−3 XP se errar)
+2ª tentativa — Médio   (−5 XP se errar)
+3ª tentativa — Fácil   (−8 XP se errar)"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="Intro/MarginContainer/VBox"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="Hint" type="Label" parent="Intro/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.93, 0.55, 1)
+theme_override_font_sizes/font_size = 20
+text = "[ ESPAÇO / clique para começar ]"
+horizontal_alignment = 1
+
+[node name="BarUI" type="Control" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -90.0
+offset_right = 200.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AttemptLabel" type="Label" parent="BarUI"]
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_top = -4.0
+offset_right = 100.0
+offset_bottom = 26.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.93, 0.55, 1)
+theme_override_font_sizes/font_size = 24
+text = "Tentativa 1 / 3"
+horizontal_alignment = 1
+
+[node name="DifficultyLabel" type="Label" parent="BarUI"]
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_top = 28.0
+offset_right = 100.0
+offset_bottom = 50.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_font_sizes/font_size = 16
+text = "Difícil"
+horizontal_alignment = 1
+
+[node name="Bar" type="Control" parent="BarUI"]
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -180.0
+offset_top = 64.0
+offset_right = 180.0
+offset_bottom = 104.0
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="BarBorder" type="ColorRect" parent="BarUI/Bar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 3.0
+offset_bottom = 3.0
+color = Color(0.07, 0.07, 0.07, 1)
+mouse_filter = 2
+
+[node name="BarBg" type="ColorRect" parent="BarUI/Bar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.27, 0.74, 0.32, 1)
+mouse_filter = 2
+
+[node name="TargetZone" type="ColorRect" parent="BarUI/Bar"]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 0.0
+offset_right = 216.0
+offset_bottom = 40.0
+color = Color(0.86, 0.2, 0.2, 1)
+mouse_filter = 2
+
+[node name="TargetGlow" type="ColorRect" parent="BarUI/Bar"]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 0.0
+offset_right = 216.0
+offset_bottom = 6.0
+color = Color(1, 0.6, 0.6, 0.7)
+mouse_filter = 2
+
+[node name="Pointer" type="TextureRect" parent="BarUI/Bar"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 11.0
+offset_right = 24.0
+offset_bottom = 29.0
+texture = ExtResource("2_pointer")
+expand_mode = 1
+stretch_mode = 0
+mouse_filter = 2
+
+[node name="HintLabel" type="Label" parent="BarUI"]
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 124.0
+offset_right = 200.0
+offset_bottom = 152.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.92, 0.92, 0.92, 1)
+theme_override_font_sizes/font_size = 16
+text = "Pressione ESPAÇO quando a seta passar pela zona vermelha"
+horizontal_alignment = 1
+
+[node name="Result" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -100.0
+offset_right = 240.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("result_style")
+
+[node name="MarginContainer" type="MarginContainer" parent="Result"]
+layout_mode = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 24
+
+[node name="VBox" type="VBoxContainer" parent="Result/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="ResultTitle" type="Label" parent="Result/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.95, 0.4, 1)
+theme_override_font_sizes/font_size = 30
+text = "Acordou na hora!"
+horizontal_alignment = 1
+
+[node name="ResultBody" type="Label" parent="Result/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_font_sizes/font_size = 18
+text = ""
+autowrap_mode = 2
+horizontal_alignment = 1
+
+[node name="ResultHint" type="Label" parent="Result/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.93, 0.55, 1)
+theme_override_font_sizes/font_size = 18
+text = "[ESPAÇO para continuar]"
+horizontal_alignment = 1
