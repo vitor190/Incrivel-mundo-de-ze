@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dpt1akrit4miq"]
 
-[ext_resource type="Texture2D" uid="uid://0000q1jshxlo" path="res://Cenas/NPC's/NPC_RAPOSO.png" id="2_06drf"]
+[ext_resource type="Texture2D" uid="uid://oqeiek6flxii" path="res://Cenas/NPC's/Saved Characters/npc01_empé.png" id="1_wl04s"]
 
 [sub_resource type="GDScript" id="GDScript_wl04s"]
 script/source = "extends CharacterBody2D
@@ -55,15 +55,15 @@ func iniciar_dialogo() -> void:
 	print(\"E aí, Zé! A aula no Bloco C já vai começar.\")
 "
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jiv0o"]
-atlas = ExtResource("2_06drf")
+[sub_resource type="AtlasTexture" id="AtlasTexture_e640m"]
+atlas = ExtResource("1_wl04s")
 region = Rect2(0, 0, 16, 35)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yk6xx"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jiv0o")
+"texture": SubResource("AtlasTexture_e640m")
 }],
 "loop": true,
 "name": &"Idle",

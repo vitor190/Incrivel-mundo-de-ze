@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cko035s0kpq4s"]
 
-[ext_resource type="Texture2D" uid="uid://0000q1jshxlo" path="res://Cenas/NPC's/NPC_RAPOSO.png" id="2_uo4ls"]
+[ext_resource type="Texture2D" uid="uid://c01nbsqd111ui" path="res://Cenas/NPC's/Saved Characters/npc02_empé.png" id="1_ffyhp"]
 
 [sub_resource type="GDScript" id="GDScript_wl04s"]
 script/source = "extends CharacterBody2D
@@ -56,7 +56,7 @@ func iniciar_dialogo() -> void:
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cu7ba"]
-atlas = ExtResource("2_uo4ls")
+atlas = ExtResource("1_ffyhp")
 region = Rect2(32, 0, 16, 35)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yk6xx"]

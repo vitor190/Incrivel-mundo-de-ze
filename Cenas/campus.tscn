@@ -23,6 +23,12 @@
 [ext_resource type="PackedScene" uid="uid://bfbts5w4tdow3" path="res://Cenas/xp_bar.tscn" id="21_p1b3r"]
 [ext_resource type="PackedScene" uid="uid://cw8hgbwt7ro1m" path="res://Cenas/barra_de_fome.tscn" id="22_efie5"]
 [ext_resource type="PackedScene" uid="uid://bufa2sspfj0w7" path="res://Cenas/Carro.tscn" id="22_p1b3r"]
+[ext_resource type="PackedScene" uid="uid://b5v5r0rxvojwf" path="res://Cenas/NPC's/npc_colega.tscn" id="24_pwnp4"]
+[ext_resource type="PackedScene" uid="uid://dpt1akrit4miq" path="res://Cenas/NPC's/npc_colega2.tscn" id="25_xayg1"]
+[ext_resource type="PackedScene" uid="uid://cko035s0kpq4s" path="res://Cenas/NPC's/npc_colega3.tscn" id="26_exv68"]
+[ext_resource type="PackedScene" uid="uid://d4dn4rv7otmv6" path="res://Cenas/NPC's/npc_colega4.tscn" id="27_ls6st"]
+[ext_resource type="PackedScene" uid="uid://dpwr2vck1elyu" path="res://Cenas/NPC's/npc_colega5.tscn" id="28_exv68"]
+[ext_resource type="PackedScene" uid="uid://3elsy26d86tb" path="res://Cenas/NPC's/npc_colega7.tscn" id="29_ls6st"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qbeu0"]
 texture = ExtResource("3_sp1x8")
@@ -13286,6 +13292,29 @@ position = Vector2(2160, 904)
 
 [node name="carro6" parent="carros" unique_id=1676103370 instance=ExtResource("22_p1b3r")]
 position = Vector2(2376, 912)
+
+[node name="NPC_Colega" parent="." unique_id=1585468008 instance=ExtResource("24_pwnp4")]
+position = Vector2(335, 440)
+
+[node name="NPC_Colega2" parent="." unique_id=225383840 instance=ExtResource("25_xayg1")]
+position = Vector2(962, 237)
+pode_interagir = false
+
+[node name="NPC_Colega3" parent="." unique_id=1183050316 instance=ExtResource("26_exv68")]
+position = Vector2(1006, 237)
+pode_interagir = false
+
+[node name="NPC_Colega4" parent="." unique_id=577246716 instance=ExtResource("27_ls6st")]
+position = Vector2(985, 261)
+pode_interagir = false
+
+[node name="NPC_Colega5" parent="." unique_id=786338290 instance=ExtResource("28_exv68")]
+position = Vector2(302, 741)
+pode_interagir = false
+
+[node name="NPC_Colega6" parent="." unique_id=1963833175 instance=ExtResource("29_ls6st")]
+position = Vector2(355, 797)
+pode_interagir = false
 
 [connection signal="body_entered" from="Shader de parede/BlocoC_Building/PortaC" to="player" method="_on_porta_body_entered"]
 [connection signal="body_entered" from="Shader de parede/BlocoD_Building/PortaD" to="player" method="_on_porta_d_body_entered"]
