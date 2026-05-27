@@ -5,7 +5,6 @@
 ; Format:
 ;   [section] ; section goes between []
 ;   param=value ; assign values to parameters
-
 config_version=5
 
 [animation]
@@ -15,7 +14,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Incrivel mundo de ze"
-run/main_scene="uid://d1fp3455quaio"
+run/main_scene="uid://c0falobby001x"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
