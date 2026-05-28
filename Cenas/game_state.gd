@@ -1,27 +1,56 @@
 extends Node
 
-const MAX_XP: float = 100.0
-
-var xp: float = 35.0
-# Padrão "já vestido" para que cenas sem minigame (ex.: campus) mostrem o Zé
-# completo. Quarto explicitamente seta false em _ready.
-var is_dressed: bool = true
-
 signal xp_changed(value: float)
 signal dressed_changed(value: bool)
 
-func lose_xp(amount: float) -> void:
-	xp = max(0.0, xp - amount)
-	xp_changed.emit(xp)
+const MAX_XP: float = 100.0
 
-func set_dressed(value: bool) -> void:
-	if is_dressed == value:
-		return
-	is_dressed = value
+var xp: float:
+	get:
+		return Global.xp
+	set(value):
+		Global.xp = clamp(value, 0.0, MAX_XP)
+		Global.xp_changed.emit(Global.xp)
+
+var is_dressed: bool:
+	get:
+		return Global.is_dressed
+	set(value):
+		Global.is_dressed = value
+		Global.dressed_changed.emit(Global.is_dressed)
+
+
+func _ready() -> void:
+	if not Global.xp_changed.is_connected(_on_global_xp_changed):
+		Global.xp_changed.connect(_on_global_xp_changed)
+
+	if not Global.dressed_changed.is_connected(_on_global_dressed_changed):
+		Global.dressed_changed.connect(_on_global_dressed_changed)
+
+
+func _on_global_xp_changed(value: float) -> void:
+	xp_changed.emit(value)
+
+
+func _on_global_dressed_changed(value: bool) -> void:
 	dressed_changed.emit(value)
 
+
+func add_xp(amount: float) -> void:
+	Global.add_xp(amount)
+
+
+func lose_xp(amount: float) -> void:
+	Global.lose_xp(amount)
+
+
+func set_dressed(value: bool) -> void:
+	Global.set_dressed(value)
+
+
 func reset() -> void:
-	xp = 35.0
-	xp_changed.emit(xp)
-	is_dressed = true
-	dressed_changed.emit(true)
+	Global.xp = 35.0
+	Global.xp_changed.emit(Global.xp)
+
+	Global.is_dressed = true
+	Global.dressed_changed.emit(true)
