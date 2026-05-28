@@ -12,7 +12,7 @@ func _ready():
 func _ao_iniciar():
 	# Change to the main gameplay scene
 	var caminho = ResourceUID.get_id_path(ResourceUID.text_to_id(CENA_JOGO))
-	get_tree().change_scene_to_file(caminho)
+	get_tree().change_scene_to_file("res://Cenas/quarto.tscn")
 
 func _ao_sair():
 	# Close the application (equivalent to Alt+F4)
