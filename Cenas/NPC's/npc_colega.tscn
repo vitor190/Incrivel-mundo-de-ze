@@ -9,15 +9,18 @@ script/source = "extends CharacterBody2D
 
 @onready var sprite: AnimatedSprite2D = $PlayerSprite
 @onready var area_interacao: Area2D = $AreaInteracao
+@onready var balao_texto: Label = $BalaoDialogo # NOVA REFERÊNCIA AO BALÃO
 
 var jogador_por_perto: bool = false
 var jogador_node: Node2D = null
 
-
 var ja_falou: bool = false 
+var conversando: bool = false # NOVA VARIÁVEL PARA CONTROLAR O TEMPO DA FALA
 
 func _ready() -> void:
 	sprite.play(\"Idle_frente\") 
+	balao_texto.hide() # ESCONDE O BALÃO NO INÍCIO
+	
 	area_interacao.body_entered.connect(_on_area_interacao_body_entered)
 	area_interacao.body_exited.connect(_on_area_interacao_body_exited)
 
@@ -37,7 +40,6 @@ func _process(_delta: float) -> void:
 			else:
 				sprite.play(\"Idle_frente\") 
 	
-	
 	if pode_interagir and jogador_por_perto and Input.is_key_pressed(KEY_E) and not ja_falou:
 		iniciar_dialogo()
 
@@ -53,10 +55,41 @@ func _on_area_interacao_body_exited(body: Node2D) -> void:
 		jogador_node = null
 		sprite.play(\"Idle_frente\")
 		sprite.flip_h = false
+		balao_texto.hide() # ESCONDE O BALÃO SE O JOGADOR FOR EMBORA LONGE
 
 func iniciar_dialogo() -> void:
+	if conversando:
+		return # Impede que o script rode várias vezes se o jogador segurar a tecla E
+		
+	conversando = true
 	ja_falou = true 
-	print(\"E aí, Zé! A aula no Bloco C já vai começar.\")
+	
+	# Define o texto
+	balao_texto.text = \"E aí, Zé! A aula no Bloco C já vai começar.\"
+	
+	# Prepara o efeito: diz que 0 caracteres estão visíveis no início
+	balao_texto.visible_characters = 0
+	balao_texto.show()
+	
+	# Cria o \"motor de animação\" nativo do Godot (Tween)
+	var tween = create_tween()
+	
+	# Calcula o tempo da animação (0.05 segundos por letra)
+	var velocidade_digitacao = 0.05 
+	var tempo_total = balao_texto.text.length() * velocidade_digitacao
+	
+	# Anima as letras aparecendo gradativamente
+	tween.tween_property(balao_texto, \"visible_characters\", balao_texto.text.length(), tempo_total)
+	
+	# Pausa a função ATÉ a animação de digitar terminar
+	await tween.finished
+	
+	# Depois que o texto todo apareceu, dá um tempo extra para o jogador ler (2.5 segundos)
+	await get_tree().create_timer(2.5).timeout 
+	
+	# Passado o tempo de leitura, esconde o balão e reseta tudo
+	balao_texto.hide()
+	conversando = false
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jiv0o"]
