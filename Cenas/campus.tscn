@@ -8176,7 +8176,7 @@ size = Vector2(92, 47.375)
 size = Vector2(18.5, 177)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ee8j5"]
-size = Vector2(53, 48)
+size = Vector2(32, 29)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eqysr"]
 texture = ExtResource("11_7lhfo")
@@ -10109,7 +10109,7 @@ size = Vector2(19, 70.5)
 size = Vector2(17.5, 102.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v50wb"]
-size = Vector2(37, 46)
+size = Vector2(37, 40)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pwnp4"]
 texture = ExtResource("11_7lhfo")
@@ -13179,7 +13179,7 @@ position = Vector2(-160, -352)
 script = ExtResource("14_504uy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shader de parede/BlocoC_Building/PortaC" unique_id=1966936849]
-position = Vector2(561.5, 819)
+position = Vector2(568, 809.5)
 shape = SubResource("RectangleShape2D_ee8j5")
 
 [node name="BlocoD_Building" type="Node2D" parent="Shader de parede" unique_id=872808983 node_paths=PackedStringArray("roof_layers", "detection_area")]
@@ -13208,7 +13208,7 @@ shape = SubResource("RectangleShape2D_504uy")
 script = ExtResource("15_ee8j5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shader de parede/BlocoD_Building/PortaD" unique_id=1620891730]
-position = Vector2(1071.5, 309)
+position = Vector2(1071.5, 252)
 shape = SubResource("RectangleShape2D_v50wb")
 
 [node name="BlocoI_Building" type="Node2D" parent="Shader de parede" unique_id=1285563954]
