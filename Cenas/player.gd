@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-# Cria um sinal para avisar quando a fome mudar
 signal fome_alterada(novo_valor)
 
 @onready var player_sprite: AnimatedSprite2D = $PlayerSprite
@@ -10,71 +9,86 @@ signal fome_alterada(novo_valor)
 
 var movement_enabled: bool = true
 
-# Variáveis de status do jogador
 var fome_atual: float = 100.0
-# Mudado de 20.0 para 6.0 para a fome diminuir bem mais devagar
-var taxa_fome_correndo: float = 6.0 
+var xp_atual: int = 0
 
-func _ready():
+var taxa_fome_correndo: float = 6.0
+
+func _ready() -> void:
 	add_to_group("player")
-	GameState.dressed_changed.connect(_on_dressed_changed)
-	_on_dressed_changed(GameState.is_dressed)
-	# Avisa o valor inicial da fome assim que o jogo começa
+
+	fome_atual = Global.fome
+	xp_atual = Global.xp
+
+	var cena_atual: String = get_tree().current_scene.scene_file_path
+	var posicao_salva: Vector2 = Global.pegar_posicao(cena_atual)
+
+	if posicao_salva != Vector2.ZERO:
+		global_position = posicao_salva
+
+	call_deferred("_emitir_fome_inicial")
+
+	if "is_dressed" in Global:
+		_on_dressed_changed(Global.is_dressed)
+
+	if "dressed_changed" in Global:
+		if not Global.dressed_changed.is_connected(_on_dressed_changed):
+			Global.dressed_changed.connect(_on_dressed_changed)
+
+
+func _emitir_fome_inicial() -> void:
 	fome_alterada.emit(fome_atual)
+
 
 func _on_dressed_changed(value: bool) -> void:
 	if tool_sprite:
 		tool_sprite.visible = value
+
 	if cueca:
 		cueca.visible = not value
 
-func _process(delta: float) -> void:
+
+func _process(_delta: float) -> void:
 	if not movement_enabled:
-		player_sprite.play("Idle")
-		hair_sprite.play("Idle")
-		tool_sprite.play("Idle")
+		_play_all("Idle")
 		return
-	var moving = Input.is_key_pressed(KEY_W) or Input.is_key_pressed(KEY_A) or Input.is_key_pressed(KEY_S) or Input.is_key_pressed(KEY_D)
-	
+
+	var moving: bool = (
+		Input.is_key_pressed(KEY_W)
+		or Input.is_key_pressed(KEY_A)
+		or Input.is_key_pressed(KEY_S)
+		or Input.is_key_pressed(KEY_D)
+	)
+
 	if moving:
-		# Só corre se o Shift estiver pressionado E se ele ainda tiver fome
 		if Input.is_key_pressed(KEY_SHIFT) and fome_atual > 0.0:
-			player_sprite.play("Run")
-			hair_sprite.play("Run")
-			tool_sprite.play("Run")
+			_play_all("Run")
 		else:
-			player_sprite.play("Walk")
-			hair_sprite.play("Walk")
-			tool_sprite.play("walk")
+			_play_walk()
 	else:
-		player_sprite.play("Idle")
-		hair_sprite.play("Idle")
-		tool_sprite.play("Idle")
+		_play_all("Idle")
 
 	if Input.is_key_pressed(KEY_A):
-		player_sprite.flip_h = true
-		hair_sprite.flip_h = true
-		tool_sprite.flip_h = true
-		
+		_flip_all(true)
+
 	if Input.is_key_pressed(KEY_D):
-		player_sprite.flip_h = false
-		hair_sprite.flip_h = false
-		tool_sprite.flip_h = false
-		
+		_flip_all(false)
+
+
 func _physics_process(delta: float) -> void:
 	if not movement_enabled:
 		velocity = Vector2.ZERO
 		return
-	var speed = 50.0
-	var is_running = false
 
-	# Só ganha velocidade de corrida se segurar Shift E tiver fome
+	var speed: float = 50.0
+	var is_running: bool = false
+
 	if Input.is_key_pressed(KEY_SHIFT) and fome_atual > 0.0:
 		speed = 80.0
 		is_running = true
-	
-	var direction = Vector2.ZERO
-	
+
+	var direction: Vector2 = Vector2.ZERO
+
 	if Input.is_key_pressed(KEY_W):
 		direction.y -= 0.8
 	if Input.is_key_pressed(KEY_S):
@@ -83,32 +97,56 @@ func _physics_process(delta: float) -> void:
 		direction.x -= 0.8
 	if Input.is_key_pressed(KEY_D):
 		direction.x += 0.8
-		
+
 	velocity = direction.normalized() * speed
 	move_and_slide()
-	
-	# Lógica de gastar energia (Fome)
+
 	if is_running and velocity != Vector2.ZERO:
 		fome_atual -= taxa_fome_correndo * delta
-		fome_atual = clamp(fome_atual, 0.0, 100.0) # Garante que não fique menor que 0
+		fome_atual = clamp(fome_atual, 0.0, 100.0)
 
-		# Dispara o sinal para atualizar a interface
+		Global.fome = fome_atual
 		fome_alterada.emit(fome_atual)
 
 
-# Stubs para os signal connections herdados das cenas — body_entered das
-# portas (campus.tscn, sala_bloco_c.tscn, sala_bloco_d.tscn) chama esses
-# métodos no player. A lógica real de transição vive em porta_c.gd /
-# porta_d.gd / porta_c_saida.gd / porta_D___saida.gd; aqui é só no-op para
-# não disparar "Method not found" no Godot.
-func _on_porta_body_entered(_body: Node2D) -> void:
-	pass
+func salvar_progresso(posicao_customizada: Vector2) -> void:
+	var cena_atual: String = get_tree().current_scene.scene_file_path
 
-func _on_porta_d_body_entered(_body: Node2D) -> void:
-	pass
+	Global.salvar_estado(
+		cena_atual,
+		posicao_customizada,
+		fome_atual,
+		xp_atual
+	)
 
-func _on_porta_c__saida_body_entered(_body: Node2D) -> void:
-	pass
 
-func _on_porta_d__saida_body_entered(_body: Node2D) -> void:
-	pass
+func adicionar_xp(valor: int) -> void:
+	xp_atual += valor
+	Global.xp = xp_atual
+
+
+func _play_all(anim_name: String) -> void:
+	if player_sprite:
+		player_sprite.play(anim_name)
+	if hair_sprite:
+		hair_sprite.play(anim_name)
+	if tool_sprite:
+		tool_sprite.play(anim_name)
+
+
+func _play_walk() -> void:
+	if player_sprite:
+		player_sprite.play("Walk")
+	if hair_sprite:
+		hair_sprite.play("Walk")
+	if tool_sprite:
+		tool_sprite.play("walk")
+
+
+func _flip_all(value: bool) -> void:
+	if player_sprite:
+		player_sprite.flip_h = value
+	if hair_sprite:
+		hair_sprite.flip_h = value
+	if tool_sprite:
+		tool_sprite.flip_h = value

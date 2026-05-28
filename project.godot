@@ -22,6 +22,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameState="*res://Cenas/game_state.gd"
+Global="*uid://d2bhjiueqgo6h"
 
 [display]
 
