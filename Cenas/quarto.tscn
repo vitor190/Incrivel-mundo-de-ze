@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bfbts5w4tdow3" path="res://Cenas/xp_bar.tscn" id="11_6bf6l"]
 [ext_resource type="Texture2D" uid="uid://c050b50qyjb0f" path="res://assets/assets - obstaculo/onibus.png" id="11_onibus"]
 [ext_resource type="PackedScene" uid="uid://cw8hgbwt7ro1m" path="res://Cenas/barra_de_fome.tscn" id="12_dxfj7"]
+[ext_resource type="Script" uid="uid://bvfty6vjufbxe" path="res://Cenas/painel_missoes.gd" id="13_dxfj7"]
 
 [sub_resource type="RectangleShape2D" id="shape_wall_top"]
 size = Vector2(300, 8)
@@ -463,3 +464,22 @@ color = Color(0, 0, 0, 0)
 [node name="barra de fome" type="Node" parent="." unique_id=195181766]
 
 [node name="Barra de fome" parent="barra de fome" unique_id=1489353139 instance=ExtResource("12_dxfj7")]
+
+[node name="PainelMissoes" type="CanvasLayer" parent="." unique_id=910666824]
+script = ExtResource("13_dxfj7")
+
+[node name="Panel" type="Panel" parent="PainelMissoes" unique_id=1255541494]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PainelMissoes/Panel" unique_id=1456253056]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="PainelMissoes/Panel/VBoxContainer" unique_id=168825115]
+layout_mode = 2
+text = "MISSÕES"
+
+[node name="lista_missoes" type="VBoxContainer" parent="PainelMissoes/Panel/VBoxContainer" unique_id=2117046534]
+layout_mode = 2
