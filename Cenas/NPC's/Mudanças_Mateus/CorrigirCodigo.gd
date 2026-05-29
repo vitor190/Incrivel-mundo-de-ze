@@ -2,7 +2,7 @@ extends CanvasLayer
 
 signal minigame_concluido(sucesso: bool, xp_ganho: int)
 
-const TEMPO_TOTAL := 60.0
+const TEMPO_TOTAL := 75.0
 const PENALIDADE_ERRO := 2.0
 const XP_VITORIA := 30
 
@@ -16,12 +16,12 @@ var linhas_codigo: Array = [
 	"print(\"Tarefa concluida\")"
 ]
 
+var linhas_embaralhadas: Array = []
 var linha_atual := 0
 var tempo_restante: float = TEMPO_TOTAL
 var jogo_ativo := false
 var erros_totais := 0
 
-# Nós da UI — vamos criar eles no Passo 3
 @onready var painel_intro = $Painel/Centro/VBox/PainelIntro
 @onready var painel_jogo = $Painel/Centro/VBox/PainelJogo
 @onready var painel_resultado = $Painel/Centro/VBox/PainelResultado
@@ -62,23 +62,29 @@ func _iniciar_jogo():
 	rtl_codigo_feito.text = ""
 	lbl_feedback.text = ""
 	le_input.text = ""
+	linhas_embaralhadas = linhas_codigo.duplicate()
+	linhas_embaralhadas.shuffle()
 	painel_intro.visible = false
 	painel_jogo.visible = true
 	painel_resultado.visible = false
 	_atualizar_proxima()
 	_atualizar_hud()
+	# Aguarda 2 frames para não capturar o Enter da intro
+	await get_tree().process_frame
+	await get_tree().process_frame
 	le_input.grab_focus()
 
 func _on_le_input_text_submitted(texto: String):
 	if not jogo_ativo:
 		return
 	le_input.text = ""
-	if _normalizar(texto) == _normalizar(linhas_codigo[linha_atual]):
-		rtl_codigo_feito.text += "[color=#7ec8e3]" + linhas_codigo[linha_atual].xml_escape() + "[/color]\n"
+	le_input.call_deferred("grab_focus")
+	if _normalizar(texto) == _normalizar(linhas_embaralhadas[linha_atual]):
+		rtl_codigo_feito.text += "[color=#7ec8e3]" + linhas_embaralhadas[linha_atual].xml_escape() + "[/color]\n"
 		lbl_feedback.text = "✓ Correto!"
 		lbl_feedback.modulate = Color.GREEN
 		linha_atual += 1
-		if linha_atual >= linhas_codigo.size():
+		if linha_atual >= linhas_embaralhadas.size():
 			_fim_jogo(true)
 		else:
 			_atualizar_proxima()
@@ -95,16 +101,16 @@ func _fim_jogo(vitoria: bool):
 	if vitoria:
 		lbl_resultado.text = "✅ Código corrigido!\n\n+%d XP\n\nErros: %d | Tempo restante: %.1fs\n\n[ Pressione ESPAÇO ou ESC para fechar ]" % [XP_VITORIA, erros_totais, max(tempo_restante, 0)]
 	else:
-		lbl_resultado.text = "❌ Tempo esgotado!\n\nVocê completou %d / %d linhas.\n\n[ Pressione ESPAÇO ou ESC para fechar ]" % [linha_atual, linhas_codigo.size()]
+		lbl_resultado.text = "❌ Tempo esgotado!\n\nVocê completou %d / %d linhas.\n\n[ Pressione ESPAÇO ou ESC para fechar ]" % [linha_atual, linhas_embaralhadas.size()]
 	emit_signal("minigame_concluido", vitoria, XP_VITORIA if vitoria else 0)
 
 func _atualizar_proxima():
-	lbl_proxima.text = linhas_codigo[linha_atual]
+	lbl_proxima.text = linhas_embaralhadas[linha_atual]
 	lbl_feedback.text = ""
 
 func _atualizar_hud():
 	lbl_tempo.text = "⏱ %.1fs" % max(tempo_restante, 0)
-	lbl_progresso.text = "Linha %d/%d" % [linha_atual + 1, linhas_codigo.size()]
+	lbl_progresso.text = "Linha %d/%d" % [linha_atual + 1, linhas_embaralhadas.size()]
 	if tempo_restante <= 10:
 		lbl_tempo.modulate = Color.TOMATO
 	elif tempo_restante <= 20:

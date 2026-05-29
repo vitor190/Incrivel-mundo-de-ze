@@ -140,7 +140,7 @@ func _play_walk() -> void:
 	if hair_sprite:
 		hair_sprite.play("Walk")
 	if tool_sprite:
-		tool_sprite.play("walk")
+		tool_sprite.play("Walk")
 
 
 func _flip_all(value: bool) -> void:

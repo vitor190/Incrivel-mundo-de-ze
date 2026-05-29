@@ -1,33 +1,20 @@
 extends Node2D
 
 const MINIGAME = preload("res://Cenas/NPC's/Mudanças_Mateus/CorrigirCodigo.tscn")
-
 var minigame_aberto := false
-var jogador_na_area := false
 var minigame_inst = null
 
 func _ready():
-	var area = get_node_or_null("TileMaps/sala de aula/ComputadorInterativo")
+	GerenciadorMissoes.set_cena("bloco_d")
+	var area = get_node_or_null("TileMaps/sala de aula/Area2D")
 	if area == null:
-		area = get_node_or_null("sala de aula/ComputadorInterativo")
-	if area == null:
-		push_error("ComputadorInterativo não encontrado!")
+		push_error("Area2D não encontrado!")
 		return
 	area.body_entered.connect(_jogador_entrou)
-	area.body_exited.connect(_jogador_saiu)
-
-func _input(event):
-	if jogador_na_area and not minigame_aberto:
-		if event.is_action_pressed("ui_accept"):
-			_abrir_minigame()
 
 func _jogador_entrou(body):
-	if body.name == "player":
-		jogador_na_area = true
-
-func _jogador_saiu(body):
-	if body.name == "player":
-		jogador_na_area = false
+	if body.name == "player" and not minigame_aberto:
+		_abrir_minigame()
 
 func _abrir_minigame():
 	minigame_aberto = true
