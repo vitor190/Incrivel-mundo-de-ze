@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://b606khbhijq3m"]
 
 [ext_resource type="AudioStream" uid="uid://barfydc8ttm1y" path="res://unifor_theme_v4.ogg" id="1_1iqxb"]
+[ext_resource type="Script" uid="uid://dp0f3haivwew8" path="res://Cenas/bancodo_nordeste.gd" id="1_16fpi"]
 [ext_resource type="PackedScene" uid="uid://dqpoa0wpgwarr" path="res://Cenas/player.tscn" id="1_mxp1a"]
 [ext_resource type="Texture2D" uid="uid://ddkpgwdih7imu" path="res://assets/assets - BN/desk-essentials-preview.png" id="2_hdxat"]
 [ext_resource type="Texture2D" uid="uid://0h44box2mvqx" path="res://assets/assets - BN/spritesheet.png" id="3_8buk5"]
@@ -10,6 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://b8v57uu1gski5" path="res://Cenas/minimapa.tscn" id="7_26jki"]
 [ext_resource type="PackedScene" uid="uid://cw8hgbwt7ro1m" path="res://Cenas/barra_de_fome.tscn" id="9_ninrc"]
 [ext_resource type="PackedScene" uid="uid://bfbts5w4tdow3" path="res://Cenas/xp_bar.tscn" id="9_qf43d"]
+[ext_resource type="Script" uid="uid://7r0bvkdjgbdv" path="res://Cenas/viagem_onibus.gd" id="11_d4vxp"]
+[ext_resource type="Script" uid="uid://bvhxnob56sksr" path="res://Cenas/porta_onibus.gd" id="12_16fpi"]
+[ext_resource type="Texture2D" uid="uid://c050b50qyjb0f" path="res://assets/assets - obstaculo/onibus.png" id="13_qh5sa"]
+[ext_resource type="Script" uid="uid://bvfty6vjufbxe" path="res://Cenas/painel_missoes.gd" id="14_1sq5b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uptnx"]
 texture = ExtResource("2_hdxat")
@@ -13692,7 +13697,10 @@ texture = ExtResource("4_8buk5")
 [sub_resource type="TileSet" id="TileSet_r4mhv"]
 sources/0 = SubResource("TileSetAtlasSource_18t7l")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1sq5b"]
+
 [node name="BancodoNordeste" type="Node2D" unique_id=222308583]
+script = ExtResource("1_16fpi")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=217944704]
 stream = ExtResource("1_1iqxb")
@@ -13808,3 +13816,41 @@ tile_set = SubResource("TileSet_r4mhv")
 [node name="XpBar" type="Node" parent="." unique_id=111523451]
 
 [node name="XpBar" parent="XpBar" unique_id=270334340 instance=ExtResource("9_qf43d")]
+
+[node name="ViagemOnibus" type="CanvasLayer" parent="." unique_id=1207900856]
+script = ExtResource("11_d4vxp")
+
+[node name="Escurecer" type="ColorRect" parent="ViagemOnibus" unique_id=350042871]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(1, 1, 1, 0)
+
+[node name="OnibusAnimado" type="Sprite2D" parent="ViagemOnibus" unique_id=1201725189]
+texture = ExtResource("13_qh5sa")
+
+[node name="PortaSaida" type="Area2D" parent="." unique_id=131643579]
+position = Vector2(163, 20)
+script = ExtResource("12_16fpi")
+destino = "res://Cenas/quarto.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PortaSaida" unique_id=1716253477]
+shape = SubResource("RectangleShape2D_1sq5b")
+
+[node name="PainelMissoes" type="CanvasLayer" parent="." unique_id=882895176]
+script = ExtResource("14_1sq5b")
+
+[node name="Panel" type="Panel" parent="PainelMissoes" unique_id=1788956875]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PainelMissoes/Panel" unique_id=326305373]
+layout_mode = 0
+offset_right = 68.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="PainelMissoes/Panel/VBoxContainer" unique_id=631324977]
+layout_mode = 2
+text = "MISSÕES"
+
+[node name="lista_missoes" type="VBoxContainer" parent="PainelMissoes/Panel/VBoxContainer" unique_id=1153970088]
+layout_mode = 2
