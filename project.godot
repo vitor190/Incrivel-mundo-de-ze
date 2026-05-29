@@ -23,6 +23,8 @@ config/icon="res://icon.svg"
 
 GameState="*res://Cenas/game_state.gd"
 Global="*uid://d2bhjiueqgo6h"
+DadosMissoes="*uid://cufl5b1hik1v4"
+GerenciadorMissoes="*uid://c4aml1n5iqqno"
 
 [display]
 

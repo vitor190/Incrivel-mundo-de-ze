@@ -1,8 +1,9 @@
+## quarto.gd
+
 extends Node2D
 
 const WAKE_MINIGAME_SCENE: PackedScene = preload("res://Cenas/minigame_acordar.tscn")
 const DRESS_MINIGAME_SCENE: PackedScene = preload("res://Cenas/minigame_vestir.tscn")
-
 const BED_POSITION := Vector2(30, 56)
 const WAKE_POSITION := Vector2(60, 95)
 
@@ -19,6 +20,7 @@ func _ready() -> void:
 	GameState.set_dressed(false)
 	wardrobe_indicator.visible = false
 	wardrobe_area.body_entered.connect(_on_wardrobe_body_entered)
+	GerenciadorMissoes.set_cena("quarto")
 	var wake_mg: CanvasLayer = WAKE_MINIGAME_SCENE.instantiate()
 	wake_mg.finished.connect(_on_wake_minigame_finished)
 	add_child(wake_mg)
@@ -27,6 +29,7 @@ func _on_wake_minigame_finished(_woke_on_time: bool) -> void:
 	player.position = WAKE_POSITION
 	player.movement_enabled = true
 	_show_wardrobe_indicator()
+	GerenciadorMissoes.concluir_sub_missao("quarto_acorde", "quarto_mini1")
 
 func _show_wardrobe_indicator() -> void:
 	if GameState.is_dressed:
@@ -61,5 +64,6 @@ func _on_dress_minigame_finished(success: bool) -> void:
 	player.movement_enabled = true
 	if success:
 		GameState.set_dressed(true)
+		GerenciadorMissoes.concluir_sub_missao("quarto_acorde", "quarto_mini2")
 	else:
 		_show_wardrobe_indicator()
