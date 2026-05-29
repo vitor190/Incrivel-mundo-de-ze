@@ -3,6 +3,7 @@
 [ext_resource type="AudioStream" uid="uid://barfydc8ttm1y" path="res://unifor_theme_v4.ogg" id="1_1oap7"]
 [ext_resource type="Texture2D" uid="uid://kntredmexbj3" path="res://assets/assets - chao/Textures-16.png" id="1_48ab0"]
 [ext_resource type="PackedScene" uid="uid://dqpoa0wpgwarr" path="res://Cenas/player.tscn" id="1_sy08p"]
+[ext_resource type="Script" uid="uid://mdeqjg5vlyx0" path="res://Cenas/campus.gd" id="1_x36d8"]
 [ext_resource type="Texture2D" uid="uid://bi1c5iddj0lny" path="res://assets/assets - plantas/free_pixel_16_woods.png" id="3_sp1x8"]
 [ext_resource type="Texture2D" uid="uid://3qaxainkxskf" path="res://assets/assets - bancos/Pixel 16 v2 village free.png" id="4_bcs2g"]
 [ext_resource type="Texture2D" uid="uid://dxd1f7ptdf8pg" path="res://assets/assets - obstaculo/cone.png" id="4_qbeu0"]
@@ -29,6 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://d4dn4rv7otmv6" path="res://Cenas/NPC's/npc_colega4.tscn" id="27_ls6st"]
 [ext_resource type="PackedScene" uid="uid://dpwr2vck1elyu" path="res://Cenas/NPC's/npc_colega5.tscn" id="28_exv68"]
 [ext_resource type="PackedScene" uid="uid://3elsy26d86tb" path="res://Cenas/NPC's/npc_colega7.tscn" id="29_ls6st"]
+[ext_resource type="Script" uid="uid://bvfty6vjufbxe" path="res://Cenas/painel_missoes.gd" id="30_ls6st"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qbeu0"]
 texture = ExtResource("3_sp1x8")
@@ -13015,6 +13017,7 @@ font_size = 15
 shadow_size = 0
 
 [node name="Campus" type="Node2D" unique_id=2106191947]
+script = ExtResource("1_x36d8")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1720387006]
 stream = ExtResource("1_1oap7")
@@ -13341,6 +13344,25 @@ pode_interagir = false
 [node name="NPC_Colega6" parent="." unique_id=1963833175 instance=ExtResource("29_ls6st")]
 position = Vector2(355, 797)
 pode_interagir = false
+
+[node name="PainelMissoes" type="CanvasLayer" parent="." unique_id=416409869]
+script = ExtResource("30_ls6st")
+
+[node name="Panel" type="Panel" parent="PainelMissoes" unique_id=1375405288]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PainelMissoes/Panel" unique_id=1877374066]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="PainelMissoes/Panel/VBoxContainer" unique_id=1022238098]
+layout_mode = 2
+text = "MISSÕES"
+
+[node name="lista_missoes" type="VBoxContainer" parent="PainelMissoes/Panel/VBoxContainer" unique_id=1015098872]
+layout_mode = 2
 
 [connection signal="body_entered" from="Shader de parede/BlocoC_Building/PortaC" to="player" method="_on_porta_body_entered"]
 [connection signal="body_entered" from="Shader de parede/BlocoD_Building/PortaD" to="player" method="_on_porta_d_body_entered"]

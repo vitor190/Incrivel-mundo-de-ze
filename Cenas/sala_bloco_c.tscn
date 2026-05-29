@@ -3,6 +3,7 @@
 [ext_resource type="AudioStream" uid="uid://barfydc8ttm1y" path="res://unifor_theme_v4.ogg" id="1_6yc7v"]
 [ext_resource type="PackedScene" uid="uid://dqpoa0wpgwarr" path="res://Cenas/player.tscn" id="1_a8mb1"]
 [ext_resource type="Texture2D" uid="uid://dgt5ji2r01785" path="res://assets/assets - sala/Room_Builder_16x16.png" id="1_hblcv"]
+[ext_resource type="Script" uid="uid://r567yeykd5ii" path="res://Cenas/sala_bloco_c.gd" id="1_pgjad"]
 [ext_resource type="Texture2D" uid="uid://bs7vbmwxv8vg" path="res://assets/assets - sala/5_Classroom_and_library_16x16.png" id="2_a8mb1"]
 [ext_resource type="Texture2D" uid="uid://0h44box2mvqx" path="res://assets/assets - BN/spritesheet.png" id="4_1ea38"]
 [ext_resource type="Texture2D" uid="uid://kntredmexbj3" path="res://assets/assets - chao/Textures-16.png" id="4_a8mb1"]
@@ -13,6 +14,7 @@
 [ext_resource type="Script" uid="uid://d0ex6ytr31vye" path="res://Cenas/hud.gd" id="11_3sgq7"]
 [ext_resource type="Script" uid="uid://bbam7g82pm2p7" path="res://Cenas/transicao.gd" id="12_7iv35"]
 [ext_resource type="Script" uid="uid://cib2cj3ggi082" path="res://Cenas/porta_c_saida.gd" id="13_pgjad"]
+[ext_resource type="Script" uid="uid://bvfty6vjufbxe" path="res://Cenas/painel_missoes.gd" id="14_7iv35"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hblcv"]
 texture = ExtResource("2_a8mb1")
@@ -17917,6 +17919,7 @@ bg_color = Color(0.09803922, 0.3647059, 1, 0.72156864)
 size = Vector2(18, 24)
 
 [node name="Sala_blocoC" type="Node2D" unique_id=1258921797]
+script = ExtResource("1_pgjad")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=751975461]
 stream = ExtResource("1_6yc7v")
@@ -18034,5 +18037,24 @@ script = ExtResource("13_pgjad")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PortaC - saida" unique_id=945571303]
 position = Vector2(429, 362)
 shape = SubResource("RectangleShape2D_1i1wc")
+
+[node name="PainelMissoes" type="CanvasLayer" parent="." unique_id=148787281]
+script = ExtResource("14_7iv35")
+
+[node name="Panel" type="Panel" parent="PainelMissoes" unique_id=591608857]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PainelMissoes/Panel" unique_id=844273010]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="PainelMissoes/Panel/VBoxContainer" unique_id=217305870]
+layout_mode = 2
+text = "MISSÕES"
+
+[node name="lista_missoes" type="VBoxContainer" parent="PainelMissoes/Panel/VBoxContainer" unique_id=547201477]
+layout_mode = 2
 
 [connection signal="body_entered" from="PortaC - saida" to="player" method="_on_porta_c__saida_body_entered"]

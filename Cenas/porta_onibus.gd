@@ -1,5 +1,4 @@
 ## porta_onibus.gd
-
 extends Area2D
 
 @export var destino: String = "res://quarto.tscn"
@@ -37,6 +36,7 @@ func _quando_entrou(body):
 
 func viajar():
 	viajando = true
+	GerenciadorMissoes.concluir_missao("quarto_sair")
 	if player_ref:
 		player_ref.set_process(false)
 		player_ref.set_physics_process(false)

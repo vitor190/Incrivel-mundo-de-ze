@@ -45,7 +45,7 @@ text = "O professor pediu para você corrigir o código antes da aula acabar.
 
 Digite as linhas na ordem correta.
 
- Tempo: 45s  |  ✗ Erro: -2s"
+ Tempo: 75s  |  ✗ Erro: -2s"
 horizontal_alignment = 1
 autowrap_mode = 2
 
