@@ -122,9 +122,4 @@ func _sub_finalizada(sub_id: String) -> bool:
 
 
 func _marcar_falhou(sub_id: String) -> void:
-	var subs: Array = DadosMissoes.missoes.get(MISSAO_ID, {}).get("sub_missoes", [])
-	for sub in subs:
-		if sub.get("id", "") == sub_id:
-			sub["falhou"] = true
-			GerenciadorMissoes.emit_signal("missoes_atualizadas")
-			return
+	GerenciadorMissoes.falhar_sub_missao(MISSAO_ID, sub_id)

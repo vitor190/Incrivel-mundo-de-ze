@@ -63,6 +63,6 @@ var missoes_por_cena = {
 	"quarto":  ["quarto_acorde", "quarto_sair"],
 	"campus":  ["unifor_bloco_c", "unifor_bloco_d", "unifor_onibus"],
 	"bloco_c": ["unifor_bloco_c", "unifor_bloco_d"],
-	"bloco_d": ["unifor_bloco_c", "unifor_bloco_d"],
+	"bloco_d": ["unifor_bloco_d", "unifor_bloco_c"],
 	"banco":   ["banco_task1", "banco_sair"],
 }
