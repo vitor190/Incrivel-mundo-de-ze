@@ -25,8 +25,8 @@ var missoes = {
 		"texto": "Vá para o Bloco C",
 		"concluida": false,
 		"sub_missoes": [
-			{"id": "bloco_c_mini1", "texto": "Conclua a task 1", "concluida": false},
-			{"id": "bloco_c_mini2", "texto": "Conclua a task 2", "concluida": false},
+			{"id": "bloco_c_mini1", "texto": "Responda o quiz de CG", "concluida": false},
+			{"id": "bloco_c_mini2", "texto": "Misture a cor RGB correta", "concluida": false},
 		]
 	},
 	"unifor_bloco_d": {
