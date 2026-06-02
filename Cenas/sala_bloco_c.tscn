@@ -18057,4 +18057,44 @@ text = "MISSÕES"
 [node name="lista_missoes" type="VBoxContainer" parent="PainelMissoes/Panel/VBoxContainer" unique_id=547201477]
 layout_mode = 2
 
+[node name="QuizArea" type="Area2D" parent="."]
+position = Vector2(310, 110)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="QuizArea"]
+shape = SubResource("RectangleShape2D_1i1wc")
+
+[node name="QuizIndicator" type="Label" parent="."]
+offset_left = 304.0
+offset_top = 80.0
+offset_right = 324.0
+offset_bottom = 100.0
+theme_override_colors/font_color = Color(1, 0.93, 0.45, 1)
+theme_override_colors/font_outline_color = Color(0.1, 0.07, 0.05, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 20
+text = "?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RgbArea" type="Area2D" parent="."]
+position = Vector2(470, 110)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RgbArea"]
+shape = SubResource("RectangleShape2D_1i1wc")
+
+[node name="RgbIndicator" type="Label" parent="."]
+offset_left = 452.0
+offset_top = 80.0
+offset_right = 488.0
+offset_bottom = 100.0
+theme_override_colors/font_color = Color(1, 0.93, 0.45, 1)
+theme_override_colors/font_outline_color = Color(0.1, 0.07, 0.05, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 18
+text = "RGB"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="body_entered" from="PortaC - saida" to="player" method="_on_porta_c__saida_body_entered"]

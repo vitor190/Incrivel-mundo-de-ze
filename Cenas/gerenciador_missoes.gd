@@ -26,16 +26,30 @@ func concluir_sub_missao(missao_id: String, sub_id: String):
 		if sub["id"] == sub_id:
 			sub["concluida"] = true
 			print("Sub-missão concluída: ", sub_id)
-			if _todas_sub_concluidas(missao_id):
+			if _todas_sub_finalizadas(missao_id):
 				concluir_missao(missao_id)
 			else:
 				emit_signal("missoes_atualizadas")
 			return
 
-func _todas_sub_concluidas(missao_id: String) -> bool:
+func falhar_sub_missao(missao_id: String, sub_id: String):
+	if not DadosMissoes.missoes.has(missao_id):
+		return
 	var subs = DadosMissoes.missoes[missao_id].get("sub_missoes", [])
 	for sub in subs:
-		if not sub["concluida"]:
+		if sub["id"] == sub_id:
+			sub["falhou"] = true
+			print("Sub-missão falhada: ", sub_id)
+			if _todas_sub_finalizadas(missao_id):
+				concluir_missao(missao_id)
+			else:
+				emit_signal("missoes_atualizadas")
+			return
+
+func _todas_sub_finalizadas(missao_id: String) -> bool:
+	var subs = DadosMissoes.missoes[missao_id].get("sub_missoes", [])
+	for sub in subs:
+		if not sub.get("concluida", false) and not sub.get("falhou", false):
 			return false
 	return true
 

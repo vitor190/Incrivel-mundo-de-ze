@@ -25,16 +25,16 @@ var missoes = {
 		"texto": "Vá para o Bloco C",
 		"concluida": false,
 		"sub_missoes": [
-			{"id": "bloco_c_mini1", "texto": "Conclua a task 1", "concluida": false},
-			{"id": "bloco_c_mini2", "texto": "Conclua a task 2", "concluida": false},
+			{"id": "bloco_c_mini1", "texto": "Responda o quiz de CG", "concluida": false},
+			{"id": "bloco_c_mini2", "texto": "Misture a cor RGB correta", "concluida": false},
 		]
 	},
 	"unifor_bloco_d": {
 		"texto": "Vá para o Bloco D",
 		"concluida": false,
 		"sub_missoes": [
-			{"id": "bloco_d_mini1", "texto": "Conclua a task 1", "concluida": false},
-			{"id": "bloco_d_mini2", "texto": "Conclua a task 2", "concluida": false},
+			{"id": "bloco_d_mini1", "texto": "Corrija o código embaralhado", "concluida": false},
+			{"id": "bloco_d_mini2", "texto": "Responda o quiz de lógica", "concluida": false},
 		]
 	},
 	"unifor_onibus": {
@@ -63,6 +63,6 @@ var missoes_por_cena = {
 	"quarto":  ["quarto_acorde", "quarto_sair"],
 	"campus":  ["unifor_bloco_c", "unifor_bloco_d", "unifor_onibus"],
 	"bloco_c": ["unifor_bloco_c", "unifor_bloco_d"],
-	"bloco_d": ["unifor_bloco_c", "unifor_bloco_d"],
+	"bloco_d": ["unifor_bloco_d", "unifor_bloco_c"],
 	"banco":   ["banco_task1", "banco_sair"],
 }

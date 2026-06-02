@@ -43,6 +43,9 @@ func atualizar_painel():
 			if sub["concluida"]:
 				lbl_sub.text = "  ✓ " + sub["texto"]
 				lbl_sub.modulate = Color(0.5, 0.5, 0.5)
+			elif sub.get("falhou", false):
+				lbl_sub.text = "  ✗ " + sub["texto"]
+				lbl_sub.modulate = Color(1.0, 0.45, 0.4)
 			else:
 				lbl_sub.text = "  - " + sub["texto"]
 				lbl_sub.modulate = Color(0.85, 0.85, 0.85)

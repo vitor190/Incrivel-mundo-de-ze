@@ -18584,4 +18584,37 @@ text = "MISSÕES"
 [node name="lista_missoes" type="VBoxContainer" parent="PainelMissoes/Panel/VBoxContainer" unique_id=679827621]
 layout_mode = 2
 
+[node name="LogicaArea" type="Area2D" parent="."]
+position = Vector2(440, 75)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LogicaArea"]
+shape = SubResource("RectangleShape2D_bf6yp")
+
+[node name="CodigoIndicator" type="Label" parent="."]
+offset_left = 316.0
+offset_top = 45.0
+offset_right = 332.0
+offset_bottom = 65.0
+theme_override_colors/font_color = Color(1, 0.93, 0.45, 1)
+theme_override_colors/font_outline_color = Color(0.1, 0.07, 0.05, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 18
+text = "</>"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LogicaIndicator" type="Label" parent="."]
+offset_left = 432.0
+offset_top = 45.0
+offset_right = 448.0
+offset_bottom = 65.0
+theme_override_colors/font_color = Color(1, 0.93, 0.45, 1)
+theme_override_colors/font_outline_color = Color(0.1, 0.07, 0.05, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 20
+text = "?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="body_entered" from="PortaD - saida" to="player" method="_on_porta_d__saida_body_entered"]
