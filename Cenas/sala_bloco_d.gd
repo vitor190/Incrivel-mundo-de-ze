@@ -1,6 +1,9 @@
 extends Node2D
 
 const MINIGAME = preload("res://Cenas/NPC's/Mudanças_Mateus/CorrigirCodigo.tscn")
+const MISSAO_ID := "unifor_bloco_d"
+const SUB_ID := "bloco_d_mini1"
+
 var minigame_aberto := false
 var minigame_inst = null
 
@@ -13,7 +16,7 @@ func _ready():
 	area.body_entered.connect(_jogador_entrou)
 
 func _jogador_entrou(body):
-	if body.name == "player" and not minigame_aberto:
+	if body.name == "player" and not minigame_aberto and not _sub_concluida():
 		_abrir_minigame()
 
 func _abrir_minigame():
@@ -29,9 +32,17 @@ func _fechar_minigame(sucesso, xp):
 	minigame_aberto = false
 	get_tree().get_first_node_in_group("player").movement_enabled = true
 	if sucesso:
-		print("Ganhou %d XP!" % xp)
+		GameState.add_xp(float(xp))
+		GerenciadorMissoes.concluir_sub_missao(MISSAO_ID, SUB_ID)
 	while is_instance_valid(minigame_inst) and minigame_inst.visible:
 		await get_tree().process_frame
 	await get_tree().process_frame
 	if is_instance_valid(minigame_inst):
 		minigame_inst.queue_free()
+
+func _sub_concluida() -> bool:
+	var subs: Array = DadosMissoes.missoes.get(MISSAO_ID, {}).get("sub_missoes", [])
+	for sub in subs:
+		if sub.get("id", "") == SUB_ID:
+			return bool(sub.get("concluida", false))
+	return false

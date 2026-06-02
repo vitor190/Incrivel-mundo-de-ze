@@ -33,8 +33,7 @@ var missoes = {
 		"texto": "Vá para o Bloco D",
 		"concluida": false,
 		"sub_missoes": [
-			{"id": "bloco_d_mini1", "texto": "Conclua a task 1", "concluida": false},
-			{"id": "bloco_d_mini2", "texto": "Conclua a task 2", "concluida": false},
+			{"id": "bloco_d_mini1", "texto": "Corrija o código embaralhado", "concluida": false},
 		]
 	},
 	"unifor_onibus": {
