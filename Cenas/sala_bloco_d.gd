@@ -31,16 +31,20 @@ func _jogador_saiu(body):
 
 func _abrir_minigame():
 	minigame_aberto = true
-	get_tree().get_first_node_in_group("player").movement_enabled = false
+	var player = get_tree().get_first_node_in_group("player")
+	if player:
+		player.movement_enabled = false
 	minigame_inst = MINIGAME.instantiate()
 	add_child(minigame_inst)
-	var canvas = minigame_inst.get_node("CanvasLayer")
+	var canvas = minigame_inst
 	canvas.minigame_concluido.connect(_fechar_minigame)
 	canvas.abrir()
 
 func _fechar_minigame(sucesso, xp):
 	minigame_aberto = false
-	get_tree().get_first_node_in_group("player").movement_enabled = true
+	var player = get_tree().get_first_node_in_group("player")
+	if player:
+		player.movement_enabled = true
 	if sucesso:
 		print("Ganhou %d XP!" % xp)
 	while is_instance_valid(minigame_inst) and minigame_inst.visible:
