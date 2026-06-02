@@ -34,6 +34,7 @@ var missoes = {
 		"concluida": false,
 		"sub_missoes": [
 			{"id": "bloco_d_mini1", "texto": "Corrija o código embaralhado", "concluida": false},
+			{"id": "bloco_d_mini2", "texto": "Responda o quiz de lógica", "concluida": false},
 		]
 	},
 	"unifor_onibus": {

@@ -1,0 +1,251 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4tn7wphq1m8d"]
+
+[ext_resource type="Script" uid="uid://c8m3krpb5xtq2" path="res://Cenas/minigame_quiz_logica.gd" id="1_script"]
+
+[sub_resource type="StyleBoxFlat" id="panel_style"]
+bg_color = Color(0.09, 0.07, 0.05, 0.95)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.88, 0.74, 0.32, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="result_style"]
+bg_color = Color(0.09, 0.07, 0.05, 0.95)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.88, 0.74, 0.32, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="MinigameQuizLogica" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_script")
+
+[node name="Dimmer" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7)
+mouse_filter = 2
+
+[node name="Intro" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -160.0
+offset_right = 300.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("panel_style")
+
+[node name="MarginContainer" type="MarginContainer" parent="Intro"]
+layout_mode = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 24
+
+[node name="VBox" type="VBoxContainer" parent="Intro/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Title" type="Label" parent="Intro/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.93, 0.55, 1)
+theme_override_font_sizes/font_size = 32
+text = "Quiz de Lógica de Programação"
+horizontal_alignment = 1
+
+[node name="Body" type="Label" parent="Intro/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_font_sizes/font_size = 18
+text = "5 perguntas de lógica básica. Clique numa opção (A/B/C/D) ou aperte 1, 2, 3, 4. Cada acerto vale +3 XP, cada erro tira -2 XP. Você passa com 3 acertos."
+autowrap_mode = 2
+horizontal_alignment = 1
+
+[node name="Hint" type="Label" parent="Intro/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.93, 0.55, 1)
+theme_override_font_sizes/font_size = 20
+text = "[ ESPAÇO / clique para começar ]"
+horizontal_alignment = 1
+
+[node name="QuizUI" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -220.0
+offset_right = 320.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("panel_style")
+
+[node name="MarginContainer" type="MarginContainer" parent="QuizUI"]
+layout_mode = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 24
+
+[node name="VBox" type="VBoxContainer" parent="QuizUI/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="AttemptLabel" type="Label" parent="QuizUI/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.93, 0.55, 1)
+theme_override_font_sizes/font_size = 20
+text = "Questão 1 / 5"
+horizontal_alignment = 1
+
+[node name="QuestionLabel" type="Label" parent="QuizUI/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_font_sizes/font_size = 22
+text = ""
+autowrap_mode = 2
+horizontal_alignment = 1
+
+[node name="OptionA" type="Button" parent="QuizUI/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "A) ..."
+
+[node name="OptionB" type="Button" parent="QuizUI/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "B) ..."
+
+[node name="OptionC" type="Button" parent="QuizUI/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "C) ..."
+
+[node name="OptionD" type="Button" parent="QuizUI/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "D) ..."
+
+[node name="HintLabel" type="Label" parent="QuizUI/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.85, 0.95, 1)
+theme_override_font_sizes/font_size = 16
+text = "Clique numa opção ou aperte 1 / 2 / 3 / 4"
+horizontal_alignment = 1
+
+[node name="Feedback" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -140.0
+offset_right = 300.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("result_style")
+
+[node name="MarginContainer" type="MarginContainer" parent="Feedback"]
+layout_mode = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 24
+
+[node name="VBox" type="VBoxContainer" parent="Feedback/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="Feedback/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.95, 0.4, 1)
+theme_override_font_sizes/font_size = 28
+text = ""
+horizontal_alignment = 1
+
+[node name="Body" type="Label" parent="Feedback/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_font_sizes/font_size = 18
+text = ""
+autowrap_mode = 2
+horizontal_alignment = 1
+
+[node name="Hint" type="Label" parent="Feedback/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.93, 0.55, 1)
+theme_override_font_sizes/font_size = 18
+text = "[ESPAÇO para continuar]"
+horizontal_alignment = 1
+
+[node name="Final" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.0
+offset_top = -120.0
+offset_right = 280.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("result_style")
+
+[node name="MarginContainer" type="MarginContainer" parent="Final"]
+layout_mode = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 24
+
+[node name="VBox" type="VBoxContainer" parent="Final/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="Final/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.95, 0.4, 1)
+theme_override_font_sizes/font_size = 30
+text = ""
+horizontal_alignment = 1
+
+[node name="Body" type="Label" parent="Final/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_font_sizes/font_size = 18
+text = ""
+autowrap_mode = 2
+horizontal_alignment = 1
+
+[node name="Hint" type="Label" parent="Final/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.93, 0.55, 1)
+theme_override_font_sizes/font_size = 18
+text = "[ESPAÇO para fechar]"
+horizontal_alignment = 1
