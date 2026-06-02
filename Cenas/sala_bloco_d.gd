@@ -16,7 +16,7 @@ func _ready():
 	area.body_entered.connect(_jogador_entrou)
 
 func _jogador_entrou(body):
-	if body.name == "player" and not minigame_aberto and not _sub_concluida():
+	if body.name == "player" and not minigame_aberto and not _sub_finalizada():
 		_abrir_minigame()
 
 func _abrir_minigame():
@@ -34,15 +34,25 @@ func _fechar_minigame(sucesso, xp):
 	if sucesso:
 		GameState.add_xp(float(xp))
 		GerenciadorMissoes.concluir_sub_missao(MISSAO_ID, SUB_ID)
+	else:
+		_marcar_falhou()
 	while is_instance_valid(minigame_inst) and minigame_inst.visible:
 		await get_tree().process_frame
 	await get_tree().process_frame
 	if is_instance_valid(minigame_inst):
 		minigame_inst.queue_free()
 
-func _sub_concluida() -> bool:
+func _sub_finalizada() -> bool:
 	var subs: Array = DadosMissoes.missoes.get(MISSAO_ID, {}).get("sub_missoes", [])
 	for sub in subs:
 		if sub.get("id", "") == SUB_ID:
-			return bool(sub.get("concluida", false))
+			return bool(sub.get("concluida", false)) or bool(sub.get("falhou", false))
 	return false
+
+func _marcar_falhou() -> void:
+	var subs: Array = DadosMissoes.missoes.get(MISSAO_ID, {}).get("sub_missoes", [])
+	for sub in subs:
+		if sub.get("id", "") == SUB_ID:
+			sub["falhou"] = true
+			GerenciadorMissoes.emit_signal("missoes_atualizadas")
+			return
