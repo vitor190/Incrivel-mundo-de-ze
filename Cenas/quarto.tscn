@@ -18,7 +18,7 @@
 size = Vector2(300, 8)
 
 [sub_resource type="RectangleShape2D" id="shape_wall_bottom_left"]
-size = Vector2(120, 8)
+size = Vector2(168, 8)
 
 [sub_resource type="RectangleShape2D" id="shape_wall_bottom_right"]
 size = Vector2(120, 8)
@@ -169,7 +169,7 @@ position = Vector2(140, 46)
 shape = SubResource("shape_wall_top")
 
 [node name="BottomWallColLeft" type="CollisionShape2D" parent="Walls" unique_id=1947246900]
-position = Vector2(60, 184)
+position = Vector2(84, 184)
 shape = SubResource("shape_wall_bottom_left")
 
 [node name="BottomWallColRight" type="CollisionShape2D" parent="Walls" unique_id=1101953037]
@@ -370,7 +370,6 @@ polygon = PackedVector2Array(140, 144, 144, 144, 144, 148, 146, 148, 142, 152, 1
 collision_layer = 0
 script = ExtResource("9_porta_onibus")
 destino = "res://Cenas/campus.tscn"
-requer_vestido = true
 
 [node name="PortaShape" type="CollisionShape2D" parent="PortaVolta" unique_id=440672938]
 position = Vector2(140, 162)
