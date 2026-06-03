@@ -5,19 +5,19 @@ signal dressed_changed(value: bool)
 
 const MAX_XP: float = 100.0
 
+
 var xp: float:
 	get:
 		return Global.xp
 	set(value):
-		Global.xp = clamp(value, 0.0, MAX_XP)
-		Global.xp_changed.emit(Global.xp)
+		Global.set_xp(value)
+
 
 var is_dressed: bool:
 	get:
 		return Global.is_dressed
 	set(value):
-		Global.is_dressed = value
-		Global.dressed_changed.emit(Global.is_dressed)
+		Global.set_dressed(value)
 
 
 func _ready() -> void:
@@ -36,6 +36,10 @@ func _on_global_dressed_changed(value: bool) -> void:
 	dressed_changed.emit(value)
 
 
+func set_xp(value: float) -> void:
+	Global.set_xp(value)
+
+
 func add_xp(amount: float) -> void:
 	Global.add_xp(amount)
 
@@ -49,8 +53,5 @@ func set_dressed(value: bool) -> void:
 
 
 func reset() -> void:
-	Global.xp = 35.0
-	Global.xp_changed.emit(Global.xp)
-
-	Global.is_dressed = true
-	Global.dressed_changed.emit(true)
+	Global.set_xp(0.0)
+	Global.set_dressed(false)

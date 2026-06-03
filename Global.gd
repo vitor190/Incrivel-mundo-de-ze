@@ -11,26 +11,29 @@ var xp: float = 0.0
 
 var posicoes := {}
 
+
 func set_dressed(value: bool) -> void:
 	is_dressed = value
-	dressed_changed.emit(value)
+	dressed_changed.emit(is_dressed)
+
+
+func set_xp(value: float) -> void:
+	xp = clamp(value, 0.0, MAX_XP)
+	xp_changed.emit(xp)
+
 
 func add_xp(amount: float) -> void:
-	xp = clamp(xp + amount, 0.0, MAX_XP)
-	xp_changed.emit(xp)
+	set_xp(xp + amount)
+
 
 func lose_xp(amount: float) -> void:
-	xp = clamp(xp - amount, 0.0, MAX_XP)
-	xp_changed.emit(xp)
+	set_xp(xp - amount)
 
-func salvar_estado(cena: String, posicao: Vector2, fome_atual: float, xp_atual: float = -1.0) -> void:
+
+func salvar_estado(cena: String, posicao: Vector2, fome_atual: float) -> void:
 	fome = fome_atual
-
-	if xp_atual >= 0.0:
-		xp = clamp(xp_atual, 0.0, MAX_XP)
-		xp_changed.emit(xp)
-
 	posicoes[cena] = posicao
+
 
 func pegar_posicao(cena: String) -> Vector2:
 	if posicoes.has(cena):

@@ -9,7 +9,7 @@ signal fome_alterada(novo_valor)
 var movement_enabled: bool = true
 
 var fome_atual: float = 100.0
-var xp_atual: int = 0
+var xp_atual: float = 0.0
 
 var taxa_fome_correndo: float = 6.0
 
@@ -106,14 +106,13 @@ func salvar_progresso(posicao_customizada: Vector2) -> void:
 	Global.salvar_estado(
 		cena_atual,
 		posicao_customizada,
-		fome_atual,
-		xp_atual
+		fome_atual
 	)
 
 
 func adicionar_xp(valor: int) -> void:
-	xp_atual += valor
-	Global.xp = xp_atual
+	Global.add_xp(valor)
+	xp_atual = Global.xp
 
 
 func _play_all(anim_name: String) -> void:
