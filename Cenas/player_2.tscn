@@ -201,7 +201,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Walk",
-"speed": 5.0
+"speed": 9.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bb2x8"]
@@ -594,7 +594,7 @@ animations = [{
 size = Vector2(3.75001, 11.25)
 
 [node name="player2" type="CharacterBody2D" unique_id=704904546]
-z_index = 4
+z_index = 2
 scale = Vector2(0.8, 0.8)
 collision_mask = 3
 script = ExtResource("1_255ym")
@@ -602,15 +602,11 @@ script = ExtResource("1_255ym")
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=523525203]
 scale = Vector2(0.99999994, 0.99999994)
 sprite_frames = SubResource("SpriteFrames_0gems")
-animation = &"Run"
-frame = 1
-frame_progress = 0.6609237
+animation = &"Walk"
 
 [node name="HairSprite" type="AnimatedSprite2D" parent="." unique_id=1002637106]
 sprite_frames = SubResource("SpriteFrames_4j5ex")
-animation = &"Idle"
-frame = 4
-frame_progress = 0.9536564
+animation = &"Walk"
 
 [node name="ToolSprite" type="AnimatedSprite2D" parent="." unique_id=517461249]
 sprite_frames = SubResource("SpriteFrames_rxqvy")
