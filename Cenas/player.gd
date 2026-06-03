@@ -5,7 +5,6 @@ signal fome_alterada(novo_valor)
 @onready var player_sprite: AnimatedSprite2D = $PlayerSprite
 @onready var hair_sprite: AnimatedSprite2D = $HairSprite
 @onready var tool_sprite: AnimatedSprite2D = $ToolSprite
-@onready var cueca: Polygon2D = $Cueca
 
 var movement_enabled: bool = true
 
@@ -43,10 +42,6 @@ func _emitir_fome_inicial() -> void:
 func _on_dressed_changed(value: bool) -> void:
 	if tool_sprite:
 		tool_sprite.visible = value
-
-	if cueca:
-		cueca.visible = not value
-
 
 func _process(_delta: float) -> void:
 	if not movement_enabled:
