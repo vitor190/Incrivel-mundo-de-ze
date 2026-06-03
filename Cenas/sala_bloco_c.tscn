@@ -17923,7 +17923,7 @@ script = ExtResource("1_pgjad")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=751975461]
 stream = ExtResource("1_6yc7v")
-volume_db = -5.0
+volume_db = -21.5
 pitch_scale = 2.0
 autoplay = true
 parameters/looping = true
@@ -18057,14 +18057,14 @@ text = "MISSÕES"
 [node name="lista_missoes" type="VBoxContainer" parent="PainelMissoes/Panel/VBoxContainer" unique_id=547201477]
 layout_mode = 2
 
-[node name="QuizArea" type="Area2D" parent="."]
+[node name="QuizArea" type="Area2D" parent="." unique_id=1378799026]
 position = Vector2(310, 110)
 collision_layer = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="QuizArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="QuizArea" unique_id=1922191399]
 shape = SubResource("RectangleShape2D_1i1wc")
 
-[node name="QuizIndicator" type="Label" parent="."]
+[node name="QuizIndicator" type="Label" parent="." unique_id=1438601824]
 offset_left = 304.0
 offset_top = 80.0
 offset_right = 324.0
@@ -18077,14 +18077,14 @@ text = "?"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RgbArea" type="Area2D" parent="."]
+[node name="RgbArea" type="Area2D" parent="." unique_id=651419919]
 position = Vector2(470, 110)
 collision_layer = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RgbArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RgbArea" unique_id=241535673]
 shape = SubResource("RectangleShape2D_1i1wc")
 
-[node name="RgbIndicator" type="Label" parent="."]
+[node name="RgbIndicator" type="Label" parent="." unique_id=1882015545]
 offset_left = 452.0
 offset_top = 80.0
 offset_right = 488.0

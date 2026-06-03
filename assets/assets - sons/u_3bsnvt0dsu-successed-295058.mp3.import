@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c5bbu4idcfnsr"
+path="res://.godot/imported/u_3bsnvt0dsu-successed-295058.mp3-e196b9aa04c3eab11febf1dfb035fe27.mp3str"
+
+[deps]
+
+source_file="res://assets/assets - sons/u_3bsnvt0dsu-successed-295058.mp3"
+dest_files=["res://.godot/imported/u_3bsnvt0dsu-successed-295058.mp3-e196b9aa04c3eab11febf1dfb035fe27.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

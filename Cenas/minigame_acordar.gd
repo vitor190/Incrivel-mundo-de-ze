@@ -2,6 +2,9 @@ extends CanvasLayer
 
 signal finished(woke_on_time: bool)
 
+const SOM_ACERTO := preload("res://assets/assets - sons/u_3bsnvt0dsu-successed-295058.mp3")
+const SOM_ERRO := preload("res://assets/assets - sons/lesiakower-error-mistake-sound-effect-incorrect-answer-437420.mp3")
+
 const ROUNDS := [
 	{"target": 0.10, "speed": 1.6, "penalty": 3.0},
 	{"target": 0.20, "speed": 1.1, "penalty": 5.0},
@@ -33,10 +36,24 @@ var bar_active: bool = false
 var hit_this_run: bool = false
 var total_penalty: float = 0.0
 
+
 func _ready() -> void:
 	intro.visible = true
 	bar_ui.visible = false
 	result_ui.visible = false
+
+
+func tocar_som(stream: AudioStream) -> void:
+	var audio := AudioStreamPlayer.new()
+
+	add_child(audio)
+
+	audio.stream = stream
+	audio.volume_db = -19
+
+	audio.play()
+
+	audio.finished.connect(audio.queue_free)
 
 
 func _process(delta: float) -> void:
@@ -64,8 +81,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	match phase:
 		Phase.INTRO:
 			_start_round()
+
 		Phase.BAR:
 			_check_hit()
+
 		Phase.RESULT:
 			_advance_after_result()
 
@@ -89,7 +108,10 @@ func _start_round() -> void:
 	var t_size: float = BAR_WIDTH * float(r.target)
 
 	target_zone.size = Vector2(t_size, target_zone.size.y)
-	target_zone.position = Vector2((BAR_WIDTH - t_size) * 0.5, target_zone.position.y)
+	target_zone.position = Vector2(
+		(BAR_WIDTH - t_size) * 0.5,
+		target_zone.position.y
+	)
 
 	attempt_label.text = "Tentativa %d / 3" % (round_idx + 1)
 
@@ -115,6 +137,8 @@ func _check_hit() -> void:
 	phase = Phase.RESULT
 
 	if hit:
+		tocar_som(SOM_ACERTO)
+
 		hit_this_run = true
 
 		GameState.add_xp(XP_REWARD)
@@ -123,12 +147,18 @@ func _check_hit() -> void:
 		result_title.modulate = Color(0.4, 0.95, 0.4)
 
 		if total_penalty > 0:
-			result_body.text = "Zé pegou o ritmo. Ganhou +%d XP. Total perdido: -%d XP." % [int(XP_REWARD), int(total_penalty)]
+			result_body.text = "Zé pegou o ritmo. Ganhou +%d XP. Total perdido: -%d XP." % [
+				int(XP_REWARD),
+				int(total_penalty)
+			]
 		else:
 			result_body.text = "Zé acordou pontualmente e ganhou +%d XP." % int(XP_REWARD)
 
 		result_hint.text = "[ESPAÇO para sair da cama]"
+
 	else:
+		tocar_som(SOM_ERRO)
+
 		var pen: float = float(ROUNDS[round_idx].penalty)
 		total_penalty += pen
 

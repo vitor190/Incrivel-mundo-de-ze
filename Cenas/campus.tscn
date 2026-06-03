@@ -31,6 +31,8 @@
 [ext_resource type="PackedScene" uid="uid://dpwr2vck1elyu" path="res://Cenas/NPC's/npc_colega5.tscn" id="28_exv68"]
 [ext_resource type="PackedScene" uid="uid://3elsy26d86tb" path="res://Cenas/NPC's/npc_colega7.tscn" id="29_ls6st"]
 [ext_resource type="Script" uid="uid://bvfty6vjufbxe" path="res://Cenas/painel_missoes.gd" id="30_ls6st"]
+[ext_resource type="Script" uid="uid://dkvokafvou1h2" path="res://Cenas/tenda_comida_area.gd" id="32_meq8r"]
+[ext_resource type="AudioStream" uid="uid://dlyxdghakecek" path="res://assets/assets - sons/nahtt-eat-323883.mp3" id="33_evkcq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qbeu0"]
 texture = ExtResource("3_sp1x8")
@@ -13016,12 +13018,15 @@ line_spacing = 1.0
 font_size = 15
 shadow_size = 0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_evkcq"]
+size = Vector2(48, 51)
+
 [node name="Campus" type="Node2D" unique_id=2106191947]
 script = ExtResource("1_x36d8")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1720387006]
 stream = ExtResource("1_1oap7")
-volume_db = -5.0
+volume_db = -21.0
 pitch_scale = 2.0
 autoplay = true
 parameters/looping = true
@@ -13363,6 +13368,22 @@ text = "MISSÕES"
 
 [node name="lista_missoes" type="VBoxContainer" parent="PainelMissoes/Panel/VBoxContainer" unique_id=1015098872]
 layout_mode = 2
+
+[node name="tenda" type="Node" parent="." unique_id=1041590114]
+
+[node name="TendaComidaArea" type="Area2D" parent="tenda" unique_id=352933027]
+script = ExtResource("32_meq8r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tenda/TendaComidaArea" unique_id=1520337584]
+position = Vector2(808, 441.5)
+shape = SubResource("RectangleShape2D_evkcq")
+
+[node name="Label" type="Label" parent="tenda/TendaComidaArea" unique_id=294558858]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="tenda/TendaComidaArea" unique_id=353778037]
+stream = ExtResource("33_evkcq")
 
 [connection signal="body_entered" from="Shader de parede/BlocoC_Building/PortaC" to="player" method="_on_porta_body_entered"]
 [connection signal="body_entered" from="Shader de parede/BlocoD_Building/PortaD" to="player" method="_on_porta_d_body_entered"]
