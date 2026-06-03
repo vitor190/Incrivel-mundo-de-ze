@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dtrhr0lme3eyr"]
 
 [ext_resource type="PackedScene" uid="uid://dqpoa0wpgwarr" path="res://Cenas/player.tscn" id="1_player"]
+[ext_resource type="AudioStream" uid="uid://barfydc8ttm1y" path="res://unifor_theme_v4.ogg" id="2_pvde8"]
 [ext_resource type="Script" uid="uid://bbam7g82pm2p7" path="res://Cenas/transicao.gd" id="3_trans"]
 [ext_resource type="Texture2D" uid="uid://dbk7tg816lpbh" path="res://assets/assets - quarto/beds_BR.png" id="4_beds"]
 [ext_resource type="Texture2D" uid="uid://bgv6h0xg27lfh" path="res://assets/assets - quarto/wardrobes_BR.png" id="5_wardrobes"]
@@ -52,6 +53,13 @@ bg_color = Color(0.098, 0.365, 1, 0.72)
 
 [node name="Quarto" type="Node2D" unique_id=600144986]
 script = ExtResource("7_quarto")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=285648707]
+stream = ExtResource("2_pvde8")
+volume_db = -21.0
+pitch_scale = 2.0
+autoplay = true
+parameters/looping = true
 
 [node name="Floor" type="Node2D" parent="." unique_id=1778767938]
 

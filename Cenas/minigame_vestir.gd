@@ -2,6 +2,9 @@ extends CanvasLayer
 
 signal finished(success: bool)
 
+const SOM_ACERTO := preload("res://assets/assets - sons/u_3bsnvt0dsu-successed-295058.mp3")
+const SOM_ERRO := preload("res://assets/assets - sons/lesiakower-error-mistake-sound-effect-incorrect-answer-437420.mp3")
+
 const SEQUENCE_LEN := 5
 const WRONG_PENALTY := 2.0
 const XP_REWARD := 10.0
@@ -49,11 +52,25 @@ var total_penalty: float = 0.0
 var success: bool = false
 var result_is_final: bool = false
 
+
 func _ready() -> void:
 	intro.visible = true
 	qte_ui.visible = false
 	result_ui.visible = false
 	randomize()
+
+
+func tocar_som(stream: AudioStream) -> void:
+	var audio := AudioStreamPlayer.new()
+
+	add_child(audio)
+
+	audio.stream = stream
+	audio.volume_db = -19
+
+	audio.play()
+
+	audio.finished.connect(audio.queue_free)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -103,10 +120,13 @@ func _event_to_dir(event: InputEvent) -> String:
 	match event.keycode:
 		KEY_UP, KEY_W:
 			return "up"
+
 		KEY_DOWN, KEY_S:
 			return "down"
+
 		KEY_LEFT, KEY_A:
 			return "left"
+
 		KEY_RIGHT, KEY_D:
 			return "right"
 
@@ -205,11 +225,15 @@ func _on_qte_key(dir: String) -> void:
 		else:
 			var next_slot := slot_row.get_child(progress) as Label
 			next_slot.modulate = COLOR_CURRENT
+
 	else:
 		_handle_wrong()
 
 
 func _handle_wrong() -> void:
+	# SOM DE ERRO
+	tocar_som(SOM_ERRO)
+
 	total_penalty += WRONG_PENALTY
 
 	GameState.lose_xp(WRONG_PENALTY)
@@ -226,8 +250,11 @@ func _handle_wrong() -> void:
 
 		result_title.text = "Não vestiu a tempo…"
 		result_title.modulate = Color(1.0, 0.4, 0.4)
+
 		result_body.text = "Zé desistiu. Total perdido: −%d XP. Volte ao guarda-roupa pra tentar de novo." % int(total_penalty)
+
 		result_hint.text = "[ESPAÇO para fechar]"
+
 	else:
 		result_is_final = false
 
@@ -235,11 +262,20 @@ func _handle_wrong() -> void:
 
 		result_title.text = "Errou! −%d XP" % int(WRONG_PENALTY)
 		result_title.modulate = Color(1.0, 0.7, 0.3)
-		result_body.text = "Próxima tentativa: %s — cada seta visível por %.1f s. Total perdido: −%d XP." % [nxt.label, float(nxt.glyph_time), int(total_penalty)]
+
+		result_body.text = "Próxima tentativa: %s — cada seta visível por %.1f s. Total perdido: −%d XP." % [
+			nxt.label,
+			float(nxt.glyph_time),
+			int(total_penalty)
+		]
+
 		result_hint.text = "[ESPAÇO para tentar de novo]"
 
 
 func _finish_success() -> void:
+	# SOM DE ACERTO
+	tocar_som(SOM_ACERTO)
+
 	success = true
 	result_is_final = true
 
@@ -254,7 +290,11 @@ func _finish_success() -> void:
 	result_title.modulate = Color(0.4, 0.95, 0.4)
 
 	if total_penalty > 0:
-		result_body.text = "Zé vestiu o uniforme depois de %d tropeço(s). Ganhou +%d XP. Total perdido: −%d XP." % [int(total_penalty / WRONG_PENALTY), int(XP_REWARD), int(total_penalty)]
+		result_body.text = "Zé vestiu o uniforme depois de %d tropeço(s). Ganhou +%d XP. Total perdido: −%d XP." % [
+			int(total_penalty / WRONG_PENALTY),
+			int(XP_REWARD),
+			int(total_penalty)
+		]
 	else:
 		result_body.text = "Zé vestiu o uniforme de primeira e ganhou +%d XP. Hora de ir pra aula." % int(XP_REWARD)
 
