@@ -13832,6 +13832,7 @@ texture = ExtResource("13_qh5sa")
 position = Vector2(163, 20)
 script = ExtResource("12_16fpi")
 destino = "res://Cenas/quarto.tscn"
+requer_vestido = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PortaSaida" unique_id=1716253477]
 shape = SubResource("RectangleShape2D_1sq5b")

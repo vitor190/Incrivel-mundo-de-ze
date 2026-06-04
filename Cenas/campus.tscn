@@ -33,6 +33,8 @@
 [ext_resource type="Script" uid="uid://bvfty6vjufbxe" path="res://Cenas/painel_missoes.gd" id="30_ls6st"]
 [ext_resource type="Script" uid="uid://dkvokafvou1h2" path="res://Cenas/tenda_comida_area.gd" id="32_meq8r"]
 [ext_resource type="AudioStream" uid="uid://dlyxdghakecek" path="res://assets/assets - sons/nahtt-eat-323883.mp3" id="33_evkcq"]
+[ext_resource type="Script" uid="uid://bvhxnob56sksr" path="res://Cenas/porta_onibus.gd" id="34_o0cwt"]
+[ext_resource type="Script" uid="uid://7r0bvkdjgbdv" path="res://Cenas/viagem_onibus.gd" id="35_ut0cv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qbeu0"]
 texture = ExtResource("3_sp1x8")
@@ -13021,6 +13023,9 @@ shadow_size = 0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_evkcq"]
 size = Vector2(48, 51)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ut0cv"]
+size = Vector2(78.5, 27)
+
 [node name="Campus" type="Node2D" unique_id=2106191947]
 script = ExtResource("1_x36d8")
 
@@ -13384,6 +13389,28 @@ offset_bottom = 23.0
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="tenda/TendaComidaArea" unique_id=353778037]
 stream = ExtResource("33_evkcq")
+
+[node name="PortaOnibus" type="Area2D" parent="." unique_id=631088632]
+script = ExtResource("34_o0cwt")
+destino = "res://Cenas/bancodo_nordeste.tscn"
+requer_vestido = false
+requer_unifor_concluida = true
+mensagem_bloqueio = "Explore a Unifor!"
+mensagem_bloqueio_unifor = "Explore a Unifor!"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PortaOnibus" unique_id=847969637]
+position = Vector2(730.75, 850.5)
+shape = SubResource("RectangleShape2D_ut0cv")
+
+[node name="ViagemOnibus" type="CanvasLayer" parent="." unique_id=1428170139]
+script = ExtResource("35_ut0cv")
+
+[node name="Escurecer" type="ColorRect" parent="ViagemOnibus" unique_id=68599034]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="OnibusAnimado" type="Sprite2D" parent="ViagemOnibus" unique_id=371879390]
+texture = ExtResource("8_7kskl")
 
 [connection signal="body_entered" from="Shader de parede/BlocoC_Building/PortaC" to="player" method="_on_porta_body_entered"]
 [connection signal="body_entered" from="Shader de parede/BlocoD_Building/PortaD" to="player" method="_on_porta_d_body_entered"]
