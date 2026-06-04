@@ -13322,19 +13322,6 @@ position = Vector2(2376, 912)
 [node name="NPC_Colega" parent="." unique_id=1585468008 instance=ExtResource("24_pwnp4")]
 position = Vector2(335, 440)
 
-[node name="BalaoDialogo" type="Label" parent="NPC_Colega" unique_id=2075130025]
-offset_left = -165.0
-offset_top = -55.0
-offset_right = 68.74997
-offset_bottom = -6.0
-theme_override_font_sizes/font_size = 1
-theme_override_styles/normal = SubResource("StyleBoxFlat_exv68")
-text = "E aí, Zé! A aula no Bloco C já vai começar."
-label_settings = SubResource("LabelSettings_exv68")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-
 [node name="NPC_Colega2" parent="." unique_id=225383840 instance=ExtResource("25_xayg1")]
 position = Vector2(962, 237)
 pode_interagir = false

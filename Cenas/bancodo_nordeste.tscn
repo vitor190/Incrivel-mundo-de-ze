@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://bvhxnob56sksr" path="res://Cenas/porta_onibus.gd" id="12_16fpi"]
 [ext_resource type="Texture2D" uid="uid://c050b50qyjb0f" path="res://assets/assets - obstaculo/onibus.png" id="13_qh5sa"]
 [ext_resource type="Script" uid="uid://bvfty6vjufbxe" path="res://Cenas/painel_missoes.gd" id="14_1sq5b"]
+[ext_resource type="Texture2D" uid="uid://0000q1jshxlo" path="res://Cenas/NPC's/NPC_RAPOSO.png" id="15_chefe"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uptnx"]
 texture = ExtResource("2_hdxat")
@@ -13699,6 +13700,12 @@ sources/0 = SubResource("TileSetAtlasSource_18t7l")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1sq5b"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_chefe"]
+size = Vector2(60, 44)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_chefebody"]
+size = Vector2(14, 30)
+
 [node name="BancodoNordeste" type="Node2D" unique_id=222308583]
 script = ExtResource("1_16fpi")
 
@@ -13855,3 +13862,82 @@ text = "MISSÕES"
 
 [node name="lista_missoes" type="VBoxContainer" parent="PainelMissoes/Panel/VBoxContainer" unique_id=1153970088]
 layout_mode = 2
+
+[node name="Chefe" type="StaticBody2D" parent="."]
+z_index = 6
+position = Vector2(160, 96)
+collision_layer = 2
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Chefe"]
+texture = ExtResource("15_chefe")
+region_enabled = true
+region_rect = Rect2(48, 0, 16, 35)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chefe"]
+shape = SubResource("RectangleShape2D_chefebody")
+
+[node name="ChefeArea" type="Area2D" parent="."]
+position = Vector2(160, 70)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChefeArea"]
+shape = SubResource("RectangleShape2D_chefe")
+
+[node name="ChefeIndicator" type="Label" parent="."]
+z_index = 10
+offset_left = 150.0
+offset_top = 54.0
+offset_right = 172.0
+offset_bottom = 74.0
+theme_override_colors/font_color = Color(1, 0.93, 0.55, 1)
+theme_override_font_sizes/font_size = 10
+text = "[E]"
+horizontal_alignment = 1
+
+[node name="DialogoChefe" type="CanvasLayer" parent="."]
+layer = 9
+visible = false
+
+[node name="Painel" type="PanelContainer" parent="DialogoChefe"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -380.0
+offset_top = -150.0
+offset_right = 380.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Margin" type="MarginContainer" parent="DialogoChefe/Painel"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 18
+
+[node name="VBox" type="VBoxContainer" parent="DialogoChefe/Painel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Nome" type="Label" parent="DialogoChefe/Painel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+theme_override_font_sizes/font_size = 18
+text = "CHEFE"
+
+[node name="Fala" type="Label" parent="DialogoChefe/Painel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_font_sizes/font_size = 20
+text = ""
+autowrap_mode = 2
+
+[node name="Hint" type="Label" parent="DialogoChefe/Painel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 14
+text = "[ E para continuar ]"
+horizontal_alignment = 2
