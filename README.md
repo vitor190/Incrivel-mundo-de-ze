@@ -56,9 +56,11 @@ res://
 ```
 
 ## Equipe
--Renan Elid
--Vitor César
--Lucas Braide
--Lucas Raposo
--Mateuz Tomás
+- Renan Elid
+- Vitor César
+- Lucas Braide
+- Lucas Raposo
+- Mateuz Tomás
+
+  
 Desenvolvido por alunos do curso de Ciência da Computação da UNIFOR como trabalho da disciplina de Computação Gráfica.
