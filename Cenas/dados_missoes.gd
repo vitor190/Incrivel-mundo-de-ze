@@ -55,6 +55,15 @@ var missoes = {
 		"concluida": false,
 		"sub_missoes": []
 	},
+
+	# QUARTO (NOITE)
+	"quarto_dormir": {
+		"texto": "Vá dormir",
+		"concluida": false,
+		"sub_missoes": [
+			{"id": "quarto_dormir_mini1", "texto": "Conte os carneirinhos", "concluida": false, "falhou": false},
+		]
+	},
 }
 
 var missoes_por_cena = {
@@ -63,4 +72,5 @@ var missoes_por_cena = {
 	"bloco_c": ["unifor_bloco_c", "unifor_bloco_d"],
 	"bloco_d": ["unifor_bloco_c", "unifor_bloco_d"],
 	"banco":   ["banco_task1", "banco_sair"],
+	"quarto_noite": ["quarto_dormir"],
 }

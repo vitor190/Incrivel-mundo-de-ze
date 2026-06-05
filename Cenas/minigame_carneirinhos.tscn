@@ -1,0 +1,213 @@
+[gd_scene format=3 uid="uid://5gnbd02kpqkn"]
+
+[ext_resource type="Script" path="res://Cenas/minigame_carneirinhos.gd" id="1_script"]
+
+[sub_resource type="StyleBoxFlat" id="panel_style"]
+bg_color = Color(0.05, 0.06, 0.13, 0.96)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.5, 0.6, 0.95, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="sheep_style"]
+bg_color = Color(0.96, 0.96, 0.98, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="MinigameCarneirinhos" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_script")
+
+[node name="Dimmer" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0.08, 0.85)
+mouse_filter = 2
+
+[node name="Intro" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -150.0
+offset_right = 300.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("panel_style")
+
+[node name="MarginContainer" type="MarginContainer" parent="Intro"]
+layout_mode = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 24
+
+[node name="VBox" type="VBoxContainer" parent="Intro/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Title" type="Label" parent="Intro/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.85, 1, 1)
+theme_override_font_sizes/font_size = 30
+text = "Hora de dormir"
+horizontal_alignment = 1
+
+[node name="Body" type="Label" parent="Intro/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_font_sizes/font_size = 18
+text = "Foi um longo dia. Conte os carneirinhos e ajude cada um a pular os obstáculos: aperte ESPAÇO para pular. A cada carneirinho que passa, eles vêm mais rápido. Ajude 5 para dormir. Cada tropeço tira 2 XP."
+autowrap_mode = 2
+horizontal_alignment = 1
+
+[node name="Hint" type="Label" parent="Intro/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.85, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "[ ESPAÇO para começar ]"
+horizontal_alignment = 1
+
+[node name="GameUI" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("panel_style")
+
+[node name="MarginContainer" type="MarginContainer" parent="GameUI"]
+layout_mode = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 24
+
+[node name="VBox" type="VBoxContainer" parent="GameUI/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="GameUI/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.85, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "Ajude os carneirinhos a pular"
+horizontal_alignment = 1
+
+[node name="Contador" type="Label" parent="GameUI/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0.8, 1)
+theme_override_font_sizes/font_size = 30
+text = "Carneirinhos ajudados: 0 / 5"
+horizontal_alignment = 1
+
+[node name="Aviso" type="Label" parent="GameUI/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "Ajude os carneirinhos a pular!"
+horizontal_alignment = 1
+
+[node name="Campo" type="Control" parent="GameUI/MarginContainer/VBox"]
+clip_contents = true
+custom_minimum_size = Vector2(0, 110)
+layout_mode = 2
+
+[node name="Cerca" type="ColorRect" parent="GameUI/MarginContainer/VBox/Campo"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 78.0
+offset_right = 520.0
+offset_bottom = 84.0
+color = Color(0.4, 0.26, 0.13, 1)
+
+[node name="Ovelha" type="Panel" parent="GameUI/MarginContainer/VBox/Campo"]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 56.0
+offset_right = 118.0
+offset_bottom = 78.0
+theme_override_styles/panel = SubResource("sheep_style")
+
+[node name="Obstaculo" type="ColorRect" parent="GameUI/MarginContainer/VBox/Campo"]
+layout_mode = 0
+offset_left = 560.0
+offset_top = 52.0
+offset_right = 576.0
+offset_bottom = 78.0
+color = Color(0.45, 0.3, 0.15, 1)
+
+[node name="Hint" type="Label" parent="GameUI/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.85, 0.95, 1)
+theme_override_font_sizes/font_size = 16
+text = "[ ESPAÇO ] pula"
+horizontal_alignment = 1
+
+[node name="Final" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.0
+offset_top = -120.0
+offset_right = 280.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("panel_style")
+
+[node name="MarginContainer" type="MarginContainer" parent="Final"]
+layout_mode = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 24
+
+[node name="VBox" type="VBoxContainer" parent="Final/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="Final/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 30
+text = "Zzz..."
+horizontal_alignment = 1
+
+[node name="Body" type="Label" parent="Final/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_font_sizes/font_size = 18
+text = ""
+autowrap_mode = 2
+horizontal_alignment = 1
+
+[node name="Hint" type="Label" parent="Final/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.85, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "[ESPAÇO para encerrar o dia]"
+horizontal_alignment = 1

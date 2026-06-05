@@ -13838,7 +13838,8 @@ texture = ExtResource("13_qh5sa")
 [node name="PortaSaida" type="Area2D" parent="." unique_id=131643579]
 position = Vector2(163, 20)
 script = ExtResource("12_16fpi")
-destino = "res://Cenas/quarto.tscn"
+destino = "res://Cenas/quarto_noite.tscn"
+missao_ao_sair = "banco_sair"
 requer_vestido = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PortaSaida" unique_id=1716253477]
