@@ -137,6 +137,19 @@ size = Vector2(16.250034, 20.000046)
 [sub_resource type="CircleShape2D" id="CircleShape2D_xrmm1"]
 radius = 36.249996
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_balao"]
+bg_color = Color(0.03529412, 0.03529412, 0.03529412, 0.7058824)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+corner_detail = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_balao"]
+line_spacing = 1.0
+font_size = 15
+shadow_size = 0
+
 [node name="NPC_Colega" type="CharacterBody2D" unique_id=1585468008]
 z_index = 4
 scale = Vector2(0.8, 0.8)
@@ -166,3 +179,16 @@ collision_mask = 255
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaInteracao" unique_id=1955950705]
 y_sort_enabled = true
 shape = SubResource("CircleShape2D_xrmm1")
+
+[node name="BalaoDialogo" type="Label" parent="."]
+z_index = 10
+offset_left = -165.0
+offset_top = -55.0
+offset_right = 68.74997
+offset_bottom = -6.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_balao")
+text = ""
+label_settings = SubResource("LabelSettings_balao")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2

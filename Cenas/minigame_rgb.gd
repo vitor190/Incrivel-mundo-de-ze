@@ -26,8 +26,6 @@ enum Phase { INTRO, MIX, FEEDBACK, FINAL }
 @onready var attempt_label: Label = $MixUI/MarginContainer/VBox/AttemptLabel
 @onready var target_swatch: ColorRect = $MixUI/MarginContainer/VBox/Swatches/Target/TargetRect
 @onready var current_swatch: ColorRect = $MixUI/MarginContainer/VBox/Swatches/Current/CurrentRect
-@onready var target_rgb_label: Label = $MixUI/MarginContainer/VBox/Swatches/Target/TargetRgb
-@onready var current_rgb_label: Label = $MixUI/MarginContainer/VBox/Swatches/Current/CurrentRgb
 
 @onready var r_slider: HSlider = $MixUI/MarginContainer/VBox/SliderR/Slider
 @onready var g_slider: HSlider = $MixUI/MarginContainer/VBox/SliderG/Slider
@@ -129,12 +127,6 @@ func _start_round() -> void:
 
 	target_swatch.color = target
 
-	target_rgb_label.text = "Alvo: (%d, %d, %d)" % [
-		_c8(target.r),
-		_c8(target.g),
-		_c8(target.b)
-	]
-
 	r_slider.value = 128
 	g_slider.value = 128
 	b_slider.value = 128
@@ -162,8 +154,6 @@ func _update_current() -> void:
 	var b := int(b_slider.value)
 
 	current_swatch.color = Color8(r, g, b)
-
-	current_rgb_label.text = "Atual: (%d, %d, %d)" % [r, g, b]
 
 	r_value.text = "R: %d" % r
 	g_value.text = "G: %d" % g

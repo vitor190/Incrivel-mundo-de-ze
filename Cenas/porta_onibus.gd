@@ -1,6 +1,7 @@
 extends Area2D
 
 @export var destino: String = "res://quarto.tscn"
+@export var missao_ao_sair: String = "quarto_sair"
 @export var requer_vestido: bool = true
 @export var requer_unifor_concluida: bool = false
 @export var mensagem_bloqueio: String = "Vista-se antes de pegar o ônibus."
@@ -37,7 +38,8 @@ func _mostrar_mensagem(texto: String) -> void:
 
 func viajar() -> void:
 	viajando = true
-	GerenciadorMissoes.concluir_missao("quarto_sair")
+	if missao_ao_sair != "":
+		GerenciadorMissoes.concluir_missao(missao_ao_sair)
 	if player_ref:
 		player_ref.set_process(false)
 		player_ref.set_physics_process(false)

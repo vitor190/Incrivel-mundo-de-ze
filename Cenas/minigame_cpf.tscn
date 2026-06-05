@@ -1,0 +1,233 @@
+[gd_scene load_steps=4 format=3 uid="uid://v1erane3uxga"]
+
+[ext_resource type="Script" path="res://Cenas/minigame_cpf.gd" id="1_script"]
+
+[sub_resource type="StyleBoxFlat" id="panel_style"]
+bg_color = Color(0.09, 0.07, 0.05, 0.95)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.88, 0.74, 0.32, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="code_style"]
+bg_color = Color(0.05, 0.05, 0.07, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.4, 0.4, 0.5, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+content_margin_left = 10.0
+content_margin_top = 8.0
+content_margin_right = 10.0
+content_margin_bottom = 8.0
+
+[node name="MinigameCPF" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_script")
+
+[node name="Dimmer" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7)
+mouse_filter = 2
+
+[node name="Intro" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -330.0
+offset_top = -180.0
+offset_right = 330.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("panel_style")
+
+[node name="MarginContainer" type="MarginContainer" parent="Intro"]
+layout_mode = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 24
+
+[node name="VBox" type="VBoxContainer" parent="Intro/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Title" type="Label" parent="Intro/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.93, 0.55, 1)
+theme_override_font_sizes/font_size = 28
+text = "Chefe: conserte o cadastro de CPFs"
+horizontal_alignment = 1
+
+[node name="Body" type="Label" parent="Intro/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_font_sizes/font_size = 18
+text = "Zé, o sistema do banco quebrou! Você vai ESCREVER do zero, em JavaScript, a função que percorre a lista de CPFs e confere se o CPF do cliente está cadastrado. Use um laço e comparação. Acertar vale +20 XP; cada erro tira 2 XP (3 tentativas). Usar a Dica custa 10 XP."
+autowrap_mode = 2
+horizontal_alignment = 1
+
+[node name="Hint" type="Label" parent="Intro/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.93, 0.55, 1)
+theme_override_font_sizes/font_size = 20
+text = "[ ESPAÇO para começar ]"
+horizontal_alignment = 1
+
+[node name="GameUI" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = -280.0
+offset_right = 360.0
+offset_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("panel_style")
+
+[node name="MarginContainer" type="MarginContainer" parent="GameUI"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 18
+
+[node name="VBox" type="VBoxContainer" parent="GameUI/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="GameUI/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.93, 0.55, 1)
+theme_override_font_sizes/font_size = 22
+text = "Escreva o checador de CPF (JavaScript)"
+horizontal_alignment = 1
+
+[node name="Contexto" type="Label" parent="GameUI/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.85, 0.75, 1)
+theme_override_font_sizes/font_size = 13
+text = ""
+autowrap_mode = 2
+
+[node name="Editor" type="TextEdit" parent="GameUI/MarginContainer/VBox"]
+custom_minimum_size = Vector2(0, 170)
+layout_mode = 2
+theme_override_styles/normal = SubResource("code_style")
+
+[node name="Dica" type="Label" parent="GameUI/MarginContainer/VBox"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.85, 0.6, 1)
+theme_override_font_sizes/font_size = 13
+text = ""
+
+[node name="Controles" type="HBoxContainer" parent="GameUI/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="BtnExecutar" type="Button" parent="GameUI/MarginContainer/VBox/Controles"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Executar"
+
+[node name="BtnLimpar" type="Button" parent="GameUI/MarginContainer/VBox/Controles"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Limpar"
+
+[node name="BtnDica" type="Button" parent="GameUI/MarginContainer/VBox/Controles"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Dica"
+
+[node name="Feedback" type="Label" parent="GameUI/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = ""
+autowrap_mode = 2
+horizontal_alignment = 1
+
+[node name="Tentativas" type="Label" parent="GameUI/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.85, 0.95, 1)
+theme_override_font_sizes/font_size = 14
+text = ""
+horizontal_alignment = 1
+
+[node name="Final" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -130.0
+offset_right = 300.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("panel_style")
+
+[node name="MarginContainer" type="MarginContainer" parent="Final"]
+layout_mode = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 24
+
+[node name="VBox" type="VBoxContainer" parent="Final/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="Final/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.95, 0.4, 1)
+theme_override_font_sizes/font_size = 28
+text = ""
+horizontal_alignment = 1
+
+[node name="Body" type="Label" parent="Final/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_font_sizes/font_size = 18
+text = ""
+autowrap_mode = 2
+horizontal_alignment = 1
+
+[node name="Hint" type="Label" parent="Final/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.93, 0.55, 1)
+theme_override_font_sizes/font_size = 18
+text = "[ESPAÇO para fechar]"
+horizontal_alignment = 1
+
+[node name="ConfirmacaoDica" type="ConfirmationDialog" parent="."]
+title = "Usar dica?"
+initial_position = 1
+size = Vector2i(440, 120)
+ok_button_text = "Usar dica"
+dialog_text = "Ver a dica reduz a recompensa."
+dialog_autowrap = true

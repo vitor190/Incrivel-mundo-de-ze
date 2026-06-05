@@ -136,7 +136,7 @@ color = Color(1, 0, 0, 1)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.95, 0.95, 0.95, 1)
 theme_override_font_sizes/font_size = 18
-text = "Alvo: (0, 0, 0)"
+text = "Alvo"
 horizontal_alignment = 1
 
 [node name="Current" type="VBoxContainer" parent="MixUI/MarginContainer/VBox/Swatches"]
@@ -151,7 +151,7 @@ color = Color(0.5, 0.5, 0.5, 1)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.95, 0.95, 0.95, 1)
 theme_override_font_sizes/font_size = 18
-text = "Atual: (128, 128, 128)"
+text = "Sua mistura"
 horizontal_alignment = 1
 
 [node name="SliderR" type="HBoxContainer" parent="MixUI/MarginContainer/VBox"]
