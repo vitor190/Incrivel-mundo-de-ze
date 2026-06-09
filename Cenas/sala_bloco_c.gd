@@ -1,5 +1,3 @@
-## bloco_c.gd
-
 extends Node2D
 
 const QUIZ_MINIGAME_SCENE: PackedScene = preload("res://Cenas/minigame_quiz_cg.tscn")
@@ -12,8 +10,10 @@ const RGB_SUB_ID := "bloco_c_mini2"
 @onready var player: CharacterBody2D = $player
 @onready var quiz_area: Area2D = $QuizArea
 @onready var rgb_area: Area2D = $RgbArea
-@onready var quiz_indicator: Label = $QuizIndicator
-@onready var rgb_indicator: Label = $RgbIndicator
+
+# Caminhos atualizados para os sprites de exclamação de acordo com a sua árvore
+@onready var quiz_indicator: CanvasItem = $QuizArea/IndicadorQuest
+@onready var rgb_indicator: CanvasItem = $RgbArea/IndicadorQuest2
 
 var _active_minigame: CanvasLayer
 var _quiz_tween: Tween
@@ -43,7 +43,8 @@ func _sub_done(sub_id: String) -> bool:
 	return false
 
 
-func _set_indicator(lbl: Label, tween: Tween, show: bool) -> Tween:
+# Tipagem alterada para CanvasItem para suportar o Sprite2D
+func _set_indicator(lbl: CanvasItem, tween: Tween, show: bool) -> Tween:
 	if tween and tween.is_valid():
 		tween.kill()
 
@@ -65,6 +66,11 @@ func _on_quiz_body_entered(body: Node2D) -> void:
 		return
 	if not body.is_in_group("player"):
 		return
+		
+	# Ocultação imediata
+	if quiz_indicator:
+		quiz_indicator.hide()
+		
 	_start_minigame(QUIZ_MINIGAME_SCENE, QUIZ_SUB_ID)
 
 
@@ -73,6 +79,11 @@ func _on_rgb_body_entered(body: Node2D) -> void:
 		return
 	if not body.is_in_group("player"):
 		return
+		
+	# Ocultação imediata
+	if rgb_indicator:
+		rgb_indicator.hide()
+		
 	_start_minigame(RGB_MINIGAME_SCENE, RGB_SUB_ID)
 
 

@@ -13708,6 +13708,9 @@ size = Vector2(60, 44)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vp4tq"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_chefe"]
+size = Vector2(60, 44)
+
 [node name="BancodoNordeste" type="Node2D" unique_id=222308583]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=217944704]
@@ -13866,12 +13869,14 @@ text = "MISSÕES"
 layout_mode = 2
 
 [node name="Chefe" type="StaticBody2D" parent="." unique_id=794146276]
+[node name="Chefe" type="StaticBody2D" parent="." unique_id=1478166187]
 z_index = 6
 position = Vector2(160, 96)
 collision_layer = 2
 collision_mask = 0
 
 [node name="Sprite" type="Sprite2D" parent="Chefe" unique_id=1122625211]
+[node name="Sprite" type="Sprite2D" parent="Chefe" unique_id=1960819024]
 texture = ExtResource("15_chefe")
 region_enabled = true
 region_rect = Rect2(48, 0, 16, 35)
@@ -13886,6 +13891,16 @@ position = Vector2(160, 70)
 shape = SubResource("RectangleShape2D_chefe")
 
 [node name="ChefeIndicator" type="Label" parent="." unique_id=295356443]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chefe" unique_id=306790812]
+shape = SubResource("RectangleShape2D_chefebody")
+
+[node name="ChefeArea" type="Area2D" parent="." unique_id=125107421]
+position = Vector2(160, 70)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChefeArea" unique_id=1532495832]
+shape = SubResource("RectangleShape2D_chefe")
+
+[node name="ChefeIndicator" type="Label" parent="." unique_id=105244351]
 z_index = 10
 offset_left = 150.0
 offset_top = 54.0
@@ -13901,6 +13916,11 @@ layer = 9
 visible = false
 
 [node name="Painel" type="PanelContainer" parent="DialogoChefe" unique_id=713008155]
+[node name="DialogoChefe" type="CanvasLayer" parent="." unique_id=647565057]
+layer = 9
+visible = false
+
+[node name="Painel" type="PanelContainer" parent="DialogoChefe" unique_id=559046348]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -13914,6 +13934,7 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="Margin" type="MarginContainer" parent="DialogoChefe/Painel" unique_id=1834693414]
+[node name="Margin" type="MarginContainer" parent="DialogoChefe/Painel" unique_id=72541888]
 layout_mode = 2
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_top = 18
@@ -13925,18 +13946,25 @@ layout_mode = 2
 theme_override_constants/separation = 8
 
 [node name="Nome" type="Label" parent="DialogoChefe/Painel/Margin/VBox" unique_id=441326709]
+[node name="VBox" type="VBoxContainer" parent="DialogoChefe/Painel/Margin" unique_id=1001480095]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Nome" type="Label" parent="DialogoChefe/Painel/Margin/VBox" unique_id=167138285]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
 theme_override_font_sizes/font_size = 18
 text = "CHEFE"
 
 [node name="Fala" type="Label" parent="DialogoChefe/Painel/Margin/VBox" unique_id=1459889981]
+[node name="Fala" type="Label" parent="DialogoChefe/Painel/Margin/VBox" unique_id=996315577]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.95, 0.95, 0.95, 1)
 theme_override_font_sizes/font_size = 20
 autowrap_mode = 2
 
 [node name="Hint" type="Label" parent="DialogoChefe/Painel/Margin/VBox" unique_id=598251606]
+[node name="Hint" type="Label" parent="DialogoChefe/Painel/Margin/VBox" unique_id=776465822]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
 theme_override_font_sizes/font_size = 14
