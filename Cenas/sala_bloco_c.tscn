@@ -15,6 +15,8 @@
 [ext_resource type="Script" uid="uid://bbam7g82pm2p7" path="res://Cenas/transicao.gd" id="12_7iv35"]
 [ext_resource type="Script" uid="uid://cib2cj3ggi082" path="res://Cenas/porta_c_saida.gd" id="13_pgjad"]
 [ext_resource type="Script" uid="uid://bvfty6vjufbxe" path="res://Cenas/painel_missoes.gd" id="14_7iv35"]
+[ext_resource type="Texture2D" uid="uid://bdiao7wplpy0m" path="res://Cenas/NPC's/Mudanças_Mateus/exclamação.png" id="16_1i1wc"]
+[ext_resource type="Script" uid="uid://urdxn8vp20n7" path="res://Cenas/indicador_quest.gd" id="17_2lga4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hblcv"]
 texture = ExtResource("2_a8mb1")
@@ -18062,7 +18064,16 @@ position = Vector2(310, 110)
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="QuizArea" unique_id=1922191399]
+position = Vector2(3, 16)
 shape = SubResource("RectangleShape2D_1i1wc")
+
+[node name="IndicadorQuest" type="Sprite2D" parent="QuizArea" unique_id=1249276025]
+top_level = true
+z_index = 100
+position = Vector2(328.00003, 107)
+scale = Vector2(0.0056818174, 0.007486984)
+texture = ExtResource("16_1i1wc")
+script = ExtResource("17_2lga4")
 
 [node name="QuizIndicator" type="Label" parent="." unique_id=1438601824]
 offset_left = 304.0
@@ -18082,7 +18093,16 @@ position = Vector2(470, 110)
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RgbArea" unique_id=241535673]
+position = Vector2(1, 12)
 shape = SubResource("RectangleShape2D_1i1wc")
+
+[node name="IndicadorQuest2" type="Sprite2D" parent="RgbArea" unique_id=357274976]
+top_level = true
+z_index = 100
+position = Vector2(472.00003, 104.99999)
+scale = Vector2(0.0056818174, 0.007486984)
+texture = ExtResource("16_1i1wc")
+script = ExtResource("17_2lga4")
 
 [node name="RgbIndicator" type="Label" parent="." unique_id=1882015545]
 offset_left = 452.0
