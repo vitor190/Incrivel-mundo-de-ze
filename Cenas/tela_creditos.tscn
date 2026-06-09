@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://cemxfu3sdautk"]
+
+[ext_resource type="Script" uid="uid://b7qu5p1r5ng7n" path="res://Cenas/creditos.gd" id="1_do51a"]
+[ext_resource type="Script" uid="uid://cdfyv8ilk7gq1" path="res://Cenas/voltar_btn.gd" id="2_sioja"]
+[ext_resource type="Texture2D" uid="uid://cdhslja8mpnvf" path="res://Cenas/NPC's/Mudanças_Mateus/Gemini_Generated_Image_tghltbtghltbtghl.png" id="3_sioja"]
+
+[node name="TelaCreditos" type="Control" unique_id=2097042063]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_do51a")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=14073455]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.289
+anchor_bottom = 1.148
+offset_left = -17.0
+offset_top = -4.0
+offset_right = -165.92798
+offset_bottom = -93.90399
+texture = ExtResource("3_sioja")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Voltar_btn" type="Button" parent="." unique_id=1594455995]
+light_mask = 1023
+visibility_layer = 527
+z_index = 800
+layout_mode = 0
+offset_left = 570.0
+offset_top = 441.0
+offset_right = 727.0
+offset_bottom = 495.0
+text = " "
+flat = true
+script = ExtResource("2_sioja")
