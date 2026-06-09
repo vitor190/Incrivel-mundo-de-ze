@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://cu16ggxjophe3"]
+
+[ext_resource type="Script" uid="uid://dbtdyhig6dflg" path="res://Cenas/log_minigame.gd" id="1_5g50c"]
+
+[node name="LogMinigame" type="Node2D" unique_id=153047940]
+script = ExtResource("1_5g50c")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=959148924]
+
+[node name="TerminalPanel" type="PanelContainer" parent="UI" unique_id=1679916966]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="UI/TerminalPanel" unique_id=433790230]
+layout_mode = 2
+
+[node name="TitleBar" type="HBoxContainer" parent="UI/TerminalPanel/VBox" unique_id=89754252]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="UI/TerminalPanel/VBox/TitleBar" unique_id=1138424507]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "production.log"
+
+[node name="TimerLabel" type="Label" parent="UI/TerminalPanel/VBox/TitleBar" unique_id=651500486]
+layout_mode = 2
+text = "ERRORs restantes: 5"
+
+[node name="LogScroll" type="ScrollContainer" parent="UI/TerminalPanel/VBox" unique_id=1936699300]
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 2
+
+[node name="LogContainer" type="VBoxContainer" parent="UI/TerminalPanel/VBox/LogScroll" unique_id=1597560949]
+layout_mode = 2
+
+[node name="ResultPanel" type="PanelContainer" parent="UI" unique_id=1439329315]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResultVBox" type="VBoxContainer" parent="UI/ResultPanel" unique_id=1150170681]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="ResultTitle" type="Label" parent="UI/ResultPanel/ResultVBox" unique_id=90202384]
+layout_mode = 2
+
+[node name="ResultDesc" type="Label" parent="UI/ResultPanel/ResultVBox" unique_id=1915791306]
+layout_mode = 2
+
+[node name="ContinueBtn" type="Button" parent="UI/ResultPanel/ResultVBox" unique_id=1339408545]
+layout_mode = 2
+text = "Continuar"
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=644544352]
+wait_time = 2.0
+autostart = true
+
+[connection signal="pressed" from="UI/ResultPanel/ResultVBox/ContinueBtn" to="." method="_on_continue_pressed"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
