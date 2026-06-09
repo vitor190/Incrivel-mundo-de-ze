@@ -1,25 +1,27 @@
-extends Node2D
+extends CanvasLayer
 
-signal minigame_finished(victory: bool, xp: int)
-
-@onready var log_container : VBoxContainer  = $UI/TerminalPanel/VBox/LogScroll/LogContainer
-@onready var log_scroll    : ScrollContainer = $UI/TerminalPanel/VBox/LogScroll
-@onready var timer_label   : Label           = $UI/TerminalPanel/VBox/TitleBar/TimerLabel
-@onready var spawn_timer   : Timer           = $SpawnTimer
-@onready var result_panel  : PanelContainer  = $UI/ResultPanel
-@onready var result_title  : Label           = $UI/ResultPanel/ResultVBox/ResultTitle
-@onready var result_desc   : Label           = $UI/ResultPanel/ResultVBox/ResultDesc
+signal minigame_concluido(sucesso: bool, xp_ganho: int)
 
 const TOTAL_ERRORS : int   = 5
 const SCROLL_TIME  : float = 2.0
 const MAX_LINES    : int   = 12
-const XP_VICTORY   : int   = 10
-const XP_DEFEAT    : int   = -3
+const XP_VITORIA   : int   = 20
+
+@onready var painel_intro   = $Painel/Centro/VBox/PainelIntro
+@onready var painel_jogo    = $Painel/Centro/VBox/PainelJogo
+@onready var painel_result  = $Painel/Centro/VBox/PainelResultado
+
+@onready var log_container  : VBoxContainer   = $Painel/Centro/VBox/PainelJogo/VBox/LogScroll/LogContainer
+@onready var log_scroll     : ScrollContainer = $Painel/Centro/VBox/PainelJogo/VBox/LogScroll
+@onready var lbl_erros      : Label           = $Painel/Centro/VBox/PainelJogo/VBox/HBoxStatus/LblErros
+@onready var spawn_timer    : Timer           = $SpawnTimer
+@onready var lbl_titulo_result : Label = $Painel/Centro/VBox/PainelResultado/VBoxContainer/LblTituloResult
+@onready var lbl_resultado     : Label = $Painel/Centro/VBox/PainelResultado/VBoxContainer/LblResultado
 
 var errors_remaining : int  = TOTAL_ERRORS
-var errors_clicked   : int  = 0
 var game_active      : bool = false
 var lines_in_screen  : Array = []
+var erros_cometidos  : int  = 0
 
 const INFO_MESSAGES : Array = [
 	"[INFO]  Server started on port 3000",
@@ -56,13 +58,44 @@ const COLOR_ERROR   := Color(1.0,  0.2,  0.2)
 
 enum LineType { INFO, WARNING, ERROR }
 
+
 func _ready() -> void:
-	result_panel.show()
-	result_panel.hide()
-	_update_counter_label()
+	visible = false
+
+func abrir() -> void:
+	visible = true
+	_esconder_hud(true)
+	_mostrar_intro()
+
+func _mostrar_intro() -> void:
+	game_active = false
+	painel_intro.visible = true
+	painel_jogo.visible = false
+	painel_result.visible = false
+
+func _iniciar_jogo() -> void:
+	errors_remaining = TOTAL_ERRORS
+	erros_cometidos  = 0
 	game_active = true
+	lines_in_screen.clear()
+	_update_counter_label()
+	painel_intro.visible = false
+	painel_jogo.visible = true
+	painel_result.visible = false
 	spawn_timer.wait_time = SCROLL_TIME
 	spawn_timer.start()
+
+func _input(event: InputEvent) -> void:
+	if not visible:
+		return
+	if event.is_action_pressed("ui_cancel"):
+		_fechar(false)
+		return
+	if event.is_action_pressed("ui_accept"):
+		if painel_intro.visible:
+			_iniciar_jogo()
+		elif painel_result.visible:
+			_fechar(lbl_titulo_result.text == "Producao Estavel!")
 
 func _on_spawn_timer_timeout() -> void:
 	if not game_active:
@@ -115,17 +148,16 @@ func _on_line_clicked(event: InputEvent, line: Label) -> void:
 
 	match type:
 		LineType.ERROR:
-			errors_clicked   += 1
 			errors_remaining -= 1
 			line.queue_free()
 			_update_counter_label()
 			if errors_remaining <= 0:
-				_end_game(true)
+				_fim_jogo(true)
 		LineType.WARNING:
-			_flash_line(line, Color.WHITE)
-			_end_game(false, "Você clicou num [WARNING]!\nEsse não era pra clicar.")
+			erros_cometidos += 1
+			_fim_jogo(false, "Voce clicou num [WARNING]!\nEsse nao era pra clicar.")
 		LineType.INFO:
-			_flash_line(line, Color.WHITE)
+			pass
 
 func _on_line_expired(line: Label, type: LineType) -> void:
 	if not game_active:
@@ -133,31 +165,36 @@ func _on_line_expired(line: Label, type: LineType) -> void:
 	if not line.get_meta("alive", false):
 		return
 	if type == LineType.ERROR:
-		_end_game(false, "Um [ERROR] passou sem ser clicado!\nProduction is down. 🔥")
+		erros_cometidos += 1
+		_fim_jogo(false, "Um [ERROR] passou sem ser clicado!\nProduction is down.")
 	if is_instance_valid(line):
 		line.queue_free()
 	lines_in_screen.erase(line)
 
-func _end_game(victory: bool, reason: String = "") -> void:
+func _fim_jogo(vitoria: bool, motivo: String = "") -> void:
 	game_active = false
 	spawn_timer.stop()
-	result_panel.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	result_panel.visible = true
+	painel_jogo.visible = false
+	painel_result.visible = true
 
-	if victory:
-		result_title.text = "Producao estavell"
-		result_title.add_theme_color_override("font_color", Color(0.4, 1.0, 0.4))
-		result_desc.text = "Voce capturou todos os %d erros.\n+%d XP" % [TOTAL_ERRORS, XP_VICTORY]
+	if vitoria:
+		lbl_titulo_result.text = "Producao Estavel!"
+		lbl_titulo_result.add_theme_color_override("font_color", Color(0.4, 1.0, 0.4))
+		lbl_resultado.text = "Voce capturou todos os %d erros sem errar!\n\n+%d XP\n\n[ ESPACO / clique para fechar ]" % [TOTAL_ERRORS, XP_VITORIA]
 	else:
-		result_title.text = "Production is down!"
-		result_title.add_theme_color_override("font_color", Color(1.0, 0.3, 0.3))
-		result_desc.text = reason + "\n%d XP" % XP_DEFEAT
+		lbl_titulo_result.text = "Production is down!"
+		lbl_titulo_result.add_theme_color_override("font_color", Color(1.0, 0.3, 0.3))
+		lbl_resultado.text = "%s\n\n-3 XP\n\n[ ESPACO / clique para fechar ]" % motivo
 
-func _on_continue_pressed() -> void:
-	var victory := result_title.text.begins_with("Producao")
-	var xp      := XP_VICTORY if victory else XP_DEFEAT
-	emit_signal("minigame_finished", victory, xp)
-	queue_free()
+func _fechar(sucesso: bool) -> void:
+	_esconder_hud(false)
+	visible = false
+	emit_signal("minigame_concluido", sucesso, XP_VITORIA if sucesso else 0)
+
+func _esconder_hud(esconder: bool) -> void:
+	var hud = get_tree().get_first_node_in_group("hud")
+	if hud:
+		hud.visible = not esconder
 
 func _pick_line_type() -> LineType:
 	var rand := randf()
@@ -181,18 +218,11 @@ func _get_color(type: LineType) -> Color:
 		_:                return COLOR_INFO
 
 func _update_counter_label() -> void:
-	timer_label.text = "ERRORs restantes: %d" % errors_remaining
+	lbl_erros.text = "ERRORs restantes: %d" % errors_remaining
 
 func _scroll_to_bottom() -> void:
 	await get_tree().process_frame
 	log_scroll.scroll_vertical = log_scroll.get_v_scroll_bar().max_value
-
-func _flash_line(line: Label, color: Color) -> void:
-	var original := line.get_theme_color("font_color")
-	line.add_theme_color_override("font_color", color)
-	await get_tree().create_timer(0.15).timeout
-	if is_instance_valid(line):
-		line.add_theme_color_override("font_color", original)
 
 func _start_blink(line: Label) -> void:
 	var blink_count := 0

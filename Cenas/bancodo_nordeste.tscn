@@ -1,8 +1,8 @@
 [gd_scene format=4 uid="uid://b606khbhijq3m"]
 
 [ext_resource type="AudioStream" uid="uid://barfydc8ttm1y" path="res://unifor_theme_v4.ogg" id="1_1iqxb"]
-[ext_resource type="Script" uid="uid://dp0f3haivwew8" path="res://Cenas/bancodo_nordeste.gd" id="1_16fpi"]
 [ext_resource type="PackedScene" uid="uid://dqpoa0wpgwarr" path="res://Cenas/player.tscn" id="1_mxp1a"]
+[ext_resource type="Script" uid="uid://c5tph1komj166" path="res://Cenas/minigameterminal.gd" id="1_vp4tq"]
 [ext_resource type="Texture2D" uid="uid://ddkpgwdih7imu" path="res://assets/assets - BN/desk-essentials-preview.png" id="2_hdxat"]
 [ext_resource type="Texture2D" uid="uid://0h44box2mvqx" path="res://assets/assets - BN/spritesheet.png" id="3_8buk5"]
 [ext_resource type="Texture2D" uid="uid://kntredmexbj3" path="res://assets/assets - chao/Textures-16.png" id="4_8buk5"]
@@ -13706,8 +13706,9 @@ size = Vector2(14, 30)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_chefe"]
 size = Vector2(60, 44)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vp4tq"]
+
 [node name="BancodoNordeste" type="Node2D" unique_id=222308583]
-script = ExtResource("1_16fpi")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=217944704]
 stream = ExtResource("1_1iqxb")
@@ -13845,7 +13846,7 @@ requer_vestido = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PortaSaida" unique_id=1716253477]
 shape = SubResource("RectangleShape2D_1sq5b")
 
-[node name="PainelMissoes" type="CanvasLayer" parent="." unique_id=882895176]
+[node name="PainelMissoes" type="CanvasLayer" parent="." unique_id=882895176 groups=["hud"]]
 script = ExtResource("14_1sq5b")
 
 [node name="Panel" type="Panel" parent="PainelMissoes" unique_id=1788956875]
@@ -13941,3 +13942,10 @@ theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
 theme_override_font_sizes/font_size = 14
 text = "[ E para continuar ]"
 horizontal_alignment = 2
+
+[node name="InteractionArea" type="Area2D" parent="." unique_id=1234713454]
+script = ExtResource("1_vp4tq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=1973562225]
+position = Vector2(82, 64)
+shape = SubResource("RectangleShape2D_vp4tq")
